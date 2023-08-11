@@ -1,4 +1,5 @@
 import style from "./aboutUs.module.scss"
+import { paragraphTexts, statisticItems } from "./aboutUsTexts"
 
 export default function AboutUs () {
     return (
@@ -11,39 +12,23 @@ export default function AboutUs () {
                 <span className={style.subtitleText}>of electronics worldwide</span>
                 </div>
                 <div className={style.paragraphs}>
-                <p className={style.paragraph}>We specialize in electronics wholesale and are able to supply products from numerous brands worldwide.</p>
-                <p className={style.paragraph}><i>Apple, Samsung, Xiaomi, Huawei, Sony - you name it!</i><br/>
-                Our longtime experience in the business has
-                shaped our expertise in fast delivery times
-                and meaningful partnerships. </p>
+            {paragraphTexts.map((text, index) => (
+                <p
+                  className={style.paragraph}
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: text }}
+                />
+              ))}
                 </div>
             </div>
-            <div className={style.statistics__wrapper}>
-            {/* <div className={style.statistics}> */}
-            <div className={`${style.statItem} ${style.area1}`}>
-            <div className={style.statValue}>2016</div>
-            <div className={style.statLabel}>Reliable Partner Since</div>
+            <div className={style.statistics}>
+            {statisticItems.map((item, index) => (
+            <div className={`${style.statItem} ${style[`area${index + 1}`]}`} key={index}>
+              <div className={style.statValue}>{item.value}</div>
+              <div className={style.statLabel}>{item.label}</div>
             </div>
-            <div className={`${style.statItem} ${style.area2}`}>
-            <div className={style.statValue}>16</div>
-            <div className={style.statLabel}>Number of Employees</div>
-            </div>
-            <div className={`${style.statItem} ${style.area3}`}>
-            <div className={`${style.statValue} ${style.statValue_plus}`}>300</div>
-            <div className={style.statLabel}>Number of Trade Partners</div>
-            </div>
-
-            {/* </div> */}
-            {/* <div className={style.statistics}> */}
-            <div className={`${style.statItem} ${style.area4}`}>
-            <div className={style.statValue}>€100M</div>
-            <div className={style.statLabel}>Gross Turnover in 2022</div>
-            </div>
-            <div className={`${style.statItem} ${style.area5}`}>
-            <div className={`${style.statValue} ${style.statValue_plus}`}>400'000</div>
-            <div className={style.statLabel}>Number of Products Sold per year</div>
-            </div>
-            {/* </div> */}
+          ))}
+          
             </div>
             </div>
         </section>

@@ -47,7 +47,7 @@
     text-align: left;
 }
 
-  .statistics__wrapper {
+  .statistics {
     display: grid;
     grid-template-areas:
     'area1 area1'
@@ -117,7 +117,7 @@
     text-align: center;
   }
   @media (min-width: 568px) {
-    .statistics__wrapper {
+    .statistics {
         grid-template-areas:
         'area1 area1 area2 area2 area3 area3'
         '. area4 area4 area5 area5 .';
@@ -148,7 +148,7 @@
       font-size: 34px;
       font-weight: bold;  
     }
-    .statistics__wrapper {
+    .statistics {
     row-gap: 54px;
     flex: 0 1 50%;
     min-height: 602px;
