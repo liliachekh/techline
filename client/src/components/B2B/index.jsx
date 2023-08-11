@@ -18,6 +18,19 @@ export default function B2B () {
                     ))}
                 </div>
                 <div className={style.photo}>
+                    <div className={style.photo__pc}>
+                        <img src="./images/pc_b2b_platform.webp" alt="b2b platform for pc"/>
+                        <div className={style.photo__pc_productcard}>
+                            <img src="./images/b2b_productcard.webp" alt="b2b productcard for pc"/>
+                        </div>
+                    </div>
+                    <div className={style.photo__mobile}>
+                        <img src="./images/mobile_b2b_platform.webp" alt="b2b platform for mobile phone"/>
+                        <div className={style.photo__mobile_productcard}>
+                            <img src="./images/b2b_mobile_productcard.webp" alt="b2b productcard for mobile phone"/>
+                        </div>
+                    </div>
+                   
                 </div>
                 </div>
 
