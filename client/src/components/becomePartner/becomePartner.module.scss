@@ -1,7 +1,6 @@
 .becomePartner {
     margin: 20px auto 0;
     color: rgb(242,242,242);
-   
 
     &__wrapper {
         background: linear-gradient(rgba(13, 11, 64, 0.45), rgba(13, 11, 64, 0.45)), url("../../../public/images/Home.webp") no-repeat center top/ cover;
@@ -62,7 +61,7 @@
       font-weight: 700;
       color: #120B3C;
       font-size: 19px;
-      transition: all 0.2s ease, visibility 0s;
+      transition: all 0.4s ease-out, visibility 0s;
       background: #F2F2F2;
       border: 2px solid transparent;
       border-radius: 10px;
@@ -76,6 +75,8 @@
     }
     @media (min-width: 768px) {
 
+      margin-top: 0;
+        
       &__wrapper{
         // display: block;
       

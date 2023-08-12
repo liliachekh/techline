@@ -11,7 +11,11 @@ a {
     color: #202025;
     font-size: 14px;
     background-color: #120B3C;
+    z-index: 28;
     
+    @media (min-width: 768px) {
+      background-color: transparent;
+    }
 
     .wrapper {
         transition: all .4s ease-out;
