@@ -6,7 +6,7 @@ export const paragraphTexts = [
 export const statisticItems = [
     { value: "2016", label: "Reliable Partner Since" },
     { value: "16", label: "Number of Employees" },
-    { value: "300", label: "Number of Trade Partners" },
+    { value: "300+", label: "Number of Trade Partners" },
     { value: "€100M", label: "Gross Turnover in 2022" },
-    { value: "400'000", label: "Number of Products Sold per year" }
+    { value: "400'000+", label: "Number of Products Sold per year" }
   ];
