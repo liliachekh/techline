@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobiNav from "../MobiNav"
 import { Logo } from "../icons"
 import style from "./header.module.scss"
@@ -6,13 +6,34 @@ import { Link } from "react-router-dom"
 
 export default function Header () {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
+  useEffect(() => {
+    function handleScroll() {
+      const currentScrollPos = window.pageYOffset;
+      if (prevScrollPos < currentScrollPos && !scrolled) {
+      // if (window.scrollY > 0) {
+        setScrolled(true);
+      } 
+      // else {
+        if (prevScrollPos > currentScrollPos && scrolled) {
+        setScrolled(false);
+      }
+      setPrevScrollPos(currentScrollPos);
+    } 
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos, scrolled]);
   function toggleBurgerMenu() {
     setIsOpen(!isOpen);
   }
     return (
        <>
-        <header className={style.header}>
+        <header className={`${style.header} ${scrolled && style.scrolled}`}>
 <div className={style.wrapper}>
     <div className={style.container}>
     <div className={style.section}>

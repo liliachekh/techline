@@ -10,11 +10,24 @@ a {
     width: 100%;
     color: #202025;
     font-size: 14px;
-    background-color: #120B3C;
+    // background-color: #120B3C;
+    background: linear-gradient(rgba( 12,29,57, 0.43),rgba( 12,29,57, 0.43));
     z-index: 28;
+    transition: all .4s ease-out;
+    opacity: 1;
+    border-radius: 50px;
+
+
+    &.scrolled {
+      opacity: 0;
+    }
     
     @media (min-width: 768px) {
       background-color: transparent;
+
+      &.scrolled {
+        opacity: 1;
+      }
     }
 
     .wrapper {
