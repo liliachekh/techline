@@ -64,7 +64,8 @@
       gap: 6px;
       background: transparent;
       border: 0;
-      padding: 0;
+      padding: 5px;
+      box-sizing: content-box;
 
     &__lines,
     &::before,
