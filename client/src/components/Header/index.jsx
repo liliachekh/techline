@@ -14,13 +14,7 @@ export default function Header({ refList, inViewList }) {
   useEffect(() => {
     function handleScroll() {
       const currentScrollPos = window.scrollY;
-      if (prevScrollPos < currentScrollPos && !scrolled) {
-        setScrolled(true);
-      }
-
-      if (prevScrollPos > currentScrollPos && scrolled) {
-        setScrolled(false);
-      }
+      setScrolled( prevScrollPos < currentScrollPos)
       setPrevScrollPos(currentScrollPos);
     }
 
