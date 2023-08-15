@@ -1,9 +1,9 @@
 import style from "./aboutUs.module.scss";
 import { paragraphTexts, statisticItems } from "./aboutUsTexts";
 
-export default function AboutUs() {
+export default function AboutUs({ refName }) {
   return (
-    <section className={style.aboutUs}>
+    <section ref={refName} className={style.aboutUs}>
       <div className={style.container}>
         <div className={style.content}>
           <h2 className={style.title}>About us</h2>
@@ -23,16 +23,14 @@ export default function AboutUs() {
         </div>
         <div className={style.statistics}>
           {statisticItems.map((item, index) => (
-            <div
-              className={`${style.statItem} ${style[`area${index + 1}`]}`}
-              key={index}
-            >
+            <div className={`${style.statItem} ${style[`area${index + 1}`]}`} key={index}>
               <div className={style.statValue}>{item.value}</div>
               <div className={style.statLabel}>{item.label}</div>
             </div>
           ))}
+
         </div>
       </div>
     </section>
-  );
+  )
 }
