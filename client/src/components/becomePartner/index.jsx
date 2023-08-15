@@ -1,22 +1,15 @@
 import { motion } from "framer-motion";
 import style from "./becomePartner.module.scss";
-import { fromBottom, fromLeft, fromRight } from "../../animation";
-
-
+import { animateFromBottom, animateFromLeft, animateFromRight } from "../../animation";
 
 export default function BecomePartner({ refName }) {
   return (
-    <motion.section
-      ref={refName}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className={style.becomePartner}>
+    <section ref={refName} className={style.becomePartner}>
       <div className={style.becomePartner__wrapper}>
-        <motion.h1 variants={fromBottom} className={style.title}>Unlock your business potential with our wholesale B2B platform</motion.h1>
+        <motion.h1 {...animateFromBottom(0)} className={style.title}>Unlock your business potential with our wholesale B2B platform</motion.h1>
         <ul className={style.list}>
           <li className={style.listItem} >
-            <motion.div custom={0} variants={fromLeft} className={style.listItem__container}>
+            <motion.div {...animateFromLeft(0)} className={style.listItem__container}>
               <figure>
                 <img className={style.listItem__img} src="./images/check_edited.webp" alt="checked" />
               </figure>
@@ -25,7 +18,7 @@ export default function BecomePartner({ refName }) {
             </motion.div>
           </li>
           <li className={style.listItem}>
-            <motion.div custom={1} variants={fromLeft} className={style.listItem__container}>
+            <motion.div {...animateFromLeft(1)} className={style.listItem__container}>
               <figure>
                 <img className={style.listItem__img} src="./images/check_edited.webp" alt="checked" />
               </figure>
@@ -34,10 +27,10 @@ export default function BecomePartner({ refName }) {
             </motion.div>
           </li>
         </ul>
-        <motion.div className={style.btn__container} variants={fromRight}>
+        <motion.div {...animateFromRight()} className={style.btn__container}>
           <button className={style.btn} >Become a partner</button>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
