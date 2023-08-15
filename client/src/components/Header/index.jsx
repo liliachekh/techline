@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MobiNav from "../MobiNav"
 import { Logo } from "../icons"
 import style from "./header.module.scss"
@@ -8,26 +8,46 @@ import { navData } from "./navData";
 
 export default function Header({ refList, inViewList }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
+  useEffect(() => {
+    function handleScroll() {
+      const currentScrollPos = window.pageYOffset;
+      if (prevScrollPos < currentScrollPos && !scrolled) {
+        setScrolled(true);
+      }
+
+      if (prevScrollPos > currentScrollPos && scrolled) {
+        setScrolled(false);
+      }
+      setPrevScrollPos(currentScrollPos);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos, scrolled]);
   function toggleBurgerMenu() {
     setIsOpen(!isOpen);
   }
-
-  return (
-    <header className={style.header}>
-      <div className={style.wrapper}>
-        <div className={style.container}>
-          <div className={style.section}>
-            <Link to="/">
-              <div className={style.logo}>
-                <Logo />
-                <span className={style.title}>TECHLINES</span>
+    return (
+       <>
+        <header className={`${style.header} ${scrolled && style.scrolled}`}>
+<div className={style.wrapper}>
+    <div className={style.container}>
+    <div className={style.section}>
+              <Link to="/">
+                <div className={style.logo}>
+                  <Logo /> 
+                  <span className={style.title}>TECHLINES</span>
+                </div>
+              </Link>
               </div>
-            </Link>
-          </div>
-          <div className={style.nav__container}>
-            <nav className={style.nav}>
-              <ul className={style.list}>
+              <div className={style.nav__container}>
+              <nav className={style.nav}>
+                <ul className={style.list}>
                 {navData.map(({ refName, text }) => (
                   <HeaderLink
                     className={`${style.listItem} ${inViewList[refName] ? style.listItem_active : ''}`}
@@ -35,19 +55,20 @@ export default function Header({ refList, inViewList }) {
                     refTarget={refList[refName]}
                     text={text} />
                 ))}
-              </ul>
-            </nav>
-            <Link to="/b2b/login">
-              <span className={style.nav_login}>Log in</span>
-            </Link>
-          </div>
-          <MobiNav
-            isOpen={isOpen}
-            toggleBurgerMenu={toggleBurgerMenu}
-            refList={refList}
-            inViewList={inViewList} />
-        </div>
-      </div>
-    </header>
-  )
+                </ul>
+              </nav>
+              <Link to="/b2b/login">
+                    <span className={style.nav_login}>Log in</span>
+                </Link>
+                </div>
+              <MobiNav 
+             isOpen={isOpen}
+             toggleBurgerMenu={toggleBurgerMenu}
+             refList={refList}
+             inViewList={inViewList}/>
+    </div>
+</div>
+        </header>
+        </>
+    )
 }
