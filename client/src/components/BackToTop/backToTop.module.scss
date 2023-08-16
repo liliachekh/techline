@@ -1,0 +1,16 @@
+.btn {
+  position: fixed;
+  bottom: 87px;
+  width: 44px;
+  height: 44px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
