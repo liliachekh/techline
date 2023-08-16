@@ -12,7 +12,7 @@ function Footer() {
                     <p className={style.footer__infoText}>Warehouse address: Taevakivi 1, Box No.7, Tallinn 13619, Estonia</p>
                     <p className={style.footer__infoText}>Registration nr: 14158325</p>
                     <p className={style.footer__infoText}>VAT nr: EE101938314</p>
-                    <p className={style.footer__infoText}>Email:B2B&#40;@&#41;HDC.EE</p>
+                    <p className={style.footer__infoText}>Email: B2B&#40;@&#41;HDC.EE</p>
                     <p className={style.footer__infoText}>Phone nr: +372 581O5773</p>
                 </div>
                 <div className={style.footer__copyright}>
