@@ -1,5 +1,7 @@
 import style from "./b2b.module.scss";
 import { listItemTexts, paragraphs } from "./b2bTexts";
+import { motion } from "framer-motion";
+import { animateFromLeft, animateFromRight } from "../../animation";
 
 export default function B2B({ refName }) {
 
@@ -7,17 +9,23 @@ export default function B2B({ refName }) {
     <section className={style.b2b} ref={refName}>
       <div className={style.wrapper}>
         <div className={style.container}>
-          <h2 className={style.title}>B2B platform</h2>
+          <motion.h2
+            {...animateFromLeft()}
+            className={style.title}>
+            B2B platform
+          </motion.h2>
           <div className={style.description}>
             <div className={style.text}>
-
               {paragraphs.map((text, index) => (
-                <p className={style.paragraph} key={index}>
+                <motion.p
+                  {...animateFromLeft(index)}
+                  className={style.paragraph}
+                  key={index}>
                   {text}
-                </p>
+                </motion.p>
               ))}
             </div>
-            <div className={style.photo}>
+            <motion.div {...animateFromRight()} className={style.photo}>
               <div className={style.photo__pc}>
                 <img src="./images/pc_b2b_platform.webp" alt="b2b platform for pc" />
                 <div className={style.photo__pc_productcard}>
@@ -30,16 +38,18 @@ export default function B2B({ refName }) {
                   <img src="./images/b2b_mobile_productcard.webp" alt="b2b productcard for mobile phone" />
                 </div>
               </div>
-
-            </div>
+            </motion.div>
           </div>
 
-          <div className={style.list}>
+          <motion.div {...animateFromRight()} className={style.list}>
             <h3 className={style.subtitle}>Features</h3>
-          </div>
+          </motion.div>
 
           {listItemTexts.map((text, index) => (
-            <div className={style.listItem} key={index}>
+            <motion.div
+              {...animateFromRight(index / 2)}
+              className={style.listItem}
+              key={index}>
               <figure className={style.img__container}>
                 <img
                   className={style.listItem__img}
@@ -48,7 +58,7 @@ export default function B2B({ refName }) {
                 />
               </figure>
               <span className={style.listItem__text}>{text}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

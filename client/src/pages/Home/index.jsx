@@ -12,9 +12,9 @@ export function Home() {
   const about = useRef(null);
   const b2b = useRef(null);
 
-  const partnerInView = useInView(partner, { margin: "-50% 0px" })
-  const aboutInView = useInView(about, { margin: "-50% 0px" })
-  const b2bInView = useInView(b2b, { margin: "-50% 0px" })
+  const partnerInView = useInView(partner, { margin: "-50% 0px" });
+  const aboutInView = useInView(about, { margin: "-50% 0px" });
+  const b2bInView = useInView(b2b, { margin: "-50% 0px" });
 
   const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
