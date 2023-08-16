@@ -5,8 +5,10 @@ import style from "./header.module.scss"
 import { Link } from "react-router-dom"
 import HeaderLink from "../HeaderLink";
 import { navData } from "./navData";
+import PropTypes from 'prop-types';
 
-export default function Header({ refList, inViewList }) {
+
+export default function Header({ refList, inViewList, scrollToTop }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -32,7 +34,7 @@ export default function Header({ refList, inViewList }) {
 <div className={style.wrapper}>
     <div className={style.container}>
     <div className={style.section}>
-              <Link to="/">
+              <Link to="/" onClick={scrollToTop}>
                 <div className={style.logo}>
                   <Logo /> 
                   <span className={style.title}>TECHLINES</span>
@@ -65,4 +67,11 @@ export default function Header({ refList, inViewList }) {
         </header>
         </>
     )
+}
+
+
+Header.propTypes = {
+  refList: PropTypes.object,
+  inViewList: PropTypes.object,
+  scrollToTop: PropTypes.func,
 }
