@@ -1,39 +1,25 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BackToTopIcon } from "../icons";
 import style from "./backToTop.module.scss";
-import PropTypes from 'prop-types';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { animateBackToTop } from "../../animation";
+import { scrollToTop } from "../../utils";
 
-
-export default function BackToTop({ scrollToTop, isMobile }) {
+export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const { scrollY } = useScroll();
 
-  const handleScroll = () => {
-    if (window.scrollY > window.innerHeight) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  const handleScrollToTop = () => {
-    scrollToTop();
-    setIsVisible(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsVisible(latest > window.innerHeight);
+  });
+  
   useEffect(() => {
     let timeoutId;
 
     if (isVisible) {
       timeoutId = setTimeout(() => {
         setIsVisible(false);
-      }, 3000);
+      }, 4000);
     }
 
     return () => {
@@ -44,17 +30,14 @@ export default function BackToTop({ scrollToTop, isMobile }) {
   }, [isVisible]);
 
   return (
-    isVisible && isMobile ?(
-      <div
-        className={`${style.btn} ${isVisible ? style.visible : ''}`}
-        onClick={handleScrollToTop}>
-        <BackToTopIcon />
-      </div> 
-    ) : null
+    <AnimatePresence>
+      {isVisible &&
+        <motion.div
+          {...animateBackToTop}
+          className={style.btn}
+          onClick={scrollToTop}>
+          <BackToTopIcon />
+        </motion.div>}
+    </AnimatePresence>
   );
-}
-
-BackToTop.propTypes = {
-  scrollToTop: PropTypes.func,
-  isMobile: PropTypes.bool
 }
