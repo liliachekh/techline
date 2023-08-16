@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { BackToTopIcon } from "../icons";
 import style from "./backToTop.module.scss";
+import PropTypes from 'prop-types';
 
-export default function BackToTop({ scrollToTop }) {
+
+export default function BackToTop({ scrollToTop, isMobile }) {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
@@ -42,12 +44,17 @@ export default function BackToTop({ scrollToTop }) {
   }, [isVisible]);
 
   return (
-    isVisible && (
+    isVisible && isMobile ?(
       <div
         className={`${style.btn} ${isVisible ? style.visible : ''}`}
         onClick={handleScrollToTop}>
         <BackToTopIcon />
-      </div>
-    )
+      </div> 
+    ) : null
   );
+}
+
+BackToTop.propTypes = {
+  scrollToTop: PropTypes.func,
+  isMobile: PropTypes.bool
 }
