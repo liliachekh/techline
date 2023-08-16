@@ -18,7 +18,7 @@ export function Home() {
   const aboutInView = useInView(about, { margin: "-50% 0px" });
   const b2bInView = useInView(b2b, { margin: "-50% 0px" });
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
