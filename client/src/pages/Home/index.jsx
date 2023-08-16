@@ -1,11 +1,11 @@
-import AboutUs from "../../components/AboutUs"
-import Header from "../../components/Header"
-import BecomePartner from "../../components/BecomePartner"
+import AboutUs from "../../components/AboutUs";
+import Header from "../../components/Header";
+import BecomePartner from "../../components/BecomePartner";
 // import style from "./Home.module.scss"
 import B2B from "../../components/B2B"
+import SignUpForm from "../../components/SignUpForm"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
-import SignUpForm from "../../components/SignUpForm"
 
 export function Home() {
   const partner = useRef(null);
