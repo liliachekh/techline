@@ -1,7 +1,7 @@
 a {
-    text-decoration: none;
-    cursor: revert;
-  }
+  text-decoration: none;
+  cursor: revert;
+}
 
   .header {
     position: fixed;
@@ -10,112 +10,136 @@ a {
     width: 100%;
     color: #202025;
     font-size: 14px;
-    background-color: #120B3C;
+    // background-color: #120B3C;
+    background: linear-gradient(rgba( 12,29,57, 0.43),rgba( 12,29,57, 0.43));
     z-index: 28;
+    transition: all .4s ease-out;
+    opacity: 1;
+    border-radius: 50px;
+
+
+    &.scrolled {
+      opacity: 0;
+    }
     
     @media (min-width: 768px) {
-      background-color: transparent;
+      background: transparent;
+
+      &.scrolled {
+        opacity: 1;
+      }
     }
 
-    .wrapper {
-        transition: all .4s ease-out;
-      }
+  .wrapper {
+    transition: all .4s ease-out;
+  }
 
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-width: 320px;
-        max-width: 1470px;
-        margin: 0 auto;
-        padding: 5px 15px;
-      }
-    
-    .section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    
-      }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 320px;
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    box-sizing: border-box;
+  }
 
-    .section > a {
-        flex: 0 1 40%;
-      }
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    .logo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+  }
 
-    .title {
-        display: none;
-    
-        @media (min-width: 481px) {
-          display: block;
-          margin-left: 12px;
-          color: #F24405;
-          font-size: 24px;
-          font-weight: 900;
-          line-height: 167%;
-          text-decoration: none;
-        }
-      }
-    .nav__container{
+  .section>a {
+    flex: 0 1 40%;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    display: none;
+
+    @media (min-width: 481px) {
+      display: block;
+      margin-left: 12px;
+      color: #F24405;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 167%;
+      text-decoration: none;
+    }
+  }
+
+  .nav__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+
+    @media (min-width: 768px) {
+      background: linear-gradient(rgba(12, 29, 57, 0.43), rgba(12, 29, 57, 0.43));
+
+    }
+  }
+
+  .nav {
+
+    display: none;
+
+    @media (min-width: 768px) {
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 25px;
-
-      @media (min-width: 768px) {
-      background: linear-gradient(rgba( 12,29,57, 0.43),rgba( 12,29,57, 0.43));
-
-      }
-    }
-    .nav {
-
-      display: none;
- 
-      @media (min-width: 768px) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        padding: 0 20px;
-        font-weight: 700;
-        font-size: 14px;
+      color: white;
+      padding: 0 20px;
+      font-weight: 700;
+      font-size: 14px;
     }
   }
-    .list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 0;
+
+  .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  .listItem {
+    padding: 0 15px;
+
+    &_active>button {
+      color: #F24405;
     }
 
-    .listItem {
-        padding: 0 15px;
-        cursor: pointer;
-        transition: all .4s ease-out;
-
-        &:hover {
-          color: #F24405;
-        }
-    }
-
-    .nav_login {
-      color: white;
-      margin-right: 20px;
-      background-color: #F24405;
-      border-radius: 8px;
-      padding: 3px 15px;
-      transition: all 0.2s ease, visibility 0s;
-
+    &>button {
+      cursor: pointer;
+      transition: color .4s ease-out;
 
       &:hover {
-        background-color: #120B3C;
+        color: #F24405;
       }
     }
-   
   }
+
+  .nav_login {
+    color: white;
+    margin-right: 20px;
+    background-color: #F24405;
+    border-radius: 8px;
+    padding: 3px 15px;
+    transition: all 0.2s ease, visibility 0s;
+
+
+    &:hover {
+      background-color: #120B3C;
+    }
+  }
+
+}

@@ -7,6 +7,21 @@ body {
   overflow-x: auto;
   overflow-y: scroll;
 }
+
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background: none;
+}
+
+section {
+  overflow-x: hidden;
+}
 // .App-logo {
 //   height: 40vmin;
 //   pointer-events: none;
