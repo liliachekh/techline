@@ -1,6 +1,7 @@
 import AboutUs from "../../components/AboutUs";
 import Header from "../../components/Header";
 import BecomePartner from "../../components/BecomePartner";
+import Footer from "../../components/Footer";
 // import style from "./Home.module.scss"
 import B2B from "../../components/B2B";
 import { useRef } from "react";
@@ -23,6 +24,7 @@ export function Home() {
       <BecomePartner refName={partner} />
       <AboutUs refName={about} />
       <B2B refName={b2b} />
+      <Footer/>
     </>
   )
 }
