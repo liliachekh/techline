@@ -1,9 +1,9 @@
 import style from "./footer.module.scss"
 
-function Footer() {
+function Footer({ refName }) {
 
     return (
-        <footer className={style.footer}>
+        <footer ref={refName} className={style.footer}>
             <div className={style.footer__container}>
                 <h2 className={style.footer__title}>Contacts</h2>
                 <div className={style.footer__info}>
