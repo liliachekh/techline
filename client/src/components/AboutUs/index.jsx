@@ -30,7 +30,7 @@ export default function AboutUs({ refName }) {
         <div className={style.statistics}>
           {statisticItems.map((item, index) => (
             <motion.div
-              {...animateFromRight(index)}
+              {...animateFromRight(index, 0.2)}
               className={`${style.statItem} ${style[`area${index + 1}`]}`}
               key={index}>
               <div className={style.statValue}>{item.value}</div>
