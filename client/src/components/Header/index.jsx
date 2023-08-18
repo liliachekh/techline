@@ -27,52 +27,51 @@ export default function Header({ refList, inViewList }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos, scrolled]);
+  }, [prevScrollPos, scrolled, isOpen]);
+
   function toggleBurgerMenu() {
     setIsOpen(!isOpen);
   }
+
   return (
-    <>
-      <header className={`${style.header} ${scrolled && style.scrolled}`}>
-        <div className={style.wrapper}>
-          <div className={style.container}>
-            <div className={style.section}>
-              <Link to="/" onClick={scrollToTop}>
-                <div className={style.logo}>
-                  <Logo />
-                  <span className={style.title}>TECHLINES</span>
-                </div>
-              </Link>
-            </div>
-            <div className={style.nav__container}>
-              <nav className={style.nav}>
-                <ul className={style.list}>
-                  {navData.map(({ refName, text }) => (
-                    <HeaderLink
-                      className={`${style.listItem} ${inViewList[refName] ? style.listItem_active : ''}`}
-                      key={refName}
-                      refTarget={refList[refName]}
-                      text={t(`headerLink.${text}`)} />
-                  ))}
-                </ul>
-                <LanguageSelector />
-              </nav>
-              <Link to="/b2b/login">
-                <span className={style.nav_login}>{t('headerLink.LogIn')}</span>
-              </Link>
-            </div>
-            <MobiNav
-              isOpen={isOpen}
-              toggleBurgerMenu={toggleBurgerMenu}
-              refList={refList}
-              inViewList={inViewList} />
+    <header className={`${style.header} ${scrolled && style.scrolled}`}>
+      <div className={style.wrapper}>
+        <div className={style.container}>
+          <div className={style.section}>
+            <Link to="/" onClick={scrollToTop}>
+              <div className={style.logo}>
+                <Logo />
+                <span className={style.title}>TECHLINES</span>
+              </div>
+            </Link>
           </div>
+          <div className={style.nav__container}>
+            <nav className={style.nav}>
+              <ul className={style.list}>
+                {navData.map(({ refName, text }) => (
+                  <HeaderLink
+                    className={`${style.listItem} ${inViewList[refName] ? style.listItem_active : ''}`}
+                    key={refName}
+                    refTarget={refList[refName]}
+                    text={t(`headerLink.${text}`)} />
+                ))}
+              </ul>
+              <LanguageSelector />
+            </nav>
+            <Link to="/b2b/login">
+              <span className={style.nav_login}>{t('headerLink.LogIn')}</span>
+            </Link>
+          </div>
+          <MobiNav
+            isOpen={isOpen}
+            toggleBurgerMenu={toggleBurgerMenu}
+            refList={refList}
+            inViewList={inViewList} />
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   )
 }
-
 
 Header.propTypes = {
   refList: PropTypes.object,

@@ -7,12 +7,9 @@ import { animateLangSelect } from "../../animation";
 
 const LanguageSelector = () => {
   const [IsOpen, setIsOpen] = useState(false)
-  // const [selectedLanguage, setSelectedLanguage] = useState(localStorage.getItem('i18nextLng'));
-  // const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
   const chooseLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    // setSelectedLanguage(lang);
     setIsOpen(false)
   }
 
