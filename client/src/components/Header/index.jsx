@@ -7,12 +7,14 @@ import HeaderLink from "../HeaderLink";
 import { navData } from "./navData";
 import PropTypes from 'prop-types';
 import { scrollToTop } from "../../utils";
-
+import LanguageSelector from "../LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 export default function Header({ refList, inViewList }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     function handleScroll() {
@@ -21,7 +23,7 @@ export default function Header({ refList, inViewList }) {
       setPrevScrollPos(currentScrollPos);
     }
 
-    window.addEventListener("scroll", handleScroll);
+    !isOpen && window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -50,12 +52,13 @@ export default function Header({ refList, inViewList }) {
                       className={`${style.listItem} ${inViewList[refName] ? style.listItem_active : ''}`}
                       key={refName}
                       refTarget={refList[refName]}
-                      text={text} />
+                      text={t(`headerLink.${text}`)} />
                   ))}
                 </ul>
+                <LanguageSelector />
               </nav>
               <Link to="/b2b/login">
-                <span className={style.nav_login}>Log in</span>
+                <span className={style.nav_login}>{t('headerLink.LogIn')}</span>
               </Link>
             </div>
             <MobiNav

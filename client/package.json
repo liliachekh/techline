@@ -26,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "extract-translations": "i18next -c i18n-parser.config.js --fail-on-warnings"
   },
   "eslintConfig": {
     "extends": [

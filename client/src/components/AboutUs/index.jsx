@@ -3,19 +3,21 @@ import style from "./aboutUs.module.scss";
 import { paragraphTexts, statisticItems } from "./aboutUsTexts";
 import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
-
+import { useTranslation } from "react-i18next";
 
 export default function AboutUs({ refName }) {
+  const { t } = useTranslation();
+
   return (
     <section
       ref={refName}
       className={style.aboutUs}>
       <div className={style.container}>
         <div className={style.content}>
-          <motion.h2 {...animateFromLeft(0, 1)} className={style.title}>About us</motion.h2>
+          <motion.h2 {...animateFromLeft(0, 0.8)} className={style.title}>{t('aboutUs.title')}</motion.h2>
           <div className={style.subtitle}>
-            <motion.span {...animateFromLeft(1)} className={style.subtitleText}>Trusted supplier</motion.span>
-            <motion.span {...animateFromLeft(2)} className={style.subtitleText}>of electronics worldwide</motion.span>
+            <motion.span {...animateFromLeft(1)} className={style.subtitleText}>{t('aboutUs.subtitle1')}</motion.span>
+            <motion.span {...animateFromLeft(2)} className={style.subtitleText}>{t('aboutUs.subtitle2')}</motion.span>
           </div>
           <div className={style.paragraphs}>
             {paragraphTexts.map((text, index) => (
@@ -23,7 +25,7 @@ export default function AboutUs({ refName }) {
                 {...animateFromLeft(3)}
                 className={style.paragraph}
                 key={index}
-                dangerouslySetInnerHTML={{ __html: text }} />
+                dangerouslySetInnerHTML={{ __html: t(`aboutUs.${text}`) }} />
             ))}
           </div>
         </div>
@@ -34,7 +36,7 @@ export default function AboutUs({ refName }) {
               className={`${style.statItem} ${style[`area${index + 1}`]}`}
               key={index}>
               <div className={style.statValue}>{item.value}</div>
-              <div className={style.statLabel}>{item.label}</div>
+              <div className={style.statLabel}>{t(`aboutUs.statisticItems.${item.label}`)}</div>
             </motion.div>
           ))}
         </div>

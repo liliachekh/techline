@@ -2,8 +2,10 @@ import style from "./b2b.module.scss";
 import { listItemTexts, paragraphs } from "./b2bTexts";
 import { motion } from "framer-motion";
 import { animateFromLeft, animateFromRight } from "../../animation";
+import { useTranslation } from "react-i18next";
 
 export default function B2B({ refName }) {
+  const { t } = useTranslation();
 
   return (
     <section className={style.b2b} ref={refName}>
@@ -12,7 +14,7 @@ export default function B2B({ refName }) {
           <motion.h2
             {...animateFromLeft()}
             className={style.title}>
-            B2B platform
+            {t('b2b.title')}
           </motion.h2>
           <div className={style.description}>
             <div className={style.text}>
@@ -21,7 +23,7 @@ export default function B2B({ refName }) {
                   {...animateFromLeft(index)}
                   className={style.paragraph}
                   key={index}>
-                  {text}
+                  {t(`b2b.description.${text}`)}
                 </motion.p>
               ))}
             </div>
@@ -42,7 +44,7 @@ export default function B2B({ refName }) {
           </div>
 
           <motion.div {...animateFromRight()} className={style.list}>
-            <h3 className={style.subtitle}>Features</h3>
+            <h3 className={style.subtitle}>{t('b2b.subtitle')}</h3>
           </motion.div>
 
           {listItemTexts.map((text, index) => (
@@ -57,7 +59,7 @@ export default function B2B({ refName }) {
                   alt="checked"
                 />
               </figure>
-              <span className={style.listItem__text}>{text}</span>
+              <span className={style.listItem__text}>{t(`b2b.listItems.${text}`)}</span>
             </motion.div>
           ))}
         </div>

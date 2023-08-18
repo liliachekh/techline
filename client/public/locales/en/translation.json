@@ -1,0 +1,66 @@
+{
+  "headerLink": {
+    "LogIn": "Log in",
+    "Home": "Home",
+    "About us": "About us",
+    "B2B": "B2B",
+    "Contacts": "Contacts",
+    "Sign up": "Sign up"
+  },
+  "becomePartner": {
+    "title": "Unlock your business's potential with our B2B wholesale platform",
+    "listItem1": "Gain special access to renowned brand electronics at competitive rates",
+    "listItem2": "Optimize your supply chain through our B2B platform",
+    "btn": "Become a partner"
+  },
+  "aboutUs": {
+    "title": "About us",
+    "subtitle1": "Reliable global",
+    "subtitle2": "electronics supplier",
+    "paragraphText1": "We are specialized in electronics wholesale and can deliver products from numerous global brands",
+    "paragraphText2": "<i>Apple, Samsung, Dyson, Xiaomi, Huawei, Sony - you choose, and we deliver! </i><br/> Since our establishment in 2016 in Ukraine and 2022 in Spain, our extensive experience has allowed us to perfect our quick delivery process and form valuable partnerships. Currently, we boast a team of 12 and have sold over 50,000 products in 2023",
+    "statisticItems": {
+      "partner": "Reliable Partner Since",
+      "employees": "Number of Employees",
+      "trade": "Number of Trade Partners",
+      "gross": "Gross Turnover in 2022",
+      "products": "Number of Products Sold per year"
+    }
+  },
+  "b2b": {
+    "title": "B2B platform",
+    "description": {
+      "paragraph1": "Introducing our revamped B2B sales platform, tailored to enhance your sourcing and purchasing process for consumer electronics.",
+      "paragraph2": "Whether you're in the market for products from Apple, Samsung, or hunting for exclusive deals and discounts, we're here to assist.",
+      "paragraph3": "Don't let this chance to expand your business and avail of our distinct offers slip away.",
+      "paragraph4": "Upon registration, you'll be granted access to explore our product catalogue, manage orders, and track shipments. Our platform also facilitates XML integrations, price report extractions, and drop-shipping deliveries."
+    },
+    "subtitle": "Features",
+    "listItems": {
+      "listItem1": "Competitive Rates",
+      "listItem2": "Volume Purchase Discounts",
+      "listItem3": "Customer-centric Discounts",
+      "listItem4": "XML Integrations",
+      "listItem5": "Swift Deliveries",
+      "listItem6": "Regularly Updated Line-up",
+      "listItem7": "Tailored Services",
+      "listItem8": "User-oriented Design"
+    }
+  },
+  "footer": {
+    "title": "Contacts",
+    "subtitle": "HERMES DISTRIBUTION OÜ",
+    "info": {
+      "text1": "Legal address: Tornimäe tn 5-2. korrus, Tallinn 10145, Estonia",
+      "text2": "Warehouse address: Taevakivi 1, Box No.7, Tallinn 13619, Estonia",
+      "text3": "Registration nr: 14158325",
+      "text4": "VAT nr: EE101938314",
+      "text5": "Email: B2B(@)HDC.EE",
+      "text6": "Phone nr: +372 581O5773"
+    },
+    "copyright": {
+      "text1": "© 2035 by TIC.",
+      "text2": " Powered and secured by "
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "headerLink": {
+    "LogIn": "Acceso",
+    "Home": "Portada",
+    "About us": "Acerca de nosotros",
+    "B2B": "B2B",
+    "Contacts": "Contactos",
+    "Sign up": "Inscribirse"
+  },
+  "becomePartner": {
+    "title": "Desbloquea el potencial de tu negocio con nuestra plataforma B2B al por mayor",
+    "listItem1": "Obtén acceso exclusivo a electrónicos de marcas reconocidas a precios competitivos",
+    "listItem2": "Optimiza tu cadena de suministro con nuestra plataforma B2B",
+    "btn": "Convertirse en un compañero"
+  },
+  "aboutUs": {
+    "title": "Acerca de nosotros",
+    "subtitle1": "Proveedor confiable",
+    "subtitle2": "de electrónica a nivel mundial",
+    "paragraphText1": "Nos especializamos en ventas al por mayor de electrónica y podemos suministrar productos de numerosas marcas a nivel mundial:",
+    "paragraphText2": "<i>Apple, Samsung, Dyson, Xiaomi, Huawei, Sony - tu eliges y nosotros te lo entregamos!</i><br/> Establecidos desde 2016 en Ucrania y desde 2022 en España. Nuestra larga experiencia nos ha dado una especialización en tiempos de entrega rápidos y alianzas significativas. Actualmente contamos con un equipo de 12 personas y hemos vendido más de 50,000 productos en 2023.",
+    "statisticItems": {
+      "partner": "Reliable Partner Since",
+      "employees": "Number of Employees",
+      "trade": "Number of Trade Partners",
+      "gross": "Gross Turnover in 2022",
+      "products": "Number of Products Sold per year"
+    }
+  },
+  "b2b": {
+    "title": "Plataforma B2B",
+    "description": {
+      "paragraph1": "Presentamos nuestra nueva e innovadora plataforma de ventas B2B, diseñada para optimizar tu proceso de búsqueda y compra de electrónicos para consumidores.",
+      "paragraph2": "Ya sea que estés buscando productos de marcas como Apple o Samsung o busques ofertas y descuentos exclusivos, estamos aquí para ayudarte.",
+      "paragraph3": "No pierdas esta oportunidad de expandir tu negocio y aprovechar nuestras ofertas exclusivas.",
+      "paragraph4": "Una vez registrado, te proporcionaremos acceso para explorar nuestro catálogo de productos, realizar pedidos y seguir tus entregas. Nuestra plataforma también permite integraciones XML, extraer informes de precios y realizar entregas directas."
+    },
+    "subtitle": "Características",
+    "listItems": {
+      "listItem1": "Precios competitivos",
+      "listItem2": "Descuentos por volumen",
+      "listItem3": "Descuentos para clientes",
+      "listItem4": "Conectividad XML",
+      "listItem5": "Entrega rápida",
+      "listItem6": "Ofertas en expansión",
+      "listItem7": "Servicio personalizado",
+      "listItem8": "Diseño amigable para el usuario"
+    }
+  },
+  "footer": {
+    "title": "Contacts",
+    "subtitle": "HERMES DISTRIBUTION OÜ",
+    "info": {
+      "text1": "Legal address: Tornimäe tn 5-2. korrus, Tallinn 10145, Estonia",
+      "text2": "Warehouse address: Taevakivi 1, Box No.7, Tallinn 13619, Estonia",
+      "text3": "Registration nr: 14158325",
+      "text4": "VAT nr: EE101938314",
+      "text5": "Email: B2B(@)HDC.EE",
+      "text6": "Phone nr: +372 581O5773"
+    },
+    "copyright": {
+      "text1": "© 2035 by TIC.",
+      "text2": " Powered and secured by "
+    }
+  }
+}

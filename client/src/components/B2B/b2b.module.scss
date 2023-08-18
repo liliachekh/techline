@@ -31,11 +31,10 @@
       }
 
     .paragraph {
-      font-family: 'Thasadith', sans-serif;
       text-align: left;
       margin: 0;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 300;
       text-indent: 1em; 
     }
 
@@ -118,8 +117,8 @@
         .listItem {
           display: flex;
           align-items: center;
-          width: 80%;
-          max-width: 325px;
+          width: 100%;
+          max-width: 370px;
           justify-self: center;
           background: rgba(255, 119, 70, 1);
           border-radius: 25px;
@@ -132,17 +131,26 @@
         }
 
         .listItem__img {
-            width: 63px;
-            height: 55px;
+            width: 41px;
+            height: 40px;
             object-fit: cover;
             position: relative;
             left: 10px;
             bottom: 5px;
+            
+            @media (min-width: 375px) {
+              width: 63px;
+              height: 55px;
+            }
         }
 
         .listItem__text {
-            font-size: 24px;
+            font-size: 20px;
             margin-left: 10px;
+            
+            @media (min-width: 768px) {
+              font-size: 24px;
+            }
         }
 
         @media (min-width: 768px) {
