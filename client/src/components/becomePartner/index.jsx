@@ -6,6 +6,7 @@ export default function BecomePartner({ refName }) {
   return (
     <section ref={refName} className={style.becomePartner}>
       <div className={style.becomePartner__wrapper}>
+        <div className={style.container}>
         <motion.h1 {...animateFromBottom(0)} className={style.title}>Unlock your business potential with our wholesale B2B platform</motion.h1>
         <ul className={style.list}>
           <li className={style.listItem} >
@@ -30,6 +31,7 @@ export default function BecomePartner({ refName }) {
         <motion.div {...animateFromRight()} className={style.btn__container}>
           <button className={style.btn} >Become a partner</button>
         </motion.div>
+        </div>
       </div>
     </section>
   )
