@@ -1,8 +1,9 @@
 .mobilNav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 30px;
+    flex: 1 0 30%;
   
     @media (min-width: 481px) {
       gap: 40px;
@@ -64,7 +65,8 @@
       gap: 6px;
       background: transparent;
       border: 0;
-      padding: 0;
+      padding: 5px;
+      box-sizing: content-box;
 
     &__lines,
     &::before,
