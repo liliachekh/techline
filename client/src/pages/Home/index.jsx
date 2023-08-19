@@ -3,9 +3,10 @@ import Header from "../../components/Header";
 import BecomePartner from "../../components/BecomePartner";
 import Footer from "../../components/Footer";
 // import style from "./Home.module.scss"
-import B2B from "../../components/B2B";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
+import B2B from "../../components/B2B"
+import { useRef } from "react"
+import { useInView } from "framer-motion"
+import BackToTop from "../../components/BackToTop";
 
 export function Home() {
   const partner = useRef(null);
@@ -27,6 +28,7 @@ export function Home() {
       <AboutUs refName={about} />
       <B2B refName={b2b} />
       <Footer refName={contacts} />
+      <BackToTop />
     </>
   )
 }

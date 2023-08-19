@@ -1,6 +1,8 @@
 import { navData } from "../Header/navData"
 import HeaderLink from "../HeaderLink"
 import style from "./mobiNav.module.scss"
+import PropTypes from 'prop-types';
+
 
 export default function MobiNav({ isOpen, toggleBurgerMenu, inViewList, refList }) {
   return (
@@ -20,4 +22,11 @@ export default function MobiNav({ isOpen, toggleBurgerMenu, inViewList, refList 
         <span className={`${style.burgerBtn__lines} ${isOpen ? style.active : ''}`}></span> </button>
     </div>
   )
+}
+
+MobiNav.propTypes = {
+  isOpen: PropTypes.bool,
+  toggleBurgerMenu: PropTypes.func,
+  inViewList: PropTypes.object,
+  refList: PropTypes.object,
 }

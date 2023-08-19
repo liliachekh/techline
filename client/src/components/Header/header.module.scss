@@ -49,7 +49,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    flex: 1 0 30%;
   }
 
   .section>a {
@@ -81,10 +81,12 @@ a {
     justify-content: center;
     align-items: center;
     border-radius: 25px;
+    flex: 1 0 auto;
 
     @media (min-width: 768px) {
       background: linear-gradient(rgba(12, 29, 57, 0.43), rgba(12, 29, 57, 0.43));
-
+      margin-right: 20px;
+      justify-content: flex-end;
     }
   }
 
@@ -130,12 +132,11 @@ a {
 
   .nav_login {
     color: white;
-    margin-right: 20px;
+    // margin-right: 20px;
     background-color: #F24405;
     border-radius: 8px;
     padding: 3px 15px;
     transition: all 0.2s ease, visibility 0s;
-
 
     &:hover {
       background-color: #120B3C;

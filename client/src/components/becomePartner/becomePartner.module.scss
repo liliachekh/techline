@@ -6,12 +6,19 @@
         background: linear-gradient(rgba(13, 11, 64, 0.45), rgba(13, 11, 64, 0.45)), url("../../../public/images/Home.webp") no-repeat center top/ cover;
         padding: 100px 0;
         background-attachment: fixed;
+    }
+
+    .container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 20px;
+        min-width: 320px;
+        max-width: 1470px;
+        margin: 0 auto;
     }
+
     .parallaxImg {
         position: absolute;
         inset: 0;
@@ -66,7 +73,8 @@
       border: 2px solid transparent;
       border-radius: 10px;
       box-sizing: border-box;
-
+      cursor: pointer;
+      
       &:hover {
         border: 2px solid #F2F2F2;
         background: #F24405;
@@ -79,7 +87,10 @@
         
       &__wrapper{
         // display: block;
-      
+      .container {
+        padding: 0 50px;
+      }
+
       .title {
         font-size: 59px;
         text-align: center;

@@ -2,6 +2,8 @@ import { animateFromLeft, animateFromRight } from "../../animation";
 import style from "./aboutUs.module.scss";
 import { paragraphTexts, statisticItems } from "./aboutUsTexts";
 import { motion } from "framer-motion";
+import PropTypes from 'prop-types';
+
 
 export default function AboutUs({ refName }) {
   return (
@@ -39,4 +41,8 @@ export default function AboutUs({ refName }) {
       </div>
     </section>
   )
+}
+
+AboutUs.propTypes ={
+  refName: PropTypes.object
 }
