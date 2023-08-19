@@ -18,7 +18,7 @@ export default function Header({ refList, inViewList }) {
   const { t } = useTranslation();
 
   const isMobile = useMediaQuery({
-    query: '(max-width: 769px)'
+    query: '(max-width: 768px)'
   })
 
   useEffect(() => {

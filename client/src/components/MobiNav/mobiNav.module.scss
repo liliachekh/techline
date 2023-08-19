@@ -14,7 +14,8 @@ body:has(.burgerBtn.active) {
     gap: 40px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 821px) {
+    // flex: initial;
     display: none;
   }
 

@@ -1,35 +1,30 @@
-a {
-  text-decoration: none;
-  cursor: revert;
-}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #202025;
+  font-size: 14px;
+  // background-color: #120B3C;
+  background: linear-gradient(rgba(12, 29, 57, 0.43), rgba(12, 29, 57, 0.43));
+  z-index: 28;
+  transition: all .4s ease-out;
+  opacity: 1;
+  border-radius: 50px;
 
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    color: #202025;
-    font-size: 14px;
-    // background-color: #120B3C;
-    background: linear-gradient(rgba( 12,29,57, 0.43),rgba( 12,29,57, 0.43));
-    z-index: 28;
-    transition: all .4s ease-out;
-    opacity: 1;
-    border-radius: 50px;
 
+  &.scrolled {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  @media (min-width: 821px) {
+    background: transparent;
 
     &.scrolled {
-      visibility: hidden;
-      opacity: 0;
+      opacity: 1;
     }
-    
-    @media (min-width: 768px) {
-      background: transparent;
-
-      &.scrolled {
-        opacity: 1;
-      }
-    }
+  }
 
   .wrapper {
     transition: all .4s ease-out;
@@ -51,6 +46,10 @@ a {
     align-items: center;
     justify-content: space-between;
     flex: 1 0 30%;
+    
+    @media (min-width: 821px) {
+      flex: initial;
+    }
   }
 
   .section>a {
@@ -84,23 +83,26 @@ a {
     border-radius: 25px;
     flex: 1 0 auto;
 
-    @media (min-width: 768px) {
+    @media (min-width: 821px) {
+      flex: initial;
+      gap: 1.5rem;
       background: linear-gradient(rgba(12, 29, 57, 0.43), rgba(12, 29, 57, 0.43));
-      margin-right: 20px;
+      padding: 0 20px;
+      // margin-right: 20px;
       justify-content: flex-end;
     }
   }
 
   .nav {
-
     display: none;
 
-    @media (min-width: 768px) {
+    @media (min-width: 821px) {
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 1.5rem;
       color: white;
-      padding: 0 20px;
+      // padding: 0 20px;
       font-weight: 700;
       font-size: 14px;
     }
@@ -110,13 +112,12 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
     list-style: none;
     padding: 0;
   }
 
   .listItem {
-    padding: 0 15px;
-
     &_active>button {
       color: #F24405;
     }
