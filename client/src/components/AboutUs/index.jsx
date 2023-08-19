@@ -14,7 +14,7 @@ export default function AboutUs({ refName }) {
       className={style.aboutUs}>
       <div className={style.container}>
         <div className={style.content}>
-          <motion.h2 {...animateFromLeft(0, 0.8)} className={style.title}>{t('aboutUs.title')}</motion.h2>
+          <motion.h2 {...animateFromLeft(0, 0.7)} className={style.title}>{t('aboutUs.title')}</motion.h2>
           <div className={style.subtitle}>
             <motion.span {...animateFromLeft(1)} className={style.subtitleText}>{t('aboutUs.subtitle1')}</motion.span>
             <motion.span {...animateFromLeft(2)} className={style.subtitleText}>{t('aboutUs.subtitle2')}</motion.span>

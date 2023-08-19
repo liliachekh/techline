@@ -19,6 +19,7 @@ a {
 
 
     &.scrolled {
+      visibility: hidden;
       opacity: 0;
     }
     

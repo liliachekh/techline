@@ -26,6 +26,7 @@ export default function MobiNav({ isOpen, toggleBurgerMenu, inViewList, refList 
                   className={`${style.listItem} ${inViewList[refName] ? style.listItem_active : ''}`}
                   key={refName}
                   refTarget={refList[refName]}
+                  toggleBurgerMenu={toggleBurgerMenu}
                   text={t(`headerLink.${text}`)} />
               ))}
               <LanguageSelector />
