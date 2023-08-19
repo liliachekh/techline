@@ -9,10 +9,10 @@ export const paragraphTexts = [
 
 export const statisticItems = [
   { value: "2016", label: "partner" },
-  { value: "16", label: "employees" },
-  { value: "300+", label: "trade" },
-  { value: "€100M", label: "gross" },
-  { value: "400'000+", label: "products" },
+  { value: "12", label: "employees" },
+  { value: "100+", label: "trade" },
+  { value: "2022", label: "beginnings" },
+  { value: "50 000+", label: "products" },
 ];
 // export const statisticItems = [
 //   { value: "2016", label: "Reliable Partner Since" },

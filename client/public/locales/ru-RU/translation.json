@@ -20,11 +20,11 @@
     "paragraphText1": "Мы специализируемся на оптовых поставках электроники и можем предоставлять продукцию от многочисленных брендов по всему миру:",
     "paragraphText2": "<i>Apple, Samsung, Dyson, Xiaomi, Huawei, Sony - выбираете вы, а мы доставляем!</i><br/> С 2016 года в Украине и с 2022 года в Испании. Благодаря нашему многолетнему опыту мы приобрели экспертизу в быстрых сроках доставки и продуктивных партнерствах. Сейчас у нас работает 12 сотрудников, и мы продали более 50,000 продуктов в 2023 году.",
     "statisticItems": {
-      "partner": "Reliable Partner Since",
-      "employees": "Number of Employees",
-      "trade": "Number of Trade Partners",
-      "gross": "Gross Turnover in 2022",
-      "products": "Number of Products Sold per year"
+      "partner": "Надежный партнер с",
+      "employees": "Количество работников",
+      "trade": "Торговых партнеров",
+      "beginnings": "Начало работы в Испании",
+      "products": "Количество проданных продуктов за 2023 год"
     }
   },
   "b2b": {
@@ -49,14 +49,13 @@
   },
   "footer": {
     "title": "Contacts",
-    "subtitle": "HERMES DISTRIBUTION OÜ",
+    "subtitle": "TECHLINE",
     "info": {
-      "text1": "Legal address: Tornimäe tn 5-2. korrus, Tallinn 10145, Estonia",
-      "text2": "Warehouse address: Taevakivi 1, Box No.7, Tallinn 13619, Estonia",
-      "text3": "Registration nr: 14158325",
-      "text4": "VAT nr: EE101938314",
-      "text5": "Email: B2B(@)HDC.EE",
-      "text6": "Phone nr: +372 581O5773"
+      "text1": "Юридический адрес: с. Baladre 6, 03570, Villajoyosa, Alicante, Spain",
+      "text3": "Номер регистрации: B72884349",
+      "text4": "Свидетельство плательщика НДС: EE101938314",
+      "text5": "Email: b2b@techlines.es",
+      "text6": "Контактный телефон: +34 627 575 578"
     },
     "copyright": {
       "text1": "© 2035 by TIC.",

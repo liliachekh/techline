@@ -1,11 +1,11 @@
 {
   "headerLink": {
     "LogIn": "Acceso",
-    "Home": "Portada",
-    "About us": "Acerca de nosotros",
+    "Home": "Hogar",
+    "About us": "Conocenos",
     "B2B": "B2B",
     "Contacts": "Contactos",
-    "Sign up": "Inscribirse"
+    "Sign up": "Inicio de Sesión"
   },
   "becomePartner": {
     "title": "Desbloquea el potencial de tu negocio con nuestra plataforma B2B al por mayor",
@@ -14,17 +14,17 @@
     "btn": "Convertirse en un compañero"
   },
   "aboutUs": {
-    "title": "Acerca de nosotros",
+    "title": "Conocenos",
     "subtitle1": "Proveedor confiable",
     "subtitle2": "de electrónica a nivel mundial",
     "paragraphText1": "Nos especializamos en ventas al por mayor de electrónica y podemos suministrar productos de numerosas marcas a nivel mundial:",
     "paragraphText2": "<i>Apple, Samsung, Dyson, Xiaomi, Huawei, Sony - tu eliges y nosotros te lo entregamos!</i><br/> Establecidos desde 2016 en Ucrania y desde 2022 en España. Nuestra larga experiencia nos ha dado una especialización en tiempos de entrega rápidos y alianzas significativas. Actualmente contamos con un equipo de 12 personas y hemos vendido más de 50,000 productos en 2023.",
     "statisticItems": {
-      "partner": "Reliable Partner Since",
-      "employees": "Number of Employees",
-      "trade": "Number of Trade Partners",
-      "gross": "Gross Turnover in 2022",
-      "products": "Number of Products Sold per year"
+      "partner": "Socio confiable desde",
+      "employees": "Número de empleados",
+      "trade": "Socios comerciales",
+      "beginnings": "Inicio de obra en España",
+      "products": "Número de productos vendidos en 2023"
     }
   },
   "b2b": {
@@ -49,14 +49,13 @@
   },
   "footer": {
     "title": "Contacts",
-    "subtitle": "HERMES DISTRIBUTION OÜ",
+    "subtitle": "TECHLINE",
     "info": {
-      "text1": "Legal address: Tornimäe tn 5-2. korrus, Tallinn 10145, Estonia",
-      "text2": "Warehouse address: Taevakivi 1, Box No.7, Tallinn 13619, Estonia",
-      "text3": "Registration nr: 14158325",
-      "text4": "VAT nr: EE101938314",
-      "text5": "Email: B2B(@)HDC.EE",
-      "text6": "Phone nr: +372 581O5773"
+      "text1": "Domicilio legal: с. Baladre 6, 03570, Villajoyosa, Alicante, Spain",
+      "text3": "Número de registro: B72884349",
+      "text4": "IVA nr: ESB72884349",
+      "text5": "Email: b2b@techlines.es",
+      "text6": "Número de teléfono: +34 627 575 578"
     },
     "copyright": {
       "text1": "© 2035 by TIC.",

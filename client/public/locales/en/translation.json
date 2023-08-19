@@ -23,8 +23,8 @@
       "partner": "Reliable Partner Since",
       "employees": "Number of Employees",
       "trade": "Number of Trade Partners",
-      "gross": "Gross Turnover in 2022",
-      "products": "Number of Products Sold per year"
+      "beginnings": "Exciting beginnings in Spain",
+      "products": "Number of Products Sold per 2023"
     }
   },
   "b2b": {
@@ -49,14 +49,13 @@
   },
   "footer": {
     "title": "Contacts",
-    "subtitle": "HERMES DISTRIBUTION OÜ",
+    "subtitle": "TECHLINE",
     "info": {
-      "text1": "Legal address: Tornimäe tn 5-2. korrus, Tallinn 10145, Estonia",
-      "text2": "Warehouse address: Taevakivi 1, Box No.7, Tallinn 13619, Estonia",
-      "text3": "Registration nr: 14158325",
+      "text1": "Legal address: с. Baladre 6, 03570, Villajoyosa, Alicante, Spain",
+      "text3": "Registration nr: B72884349",
       "text4": "VAT nr: EE101938314",
-      "text5": "Email: B2B(@)HDC.EE",
-      "text6": "Phone nr: +372 581O5773"
+      "text5": "Email: b2b@techlines.es",
+      "text6": "Phone nr: +34 627 575 578"
     },
     "copyright": {
       "text1": "© 2035 by TIC.",
