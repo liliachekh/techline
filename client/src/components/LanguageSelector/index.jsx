@@ -4,6 +4,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import langProps from "./langProps";
 import styles from "./languageSelector.module.scss";
 import { animateLangSelect } from "../../animation";
+import { FlagEn, FlagEs, FlagRu, FlagUa } from "../icons";
+
+const FlagIcon = ({ type }) => {
+  switch (type) {
+    case 'English':
+      return <FlagEn className={styles.selector__flag} />
+    case 'Español':
+      return <FlagEs className={styles.selector__flag} />
+    case 'Русский':
+      return <FlagRu className={styles.selector__flag} />
+    case 'Українська':
+      return <FlagUa className={styles.selector__flag} />
+    default:
+      return
+  }
+}
 
 const LanguageSelector = () => {
   const [IsOpen, setIsOpen] = useState(false)
@@ -15,6 +31,7 @@ const LanguageSelector = () => {
 
   return (
     <div className={styles.selector}>
+      <FlagIcon type={langProps[localStorage.getItem('i18nextLng')]} />
       <button
         onClick={() => setIsOpen(!IsOpen)}
         className={styles.selector__btn}
@@ -25,13 +42,16 @@ const LanguageSelector = () => {
         {IsOpen && (
           <motion.div className={styles.selector__list} {...animateLangSelect}>
             {Object.entries(langProps).map(([key, value]) => (
-              <button
-                key={key}
-                type='button'
-                className={styles.selector__item}
-                onClick={() => chooseLanguage(key)}>
-                {value}
-              </button>
+              <div className={styles.selector__item}>
+                <FlagIcon type={value} />
+                <button
+                  key={key}
+                  type='button'
+                  className={styles.selector__country}
+                  onClick={() => chooseLanguage(key)}>
+                  {value}
+                </button>
+              </div>
             ))}
           </motion.div>
         )}
