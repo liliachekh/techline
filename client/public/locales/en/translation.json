@@ -52,14 +52,10 @@
     "subtitle": "TECHLINE",
     "info": {
       "text1": "Legal address: с. Baladre 6, 03570, Villajoyosa, Alicante, Spain",
-      "text3": "Registration nr: B72884349",
-      "text4": "VAT nr: EE101938314",
-      "text5": "Email: b2b@techlines.es",
-      "text6": "Phone nr: +34 627 575 578"
-    },
-    "copyright": {
-      "text1": "© 2035 by TIC.",
-      "text2": " Powered and secured by "
+      "text2": "Registration nr: B72884349",
+      "text3": "VAT nr: EE101938314",
+      "text4": "Email: b2b@techlines.es",
+      "text5": "Phone nr: +34 627 575 578"
     }
   }
 }

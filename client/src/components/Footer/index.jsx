@@ -15,11 +15,6 @@ function Footer({ refName }) {
           <p className={style.footer__infoText}>{t('footer.info.text3')}</p>
           <p className={style.footer__infoText}>{t('footer.info.text4')}</p>
           <p className={style.footer__infoText}>{t('footer.info.text5')}</p>
-          <p className={style.footer__infoText}>{t('footer.info.text6')}</p>
-        </div>
-        <div className={style.footer__copyright}>
-          <span>{t('footer.copyright.text1')}</span>
-          <span>{t('footer.copyright.text2')}<a href="https://uk.wix.com/?utm_campaign=vir_created_with">Wix</a></span>
         </div>
       </div>
     </footer>

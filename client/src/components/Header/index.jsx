@@ -9,12 +9,17 @@ import PropTypes from 'prop-types';
 import { scrollToTop } from "../../utils";
 import LanguageSelector from "../LanguageSelector";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from 'react-responsive'
 
 export default function Header({ refList, inViewList }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const { t } = useTranslation();
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 769px)'
+  })
 
   useEffect(() => {
     function handleScroll() {
@@ -34,7 +39,7 @@ export default function Header({ refList, inViewList }) {
   }
 
   return (
-    <header className={`${style.header} ${scrolled && style.scrolled}`}>
+    <header className={`${style.header} ${scrolled && isMobile && style.scrolled}`}>
       <div className={style.wrapper}>
         <div className={style.container}>
           <div className={style.section}>

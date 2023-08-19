@@ -6,7 +6,7 @@ function HeaderLink({ refTarget, text, className, toggleBurgerMenu }) {
         top: ref.current.offsetTop,
         behavior: 'smooth',
       }));
-    toggleBurgerMenu()
+    toggleBurgerMenu && toggleBurgerMenu()
   };
 
   return (
