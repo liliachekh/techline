@@ -7,6 +7,7 @@ import B2B from "../../components/B2B"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
 import BackToTop from "../../components/BackToTop";
+import SignUpForm from "../../components/SignUpForm";
 
 export function Home() {
   const partner = useRef(null);
@@ -29,9 +30,9 @@ export function Home() {
       <BecomePartner refName={partner} />
       <AboutUs refName={about} />
       <B2B refName={b2b} />
+      <SignUpForm refName={signup}/>
       <Footer refName={contacts} />
       <BackToTop />
-      <SignUpForm refName={signup}/>
     </>
   )
 }
