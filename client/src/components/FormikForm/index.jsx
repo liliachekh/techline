@@ -5,7 +5,7 @@ import InputMasked from '../InputMasked';
 import { useState } from 'react';
 
 export default function FormikForm({ initialValues, validationSchema, fields, callback, submitBtn, useSignUpStyles }) {
-  const [selectedCountry, setSelectedCountry] = useState('United States');
+  const [selectedCountry, setSelectedCountry] = useState('');
 
   return (
     <Formik

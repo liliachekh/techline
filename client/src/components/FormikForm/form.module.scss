@@ -48,7 +48,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 45%;
     margin: 0 auto;
     padding: .3rem 3rem;
     transition: background .5s;
@@ -87,7 +86,7 @@ input::-webkit-inner-spin-button {
 
 /*#region SignUp*/
 .formSignUp {
-  min-width: 360px;
+  min-width: 320px;
   max-width: 575px;
   padding: 0 20px;
   font-family: 'Inter', sans-serif;
