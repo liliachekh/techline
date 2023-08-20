@@ -1,4 +1,4 @@
-function HeaderLink({ refTarget, text, className }) {
+function HeaderLink({ refTarget, text, className, toggleBurgerMenu }) {
 
   const scrollTo = (ref) => {
     ref && (
@@ -6,6 +6,7 @@ function HeaderLink({ refTarget, text, className }) {
         top: ref.current.offsetTop,
         behavior: 'smooth',
       }));
+    toggleBurgerMenu && toggleBurgerMenu()
   };
 
   return (

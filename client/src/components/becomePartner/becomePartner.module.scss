@@ -1,92 +1,99 @@
 .becomePartner {
+  margin: 0 auto;
+  color: rgb(242, 242, 242);
+
+  &__wrapper {
+    background: linear-gradient(rgba(13, 11, 64, 0.45), rgba(13, 11, 64, 0.45)), url("../../../public/images/Home.webp") no-repeat center top/ cover;
+    padding: 6rem 0 4rem;
+    background-attachment: fixed;
+    
+    @media (min-width: 820px) {
+      padding: 9rem 0 7rem;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-width: 320px;
+    max-width: 1470px;
+    padding: 0 15px;
     margin: 0 auto;
-    color: rgb(242,242,242);
+  }
+
+  .parallaxImg {
+    position: absolute;
+    inset: 0;
+    transform: translateZ(0);
+  }
+
+  .title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 44px;
+    text-align: center;
+    padding: 0 10px;
+    line-height: 1.4em;
+    font-weight: 500;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .listItem {
+
+    &__container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    &__img {
+      width: 63px;
+      height: 55px;
+      object-fit: cover;
+    }
+
+    &__text {
+      line-height: normal;
+      font-size: 25px;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  .btn {
+    padding: 17px;
+    font-style: normal;
+    font-family: futura-lt-w01-book, sans-serif;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    color: #120B3C;
+    font-size: 19px;
+    transition: all 0.4s ease-out, visibility 0s;
+    background: #F2F2F2;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid #F2F2F2;
+      background: #F24405;
+      color: #F2F2F2;
+    }
+  }
+
+  @media (min-width: 821px) {
+    margin-top: 0;
 
     &__wrapper {
-        background: linear-gradient(rgba(13, 11, 64, 0.45), rgba(13, 11, 64, 0.45)), url("../../../public/images/Home.webp") no-repeat center top/ cover;
-        padding: 100px 0;
-        background-attachment: fixed;
-    }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        min-width: 320px;
-        max-width: 1470px;
-        margin: 0 auto;
-    }
-
-    .parallaxImg {
-        position: absolute;
-        inset: 0;
-        transform: translateZ(0);
-    }
-    .title {
-        font-family: 'Roboto', sans-serif;
-        font-size: 44px;
-        text-align: center;
-        padding: 0 10px;
-        line-height: 1.4em;
-        font-weight: 500;
-    }
-
-    .list {
-        list-style: none;
-        padding: 0;
-        width: 100%;
-    }
-
-    .listItem {
-
-        &__container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        &__img {
-            width: 63px;
-            height: 55px;
-            object-fit: cover;
-        }
-
-        &__text {
-            line-height: normal;
-            font-size: 25px;
-            letter-spacing: 0.05em;
-        }
-    }
-
-    .btn {
-      padding: 17px;
-      font-style: normal;
-      font-family: futura-lt-w01-book,sans-serif;
-      letter-spacing: 0.15em;
-      font-weight: 700;
-      color: #120B3C;
-      font-size: 19px;
-      transition: all 0.4s ease-out, visibility 0s;
-      background: #F2F2F2;
-      border: 2px solid transparent;
-      border-radius: 10px;
-      box-sizing: border-box;
-      cursor: pointer;
-      
-      &:hover {
-        border: 2px solid #F2F2F2;
-        background: #F24405;
-        color: #F2F2F2;
-      }
-    }
-    @media (min-width: 768px) {
-
-      margin-top: 0;
-        
-      &__wrapper{
-        // display: block;
+      // display: block;
       .container {
         padding: 0 50px;
       }
@@ -97,17 +104,18 @@
         padding: 0 26px;
         line-height: 1.4em;
         font-weight: 700;
-    }
-    .list {
+      }
+
+      .list {
         width: 52%;
         align-self: flex-start;
-    }
-    .btn__container {
+      }
+
+      .btn__container {
         width: 54%;
         align-self: flex-end;
         text-align: center;
+      }
     }
-
-    }
-}
+  }
 }

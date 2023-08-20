@@ -1,105 +1,117 @@
+html:has(.burgerBtn.active),
+body:has(.burgerBtn.active) {
+  overflow: hidden;
+}
+
 .mobilNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  flex: 1 0 30%;
+
+  @media (min-width: 481px) {
+    gap: 40px;
+  }
+
+  @media (min-width: 821px) {
+    // flex: initial;
+    display: none;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    // right: 0;
+    width: 60%;
+    height: 100vh;
+    // transform: translateY(-100%);
+    // transition: all .5s ease 0s;
+    background-color: #120B3C;
+    // opacity: 0;
+    // overflow: auto;
+    z-index: 24;
+
+    // &.active {
+    //   transform: translateY(0);
+    //   opacity: 1;
+    // }
+  }
+
+  .list {
+    list-style: none;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 100px;
+    color: rgb(242, 242, 242);
+    font-size: 24px;
+    gap: 30px;
+
+  }
+
+  .listItem {
+    cursor: pointer;
+    transition: all .4s ease-out;
+
+    &>button {
+      text-align: right;
+    }
+
+    &:hover {
+      color: #F24405;
+    }
+  }
+
+  .burgerBtn {
+    position: relative;
+    width: 25px;
+    height: 21px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 30px;
-    flex: 1 0 30%;
-  
-    @media (min-width: 481px) {
-      gap: 40px;
-    }
-  
-    @media (min-width: 768px) {
-      display: none;
-    }
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 60%;
-        height: 100vh;
-        transform: translateY(-100%);
-        transition: all .5s ease 0s;
-        background-color: #120B3C;
-        opacity: 0;
-        overflow: auto;
-        z-index: 24;
-
-        &.active {
-            transform: translateY(0);
-            opacity: 1;
-          }
-    }
-    .list {
-      list-style: none;
-      padding-right: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      margin-top: 100px;
-      color: rgb(242,242,242);
-      font-size: 24px;
-      gap: 30px;
-   
-    }
-
-    .listItem {
-        cursor: pointer;
-        transition: all .4s ease-out;
-
-        &:hover {
-          color: #F24405;
-        }
-    }
-
-    .burgerBtn {
-      position: relative;
-      width: 25px;
-      height: 21px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 6px;
-      background: transparent;
-      border: 0;
-      padding: 5px;
-      box-sizing: content-box;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
+    border: 0;
+    padding: 5px;
+    box-sizing: content-box;
 
     &__lines,
     &::before,
     &::after {
-        content: "";
-        border-radius: 5px;
-        width: 100%;
-        height: 3px;
-        background-color: white;
-        transform-origin: right;
-        transition: all 0.3s ease 0s;
+      content: "";
+      border-radius: 5px;
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      transform-origin: right;
+      transition: all 0.3s ease 0s;
     }
 
     &__lines.active {
-        background-color: transparent;
+      background-color: transparent;
     }
 
     &.active {
-        z-index: 26;
-        border: 1px solid white;
-        border-radius: 5px;
+      z-index: 26;
+      border: 1px solid white;
+      border-radius: 5px;
 
-        &::before {
-            width: 100%;
-            transform: rotate(-45deg) translate(-2px, -2px);
-        }
+      &::before {
+        width: 100%;
+        transform: rotate(-45deg) translate(-2px, -2px);
+      }
 
-        &::after {
-            width: 100%;
-            transform: rotate(45deg) translate(-2px, 2px);
-        }
+      &::after {
+        width: 100%;
+        transform: rotate(45deg) translate(-2px, 2px);
+      }
     }
 
 
-    }
+  }
 }
