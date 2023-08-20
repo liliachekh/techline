@@ -1,6 +1,6 @@
 import AboutUs from "../../components/AboutUs";
 import Header from "../../components/Header";
-import BecomePartner from "../../components/BecomePartner";
+// import BecomePartner from "../../components/BecomePartner";
 import Footer from "../../components/Footer";
 // import style from "./Home.module.scss"
 import B2B from "../../components/B2B"
@@ -24,7 +24,7 @@ export function Home() {
       <Header
         refList={{ partner, about, b2b, contacts }}
         inViewList={{ 'partner': partnerInView, 'about': aboutInView, 'b2b': b2bInView, 'contacts': contactsInView }} />
-      <BecomePartner refName={partner} />
+      {/* <BecomePartner refName={partner} /> */}
       <AboutUs refName={about} />
       <B2B refName={b2b} />
       <Footer refName={contacts} />
