@@ -33,7 +33,7 @@ const paymentMethods = require("./routes/paymentMethods");
 const partners = require("./routes/partners");
 // const mainRoute = require('./routes/index');
 const { getStaticFilesPath } = require("./utils");
-// const mintProducts = require("./routes/mintProducts");
+const mintProducts = require("./routes/mintProducts");
 
 
 const app = express();
