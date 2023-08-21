@@ -1,48 +1,82 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MobiNav from "../MobiNav"
-import { Logo } from "../icons"
 import style from "./header.module.scss"
 import { Link } from "react-router-dom"
+import HeaderLink from "../HeaderLink";
+import { navData } from "./navData";
+import PropTypes from 'prop-types';
+import { scrollToTop } from "../../utils";
+import LanguageSelector from "../LanguageSelector";
+import { useTranslation } from "react-i18next";
+import { useMediaQuery } from 'react-responsive'
 
-export default function Header () {
+export default function Header({ refList, inViewList }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const { t } = useTranslation();
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)'
+  })
+
+  useEffect(() => {
+    function handleScroll() {
+      const currentScrollPos = window.scrollY;
+      setScrolled(prevScrollPos < currentScrollPos)
+      setPrevScrollPos(currentScrollPos);
+    }
+
+    !isOpen && window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos, scrolled, isOpen]);
 
   function toggleBurgerMenu() {
     setIsOpen(!isOpen);
   }
-    return (
-       <>
-        <header className={style.header}>
-<div className={style.wrapper}>
-    <div className={style.container}>
-    <div className={style.section}>
-              <Link to="/">
-                <div className={style.logo}>
-                  <Logo /> 
-                  <span className={style.title}>TECHLINES</span>
-                </div>
-              </Link>
+
+  return (
+    <header className={`${style.header} ${scrolled && isMobile && style.scrolled}`}>
+      <div className={style.wrapper}>
+        <div className={style.container}>
+          <div className={style.section}>
+            <Link to="/" onClick={scrollToTop}>
+              <div className={style.logo}>
+                <img src="/images/tech.png" alt="techlines logo" />
               </div>
-              <div className={style.nav__container}>
-              <nav className={style.nav}>
-                <ul className={style.list}>
-                    <li className={style.listItem}>Home</li>
-                    <li className={style.listItem}>About us</li>
-                    <li className={style.listItem}>B2B</li>
-                    <li className={style.listItem}>Contacts</li>
-                    <li className={style.listItem}>Sign up</li>
-                </ul>
-              </nav>
-              <Link to="/b2b/login">
-                    <span className={style.nav_login}>Log in</span>
-                </Link>
-                </div>
-              <MobiNav 
-              isOpen={isOpen}
-              toggleBurgerMenu={() => toggleBurgerMenu()}/>
-    </div>
-</div>
-        </header>
-        </>
-    )
+            </Link>
+          </div>
+          <div className={style.nav__container}>
+            <nav className={style.nav}>
+              <ul className={style.list}>
+                {navData.map(({ refName, text }) => (
+                  <HeaderLink
+                    className={`${style.listItem} ${inViewList[refName] ? style.listItem_active : ''}`}
+                    key={refName}
+                    refTarget={refList[refName]}
+                    text={t(`headerLink.${text}`)} />
+                ))}
+              </ul>
+              <LanguageSelector />
+            </nav>
+            <Link to="/b2b/login">
+              <span className={style.nav_login}>{t('headerLink.LogIn')}</span>
+            </Link>
+          </div>
+          <MobiNav
+            isOpen={isOpen}
+            toggleBurgerMenu={toggleBurgerMenu}
+            refList={refList}
+            inViewList={inViewList} />
+        </div>
+      </div>
+    </header>
+  )
+}
+
+Header.propTypes = {
+  refList: PropTypes.object,
+  inViewList: PropTypes.object,
 }
