@@ -64,7 +64,8 @@
     "productsOfInterestPlaceholder": "[смартфони, комп'ютери, дрони, ігрові приставки, і тд.]",
     "brandsOfInterest": "Бренди, які цікавлять?",
     "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, і тд.]",
-    "comment": "Коментар"
+    "comment": "Коментар",
+    "submitButton": "Зареєструватися"
   },
   "footer": {
     "title": "Контакти",

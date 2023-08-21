@@ -64,7 +64,8 @@
     "productsOfInterestPlaceholder": "[smartphones, computers, drones, consoles, etc]",
     "brandsOfInterest": "Brands Of Interest?",
     "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, etc]",
-    "comment": "Comment"
+    "comment": "Comment",
+    "submitButton": "Sign Up"
   },
   "footer": {
     "title": "Contacts",

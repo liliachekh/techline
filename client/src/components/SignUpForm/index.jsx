@@ -58,7 +58,7 @@ export default function SignUpForm({ callback, onSubmit, refName }) {
                 placeholder: field.placeholder ? t(`signup.${field.placeholder}`) : '',
               }))}
               onSubmit={onSubmitHandler}
-              submitBtn='Sign up' />
+              submitBtn={t('signup.submitButton')} />
         </motion.div>
         </AnimatePresence>
       </div>
