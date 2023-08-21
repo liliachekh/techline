@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import MobiNav from "../MobiNav"
-import { Logo } from "../icons"
 import style from "./header.module.scss"
 import { Link } from "react-router-dom"
 import HeaderLink from "../HeaderLink";
@@ -45,8 +44,7 @@ export default function Header({ refList, inViewList }) {
           <div className={style.section}>
             <Link to="/" onClick={scrollToTop}>
               <div className={style.logo}>
-                <Logo />
-                <span className={style.title}>TECHLINES</span>
+                <img src="/images/tech.png" alt="techlines logo" />
               </div>
             </Link>
           </div>
