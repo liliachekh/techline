@@ -47,6 +47,25 @@
       "listItem8": "Diseño amigable para el usuario"
     }
   },
+  "signup": {
+    "title": "Convertirse en un compañero",
+    "сompanyName": "Nombre de empresa",
+    "companyNamePlaceholder": "[Nombre de empresa]",
+    "country": "País",
+    "vatNr": "VAT Nr",
+    "сontactPerson": "Persona de contacto",
+    "сontactPersonPlaceholder": "[Persona de contacto]",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "[example@gmail.com]",
+    "phoneNumber": "Número de teléfono",
+    "companyWebsite": "Página Web de la compañía",
+    "companyWebsitePlaceholder": "[Página Web de la compañía]",
+    "productsOfInterest": "¿Productos de interés?",
+    "productsOfInterestPlaceholder": "[teléfonos inteligentes, computadoras, drones, consolas, etc]",
+    "brandsOfInterest": "¿Marcas de interés?",
+    "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, etc]",
+    "comment": "Comentario"
+  },
   "footer": {
     "title": "Contactos",
     "subtitle": "TECHLINE",

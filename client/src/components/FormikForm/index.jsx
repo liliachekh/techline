@@ -3,9 +3,11 @@ import { Formik, Form } from 'formik';
 import Input from '../Input';
 import InputMasked from '../InputMasked';
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function FormikForm({ initialValues, validationSchema, fields, callback, onSubmit, submitBtn, useSignUpStyles }) {
   const [selectedCountry, setSelectedCountry] = useState('');
+  const { t } = useTranslation();
   
   return (
     <Formik
@@ -24,7 +26,7 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
               return (
                 <div key={field.name}>
                   <label className={style.formSignUp__labelSignUp} htmlFor={field.id}>
-                    {field.label}
+                    {t('signup.country')}
                   </label>
                   <CountrySelect
                     className={style.formSignUp__inputSignUp}

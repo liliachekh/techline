@@ -47,6 +47,25 @@
       "listItem8": "Удобство использования"
     }
   },
+  "signup": {
+    "title": "Стать партнёром",
+    "сompanyName": "Название компании",
+    "companyNamePlaceholder": "[Название компании]",
+    "country": "Страна",
+    "vatNr": "VAT Nr",
+    "сontactPerson": "Контактное лицо",
+    "сontactPersonPlaceholder": "[Контактное лицо]",
+    "email": "Електронная почта",
+    "emailPlaceholder": "[example@gmail.com]",
+    "phoneNumber": "Номер телефона",
+    "companyWebsite": "Сайт Компании",
+    "companyWebsitePlaceholder": "[Сайт Компании]",
+    "productsOfInterest": "Интересующие продукты?",
+    "productsOfInterestPlaceholder": "[смартфоны, компьютеры, дроны, игровые консоли, и тд.]",
+    "brandsOfInterest": "Интересующие бренды?",
+    "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, и тд.]",
+    "comment": "Коментарий"
+  },
   "footer": {
     "title": "Контакты",
     "subtitle": "TECHLINE",

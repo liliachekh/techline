@@ -3,6 +3,7 @@ import style from './signUp.module.scss';
 import FormikForm from '../FormikForm';
 import { AnimatePresence, motion } from "framer-motion";
 import { animateFromRight } from '../../animation';
+import { useTranslation } from "react-i18next";
 // import { validationSchemaUser } from '../../validation';
 // import { fetchData } from '../../utils';
 // import { useDispatch } from 'react-redux';
@@ -12,6 +13,7 @@ import { animateFromRight } from '../../animation';
 // import { reqPost } from '../../utils/requestBody';
 
 export default function SignUpForm({ callback, onSubmit, refName }) {
+  const { t } = useTranslation();
   // const dispatch = useDispatch();
 
   // async function onSubmitHandler(values) {
@@ -34,7 +36,7 @@ export default function SignUpForm({ callback, onSubmit, refName }) {
       <div className={style.signUp__wrapper}>
         <AnimatePresence>
         <motion.div {...animateFromRight(0)} className={style.signUp__container}>
-          <h1 className={style.signUp__title}>Become a partner</h1>
+          <h1 className={style.signUp__title}>{t('signup.title')}</h1>
             <FormikForm
               initialValues={{
                 companyName: '',
@@ -50,7 +52,11 @@ export default function SignUpForm({ callback, onSubmit, refName }) {
               }}
               useSignUpStyles={true}
               // validationSchema={validationSchemaUser}
-              fields={signInFormFields}
+              fields={signInFormFields.map(field => ({
+                ...field,
+                label: t(`signup.${field.label}`),
+                placeholder: field.placeholder ? t(`signup.${field.placeholder}`) : '',
+              }))}
               onSubmit={onSubmitHandler}
               submitBtn='Sign up' />
         </motion.div>
