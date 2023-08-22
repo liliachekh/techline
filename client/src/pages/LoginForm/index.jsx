@@ -24,21 +24,26 @@ export function LoginForm() {
     return (
         <div className={style.loginForm}>
             <div className={style.loginForm__container}>
-                <div className={style.loginForm__wrapper}>
+                <main className={style.loginForm__main}>
                     <div className={style.loginForm__logo}>
-                        <img src="#" alt="logo img" />
+                        <img src="/images/tech.png" alt="techlines logo" />
                     </div>
-                    <FormikForm
-                        initialValues={{
-                        loginOrEmail: '',
-                        password: '',
-                        }}
-                        useLoginFormStyles={true}
-                        validationSchema={validationSchemaLogin}
-                        fields={logInFormFields}
-                    //   callback={onSubmitHandler}
-                        submitBtn='Login' />
-                </div>
+                    <div className={style.loginForm__wrapper}>
+                        <FormikForm
+                            initialValues={{
+                            loginOrEmail: '',
+                            password: '',
+                            }}
+                            useLoginFormStyles={true}
+                            validationSchema={validationSchemaLogin}
+                            fields={logInFormFields}
+                        //   callback={onSubmitHandler}
+                            submitBtn='Login' />
+                    </div>
+                </main>
+                <footer className={style.loginForm__footer}>
+                    <p>2023 © Techline Distribution. All rights reserved.</p>
+                </footer>
             </div>
         </div>
       )

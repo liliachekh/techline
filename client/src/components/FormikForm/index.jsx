@@ -36,10 +36,10 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
           })}
           {useLoginFormStyles && (
             <div className={style.loginForm__help}>
-                <label htmlFor='rememberLogIn'>
-                <input type="checkbox" id='rememberLogIn' name='rememberLogIn' />
-                Remember me
-                </label>
+                <div className={style.loginForm__switch}>
+                <input type="checkbox" id='rememberLogin' name='rememberLogin' className={style.loginForm__switchInput}/>
+                <label htmlFor='rememberLogin' className={style.loginForm__switchLabel}>Remember me</label>
+                </div>
                 <a className={style.loginForm__forgotLink} href="#">Forgot password</a>
             </div>
           )}

@@ -1,7 +1,7 @@
 export const logInFormFields = [
     {
       tagType: 'regular',
-      label: "EMAIL ADDRESS",
+      label: "Email address",
       id: "loginOrEmail",
       name: "loginOrEmail",
       type: "text",
@@ -9,7 +9,7 @@ export const logInFormFields = [
     },
     {
       tagType: 'regular',
-      label: "PASSWORD",
+      label: "Password",
       id: "password",
       name: "password",
       type: "password",
