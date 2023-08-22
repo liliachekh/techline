@@ -24,19 +24,21 @@ export function LoginForm() {
     return (
         <div className={style.loginForm}>
             <div className={style.loginForm__container}>
-            <div className={style.loginForm__logo}>
-                <img src="#" alt="logo img" />
-            </div>
-            <FormikForm
-                initialValues={{
-                loginOrEmail: '',
-                password: '',
-                }}
-                useLoginFormStyles={true}
-                validationSchema={validationSchemaLogin}
-                fields={logInFormFields}
-            //   callback={onSubmitHandler}
-                submitBtn='Login' />
+                <div className={style.loginForm__wrapper}>
+                    <div className={style.loginForm__logo}>
+                        <img src="#" alt="logo img" />
+                    </div>
+                    <FormikForm
+                        initialValues={{
+                        loginOrEmail: '',
+                        password: '',
+                        }}
+                        useLoginFormStyles={true}
+                        validationSchema={validationSchemaLogin}
+                        fields={logInFormFields}
+                    //   callback={onSubmitHandler}
+                        submitBtn='Login' />
+                </div>
             </div>
         </div>
       )

@@ -15,9 +15,9 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
           setSubmitting(false);
         }} >
         <Form className={style.form}>
-            {useLoginFormStyles && (
-                <h2 className={style.loginForm__title}>Log In</h2>
-            )}
+          {useLoginFormStyles && (
+            <h2 className={style.loginForm__title}>Log In</h2>
+          )}
           {fields?.map(field => {
             if (field.tagType === 'masked') {
               return <InputMasked
