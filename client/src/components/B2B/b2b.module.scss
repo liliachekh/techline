@@ -3,7 +3,13 @@
   
   .wrapper {
     padding: 3rem 0;
-    background: radial-gradient(circle at 0% 100%, rgba(242, 242, 242, 0.52) 0%, 21.32%, rgba(242, 242, 242, 0) 52%), radial-gradient(circle at 97.77777989705405% 79.16666666666666%, rgba(240, 85, 55, 0.72) 0%, 20%, rgba(240, 85, 55, 0) 40%), radial-gradient(circle at 41.9444465637207% 0%, rgba(80, 28, 18, 0.83) 0%, 35.550000000000004%, rgba(80, 28, 18, 0) 79%), radial-gradient(circle at 51.66666666666667% 53.611113230387375%, #0B128C 0%, 11.55%, rgba(11, 18, 140, 0) 35%), radial-gradient(circle at 86.38890584309897% 35.833333333333336%, #0D0B40 0%, 31.95%, rgba(13, 11, 64, 0) 71%), radial-gradient(circle at 48.9013671875% 49.521484375%, #1E1D40 0%, 100%, rgba(30, 29, 64, 0) 100%);
+    background: radial-gradient(circle at 0% 100%, rgba(7, 10, 82, 0.52) 0%, 21.32%, rgba(7, 10, 82, 0) 52%), 
+            radial-gradient(circle at 97.7777798971% 79.1666666667%, rgba(210, 19, 18, 0.72) 0%, 20%, rgba(210, 19, 18, 0) 40%), 
+            radial-gradient(circle at 41.9444465637% 0%, rgba(237, 43, 42, 0.83) 0%, 35.55%, rgba(237, 43, 42, 0) 79%), 
+            radial-gradient(circle at 51.6666666667% 53.6111132304%, #0B128C 0%, 11.55%, rgba(11, 18, 140, 0) 35%), 
+            radial-gradient(circle at 86.3889058431% 35.8333333333%, #0D0B40 0%, 31.95%, rgba(13, 11, 64, 0) 71%), 
+            radial-gradient(circle at 48.9013671875% 49.521484375%, #1E1D40 0%, 100%, rgba(30, 29, 64, 0) 100%);
+
   }
 
   .container {
@@ -121,7 +127,7 @@
     width: 100%;
     max-width: 370px;
     justify-self: center;
-    background: rgba(255, 119, 70, 1);
+    background: #f97171;
     border-radius: 25px;
   }
 

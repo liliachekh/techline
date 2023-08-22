@@ -1,4 +1,3 @@
-export * from "./logo.jsx";
 export * from "./backToTopIcon.jsx";
 export * from "./flagEn.jsx";
 export * from "./flagEs.jsx";
