@@ -4,7 +4,7 @@ import FormikForm from '../FormikForm';
 import { AnimatePresence, motion } from "framer-motion";
 import { animateFromRight } from '../../animation';
 import { useTranslation } from "react-i18next";
-// import { validationSchemaUser } from '../../validation';
+import { validationSchemaUser } from '../../validation';
 // import { fetchData } from '../../utils';
 // import { useDispatch } from 'react-redux';
 // import { setModalType } from '../../redux/actions/modalActions';
@@ -40,7 +40,7 @@ export default function SignUpForm({ callback, refName }) {
             <FormikForm
               initialValues={{
                 companyName: '',
-                country: '',
+                countryName: '',
                 vatNr: '',
                 contactPerson: '',
                 email: '',
@@ -50,8 +50,7 @@ export default function SignUpForm({ callback, refName }) {
                 brands: '',
                 comment: '',
               }}
-              useSignUpStyles={false}
-              // validationSchema={validationSchemaUser}
+              validationSchema={validationSchemaUser}
               fields={signInFormFields.map(field => ({
                 ...field,
                 label: t(`signup.${field.label}`),

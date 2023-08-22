@@ -9,11 +9,11 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
-    label: "сountryName",
-    id: "сountryName",
-    name: "сountryName",
+    label: "countryName",
+    id: "countryName",
+    name: "countryName",
     type: "text",
-    placeholder: "сountryNamePlaceholder",
+    placeholder: "countryNamePlaceholder",
   },
   {
     tagType: 'masked',
@@ -53,8 +53,8 @@ export const signInFormFields = [
   {
     tagType: 'regular',
     label: "companyWebsite",
-    id: "companyWebSite",
-    name: "companyWebSite",
+    id: "companyWebsite",
+    name: "companyWebsite",
     type: "text",
     placeholder: "companyWebsitePlaceholder",
   },
