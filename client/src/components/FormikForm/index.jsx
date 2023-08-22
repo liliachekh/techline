@@ -2,18 +2,14 @@ import style from './form.module.scss';
 import { Formik, Form } from 'formik';
 import Input from '../Input';
 import InputMasked from '../InputMasked';
-import { useState } from 'react';
-import { useTranslation } from "react-i18next";
 
-export default function FormikForm({ initialValues, validationSchema, fields, callback, onSubmit, submitBtn, useSignUpStyles }) {
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const { t } = useTranslation();
+export default function FormikForm({ initialValues, validationSchema, fields, callback, submitBtn, useSignUpStyles }) {
   
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={callback}
     //   onSubmit={async (values, { setSubmitting }) => {
     //     callback(values);
     //     setSubmitting(false);
@@ -21,23 +17,7 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
     >
       <Form className={useSignUpStyles ? style.formSignUp : style.form}>
         {fields?.map(field => {
-          if (field.tagType === 'custom') { 
-            const CountrySelect = field.country;
-              return (
-                <div key={field.name}>
-                  <label className={style.formSignUp__labelSignUp} htmlFor={field.id}>
-                    {t('signup.country')}
-                  </label>
-                  <CountrySelect
-                    className={style.formSignUp__inputSignUp}
-                    id={field.id}
-                    name={field.name}
-                    value={selectedCountry} 
-                    onChange={val => setSelectedCountry(val)}
-                  />
-                </div>
-              );
-          } else if (field.tagType === 'masked') {
+          if (field.tagType === 'masked') {
             return <InputMasked
               key={field.name}
               {...field}

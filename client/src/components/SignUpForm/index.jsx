@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 // import { baseUrl } from '../../utils/vars';
 // import { reqPost } from '../../utils/requestBody';
 
-export default function SignUpForm({ callback, onSubmit, refName }) {
+export default function SignUpForm({ callback, refName }) {
   const { t } = useTranslation();
   // const dispatch = useDispatch();
 
@@ -50,14 +50,14 @@ export default function SignUpForm({ callback, onSubmit, refName }) {
                 brands: '',
                 comment: '',
               }}
-              useSignUpStyles={true}
+              useSignUpStyles={false}
               // validationSchema={validationSchemaUser}
               fields={signInFormFields.map(field => ({
                 ...field,
                 label: t(`signup.${field.label}`),
                 placeholder: field.placeholder ? t(`signup.${field.placeholder}`) : '',
               }))}
-              onSubmit={onSubmitHandler}
+              callback={onSubmitHandler}
               submitBtn={t('signup.submitButton')} />
         </motion.div>
         </AnimatePresence>

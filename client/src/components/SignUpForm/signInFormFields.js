@@ -1,5 +1,3 @@
-import { CountryDropdown } from 'react-country-region-selector';
-
 export const signInFormFields = [
   {
     tagType: 'regular',
@@ -10,11 +8,12 @@ export const signInFormFields = [
     placeholder: "companyNamePlaceholder",
   },
   {
-    tagType: 'custom',
-    label: "сountry",
-    id: "country",
-    name: "country",
-    country: CountryDropdown,
+    tagType: 'regular',
+    label: "сountryName",
+    id: "сountryName",
+    name: "сountryName",
+    type: "text",
+    placeholder: "сountryNamePlaceholder",
   },
   {
     tagType: 'masked',
