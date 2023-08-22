@@ -1,5 +1,6 @@
 .signUp {
     min-width: 320px;
+    font-family: 'Roboto', sans-serif;
   
     &__wrapper {
       position: relative;
@@ -18,7 +19,7 @@
     }
   
     &__container {
-      max-width: 575px;
+      max-width: 37rem;
       min-width: 320px;
       position: relative;
       display: flex;
@@ -27,6 +28,7 @@
       flex-direction: column;
       margin: 0 auto;
       z-index: 1;
+      padding-bottom: 60px;
     }
   
     &__title {

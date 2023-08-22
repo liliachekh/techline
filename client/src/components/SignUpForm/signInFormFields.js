@@ -47,7 +47,7 @@ export const signInFormFields = [
     id: "telephone",
     name: "telephone",
     type: "text",
-    format: "+## ## ### ## ###",
+    format: "+## ##########",
     mask: "#",
   },
   {
