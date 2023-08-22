@@ -37,6 +37,15 @@ a {
   color: inherit;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 // .App-logo {
 //   height: 40vmin;
 //   pointer-events: none;
