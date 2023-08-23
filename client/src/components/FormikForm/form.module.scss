@@ -9,7 +9,7 @@
       display: inline-block;
       width: 100%;
       margin-bottom: .5rem;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
   
     &__input {
@@ -30,8 +30,8 @@
   
       &:focus {
         border-color: transparent;
-        box-shadow: 0px 0px 3px 3px #ff5300;
-        outline: 2px solid #ff5300;
+        box-shadow: 0px 0px 3px 3px #f92e3e;
+        outline: 2px solid #f92e3e;
       }
   
       &:has(+div) {
@@ -57,10 +57,10 @@
       margin: 0 auto;
       padding: .7rem 2rem;
       transition: color .3s;
-      border: 2px solid #ff5300;
+      border: 2px solid #f92e3e;
       border-radius: 4px;
       background: transparent;
-      color: #ff5300;
+      color: #f92e3e;
       font-size: .75rem;
       font-weight: 800;
       letter-spacing: .17em;
@@ -106,7 +106,7 @@
       }
   
       &::after {
-        background-color: #ff5300;
+        background-color: #f92e3e;
         z-index: -1;
       }
   
@@ -190,7 +190,7 @@
     transition: .2s;
   }
   &__switchInput:checked + label:before {
-    background: #ff5300;
+    background: #f92e3e;
   }
   &__switchInput:checked + label:after {
     left: 26px;
@@ -200,6 +200,6 @@
   }
 
   &__forgotLink:hover {
-    color:#ff5300;
+    color:#f92e3e;
   }
 }

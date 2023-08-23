@@ -40,7 +40,7 @@ export default function FormikForm({ initialValues, validationSchema, fields, ca
                 <input type="checkbox" id='rememberLogin' name='rememberLogin' className={style.loginForm__switchInput}/>
                 <label htmlFor='rememberLogin' className={style.loginForm__switchLabel}>Remember me</label>
                 </div>
-                <a className={style.loginForm__forgotLink} href="#">Forgot password</a>
+                <a className={style.loginForm__forgotLink} href="/password-reset">Forgot password</a>
             </div>
           )}
           <button text='Checkout' className={style.form__submit} type='submit'>{submitBtn}</button>
