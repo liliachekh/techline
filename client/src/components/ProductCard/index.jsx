@@ -37,8 +37,8 @@ function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories,
       <Link to={`/product/${itemNo}`} className={styles.productCard__mainLink}>
         <LazyLoadImage
           className={styles.productCard__img}
-          src={'./images/Home.webp'}
-          // src={imageUrls[0]}
+          // src={'./images/Home.webp'}
+          src={imageUrls[0]}
           alt={name}
           effect="blur"
           placeholderSrc={'./images/Home.webp'}

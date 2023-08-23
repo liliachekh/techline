@@ -60,7 +60,7 @@ export function Home() {
       <AboutUs refName={about} />
       <B2B refName={b2b} />
 
-      {products && <ProductList products={products} rows={true} />}
+      {products && <ProductList products={products} />}
 
       <Footer refName={contacts} />
       <BackToTop />
