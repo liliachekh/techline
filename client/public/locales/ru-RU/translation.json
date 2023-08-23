@@ -58,6 +58,8 @@
     "сontactPersonPlaceholder": "[Контактное лицо]",
     "email": "Електронная почта",
     "emailPlaceholder": "[example@gmail.com]",
+    "password": "Пароль",
+    "passwordPlaceholder": "******",
     "phoneNumber": "Номер телефона",
     "companyWebsite": "Сайт Компании",
     "companyWebsitePlaceholder": "[Сайт Компании]",

@@ -25,6 +25,12 @@ export const validationSchemaUser = Yup.object({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
+  password: Yup.string()
+    .min(7, 'Must contain at least 7 letters')
+    .max(30, 'Can be no more than 30 characters')
+    .matches(/^[a-zA-Z0-9]+$/, 'Must be a-z A-Z 0-9')
+    .trim()
+    .required("Required Field!"),
   telephone: Yup.string()
     .matches(/^\+\d{2} \d{10}$/, "Invalid phone number format")
     .required("Required Field!"),

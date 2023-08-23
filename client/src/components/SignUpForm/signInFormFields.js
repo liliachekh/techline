@@ -42,6 +42,14 @@ export const signInFormFields = [
     placeholder: "emailPlaceholder",
   },
   {
+    tagType: 'regular',
+    label: "password",
+    id: "password",
+    name: "password",
+    type: "text",
+    placeholder: "passwordPlaceholder",
+  },
+  {
     tagType: 'masked',
     label: "phoneNumber",
     id: "telephone",

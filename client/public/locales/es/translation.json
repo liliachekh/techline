@@ -58,6 +58,8 @@
     "сontactPersonPlaceholder": "[Persona de contacto]",
     "email": "Correo electrónico",
     "emailPlaceholder": "[example@gmail.com]",
+    "password": "Contraseña",
+    "passwordPlaceholder": "******",
     "phoneNumber": "Número de teléfono",
     "companyWebsite": "Página Web de la compañía",
     "companyWebsitePlaceholder": "[Página Web de la compañía]",

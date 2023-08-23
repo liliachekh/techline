@@ -2,7 +2,7 @@ import { signInFormFields } from './signInFormFields';
 import style from './signUp.module.scss';
 import FormikForm from '../FormikForm';
 import { AnimatePresence, motion } from "framer-motion";
-import { animateFromRight } from '../../animation';
+import { animateFromLeft } from '../../animation';
 import { useTranslation } from "react-i18next";
 import { validationSchemaUser } from '../../validation';
 // import { fetchData } from '../../utils';
@@ -35,8 +35,9 @@ export default function SignUpForm({ callback, refName }) {
     <section ref={refName} className={style.signUp}>
       <div className={style.signUp__wrapper}>
         <AnimatePresence>
-        <motion.div {...animateFromRight(0)} className={style.signUp__container}>
-          <h1 className={style.signUp__title}>{t('signup.title')}</h1>
+        <div className={style.signUp__container}>
+          <motion.h1 {...animateFromLeft(0)} className={style.signUp__title}>{t('signup.title')}</motion.h1>
+            <motion.div {...animateFromLeft(0)} >
             <FormikForm
               initialValues={{
                 companyName: '',
@@ -44,6 +45,7 @@ export default function SignUpForm({ callback, refName }) {
                 vatNr: '',
                 contactPerson: '',
                 email: '',
+                password: '',
                 telephone: '',
                 companyWebsite: '',
                 interestProducts: '',
@@ -58,7 +60,8 @@ export default function SignUpForm({ callback, refName }) {
               }))}
               callback={onSubmitHandler}
               submitBtn={t('signup.submitButton')} />
-        </motion.div>
+              </motion.div>
+        </div>
         </AnimatePresence>
       </div>
     </section>
