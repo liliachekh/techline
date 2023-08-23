@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Cart } from '../icons';
 // import { AdminProductCard } from '../AdminProductCard';
 
-function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories, color, productUrl, brand, memory, itemNo }) {
+function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories, color, productUrl, brand, memory, itemNo, rows }) {
   const [amount, setAmount] = useState(1);
 
   function handleAmountChange(e) {
@@ -33,14 +33,14 @@ function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories,
   }
 
   return (
-    <div className={styles.productCard}>
+    <div className={`${styles.productCard} ${rows ? styles.productRow : ''}`}>
       <Link to={`/product/${itemNo}`} className={styles.productCard__mainLink}>
         <LazyLoadImage
           className={styles.productCard__img}
           src={'./images/Home.webp'}
           // src={imageUrls[0]}
           alt={name}
-          // effect="blur"
+          effect="blur"
           placeholderSrc={'./images/Home.webp'}
           height={255}
           width='100%' />
@@ -81,70 +81,6 @@ function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories,
         </button>
       </div>
     </div>
-
-    // <div className={styles.productCard}>
-    //   <Link to={`/product/${itemNo}`} className={styles.productCard__link}>
-    //     <LazyLoadImage
-    //       className={styles.productCard__img}
-    //       src={imageUrls[0]}
-    //       alt={name}
-    //       effect="blur"
-    //       placeholderSrc={'./images/products/placeholder.jpg'}
-    //       height={250}
-    //       width={250} />
-    //     <p className={styles.productCard__name}>
-    //       {name}
-    //     </p>
-    //   </Link>
-    //   <div className={`${styles.productCard__user} ${styles.user}`}>
-    //     <Link
-    //       to={`/author/${author}`}
-    //       className={styles.user__items}>
-    //       <LazyLoadImage
-    //         className={styles.user__icon}
-    //         src={authorIcon}
-    //         alt='user-avatar' />
-    //       <p className={`${styles.user__author} ${isInAuthor ? styles.user__inAuthor : ''}`}>
-    //         {author}
-    //       </p>
-    //     </Link>
-    //     <Verified />
-    //   </div>
-
-    //   <div className={`${styles.productCard__priceInfo} ${styles.priceInfo}`}>
-    //     {isInCart(cart, _id)
-    //       ? <Link
-    //         to={'/cart'}
-    //         className={`${styles.priceInfo__button} ${styles.priceInfo__cartButton}`}
-    //         type='button'>
-    //         view cart
-    //         <Basket color='#202025' strokeWidth='2.5' />
-    //       </Link>
-    //       : <button
-    //         className={styles.priceInfo__button}
-    //         type='button'
-    //         onClick={!buttonHandler
-    //           ? () => buyNowHandler(dispatch, _id, token)
-    //           : () => buttonHandler(itemNo)}>
-    //         {buttonText}
-    //       </button>}
-
-    //     <div className={styles.priceInfo__buyNow}>
-    //       <ETHIcon fill={isInAuthor ? '#dbff73' : '#000000'} />
-    //       {isInAuthor
-    //         ? <p className={styles.priceInfo__price_author}>
-    //           {currentPrice}
-    //           &nbsp;
-    //           <span>ETH</span>
-    //         </p>
-    //         : <p className={styles.priceInfo__price}>
-    //           {currentPrice}
-    //           &nbsp;
-    //           <span className={styles.priceInfo__price_eth}>ETH</span>
-    //         </p>}
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 

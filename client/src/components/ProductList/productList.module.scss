@@ -1,0 +1,30 @@
+.productList {
+  font-family: 'Roboto', sans-serif;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 2rem;
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: 300px;
+    
+    .productTable & {
+      @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0 15px;
+        row-gap: initial;
+        margin: 0 auto;
+      }
+    }
+
+    @media (min-width: 420px) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 246px);
+      gap: 2rem 1rem;
+      max-width: 1470px;
+      justify-content: space-around;
+    }
+  }
+}

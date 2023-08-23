@@ -7,7 +7,7 @@ import B2B from "../../components/B2B"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import BackToTop from "../../components/BackToTop";
-import ProductCard from "../../components/ProductCard";
+import ProductList from "../../components/ProductList";
 
 export function Home() {
   const partner = useRef(null);
@@ -23,7 +23,7 @@ export function Home() {
   // ====================================================================================================================
   // ====================================================================================================================
   // ====================================================================================================================
-  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState(null);
 
   async function fetchData(url, reqBody) {
     try {
@@ -40,9 +40,9 @@ export function Home() {
   }
 
   const productLoad = useCallback(async () => {
-    const products = await fetchData('https://sea-turtle-app-tgzpt.ondigitalocean.app/api/products')
-    setProduct(products[0]);
-  }, [setProduct])
+    const products = await fetchData('https://sea-turtle-app-tgzpt.ondigitalocean.app/api/products');
+    setProducts(products);
+  }, [setProducts])
 
   useEffect(() => {
     productLoad()
@@ -50,7 +50,7 @@ export function Home() {
   // ====================================================================================================================
   // ====================================================================================================================
   // ====================================================================================================================
-  console.log(product);
+
   return (
     <>
       <Header
@@ -59,24 +59,9 @@ export function Home() {
       <BecomePartner refName={partner} />
       <AboutUs refName={about} />
       <B2B refName={b2b} />
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, 246px)',
-        gap: '2rem 1rem',
-        padding: '2rem 1rem',
-        maxWidth: "1470",
-        justifyContent: 'space-around',
-        placeItems: 'center',
-      }}>
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-        {product && <ProductCard {...product} />}
-      </div>
+
+      {products && <ProductList products={products} rows={true} />}
+
       <Footer refName={contacts} />
       <BackToTop />
     </>
