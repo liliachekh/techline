@@ -4,7 +4,8 @@ import BecomePartner from "../../components/BecomePartner";
 import Footer from "../../components/Footer";
 // import style from "./Home.module.scss"
 import B2B from "../../components/B2B"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useRef } from "react"
+// import { useCallback, useEffect, useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import BackToTop from "../../components/BackToTop";
 import ProductList from "../../components/ProductList";
@@ -23,30 +24,30 @@ export function Home() {
   // ====================================================================================================================
   // ====================================================================================================================
   // ====================================================================================================================
-  const [products, setProducts] = useState(null);
+  // const [products, setProducts] = useState(null);
 
-  async function fetchData(url, reqBody) {
-    try {
-      const response = await fetch(url, reqBody);
-      if (!response.ok) {
-        // handleError(response, 401);
-        const error = await response.json();
-        throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
-      }
-      return await response.json();
-    } catch (error) {
-      throw new Error(error?.message);
-    }
-  }
+  // async function fetchData(url, reqBody) {
+  //   try {
+  //     const response = await fetch(url, reqBody);
+  //     if (!response.ok) {
+  //       // handleError(response, 401);
+  //       const error = await response.json();
+  //       throw new Error(error?.loginOrEmail || error?.password || error?.message || error?.email || error);
+  //     }
+  //     return await response.json();
+  //   } catch (error) {
+  //     throw new Error(error?.message);
+  //   }
+  // }
 
-  const productLoad = useCallback(async () => {
-    const products = await fetchData('https://sea-turtle-app-tgzpt.ondigitalocean.app/api/products');
-    setProducts(products);
-  }, [setProducts])
+  // const productLoad = useCallback(async () => {
+  //   const products = await fetchData('https://sea-turtle-app-tgzpt.ondigitalocean.app/api/products');
+  //   setProducts(products);
+  // }, [setProducts])
 
-  useEffect(() => {
-    productLoad()
-  }, [productLoad])
+  // useEffect(() => {
+  //   productLoad()
+  // }, [productLoad])
   // ====================================================================================================================
   // ====================================================================================================================
   // ====================================================================================================================
@@ -60,7 +61,7 @@ export function Home() {
       <AboutUs refName={about} />
       <B2B refName={b2b} />
 
-      {products && <ProductList products={products} />}
+      <ProductList  />
 
       <Footer refName={contacts} />
       <BackToTop />

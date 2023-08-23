@@ -142,10 +142,23 @@ exports.getProductsFilterParams = async (req, res, next) => {
   const startPage = Number(req.query.startPage);
   const sort = req.query.sort;
 
+  // 1
+  // mongooseQuery = Object.entries(mongooseQuery).reduce((acc, [key, value]) => {
+  //   acc[key] = typeof value === 'string' ? value.toLowerCase() : value;
+  //   return acc;
+  // }, {});
+
+  // for (const key in mongooseQuery) {
+  //   if (typeof mongooseQuery[key] === 'string') {
+  //     mongooseQuery[key] = mongooseQuery[key].toLowerCase();
+  //   }
+  // }
+
   try {
     const products = await Product.find(mongooseQuery)
       .skip(startPage * perPage - perPage)
       .limit(perPage)
+      // .toLowerCase()
       .sort(sort);
 
     const productsQuantity = await Product.find(mongooseQuery);

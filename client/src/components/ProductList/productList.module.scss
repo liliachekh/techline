@@ -8,7 +8,13 @@
   }
 
   &__btns {
-    display: block;
+    display: grid;
+    grid-template-columns: 432px 1fr 100px;
+  }
+
+  &__btn {
+    font-size: 1rem;
+    text-align-last: left;
   }
 
   &__list {
