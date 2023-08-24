@@ -27,7 +27,7 @@ exports.addProduct = (req, res, next) => {
 
   try {
     productFields.name = productFields.name
-      .toLowerCase()
+      // .toLowerCase()
       .trim()
       .replace(/\s\s+/g, " ");
 
@@ -68,7 +68,7 @@ exports.updateProduct = (req, res, next) => {
 
         try {
           productFields.name = productFields.name
-            .toLowerCase()
+            // .toLowerCase()
             .trim()
             .replace(/\s\s+/g, " ");
         } catch (err) {
@@ -165,7 +165,7 @@ exports.searchProducts = async (req, res, next) => {
 
   //Taking the entered value from client in lower-case and trimed
   let query = req.body.query
-    .toLowerCase()
+    // .toLowerCase()
     .trim()
     .replace(/\s\s+/g, " ");
 

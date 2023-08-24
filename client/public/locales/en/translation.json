@@ -47,6 +47,29 @@
       "listItem8": "User-oriented Design"
     }
   },
+  "signup": {
+    "title": "Become a partner",
+    "сompanyName": "Company Name",
+    "companyNamePlaceholder": "[Company Name]",
+    "countryName": "Country",
+    "countryNamePlaceholder": "[Country]",
+    "vatNr": "VAT Nr",
+    "сontactPerson": "Contact Person",
+    "сontactPersonPlaceholder": "[Contact Person]",
+    "email": "Email",
+    "emailPlaceholder": "[example@gmail.com]",
+    "password": "Password",
+    "passwordPlaceholder": "******",
+    "phoneNumber": "Phone Number",
+    "companyWebsite": "Company Website",
+    "companyWebsitePlaceholder": "[Company Website]",
+    "productsOfInterest": "Products Of Interest?",
+    "productsOfInterestPlaceholder": "[smartphones, computers, drones, consoles, etc]",
+    "brandsOfInterest": "Brands Of Interest?",
+    "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, etc]",
+    "comment": "Comment",
+    "submitButton": "Sign Up"
+  },
   "footer": {
     "title": "Contacts",
     "subtitle": "TECHLINE",
