@@ -124,3 +124,81 @@ input::-webkit-inner-spin-button {
   margin: 0;
   -webkit-appearance: none;
 }
+
+// Login Form
+.loginForm {
+
+  &__title {
+    text-align: center;
+    font-size: 21px;
+    margin-bottom: 20px;
+  }
+
+  &__help {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 27px;
+    margin-bottom: 0.8rem;
+    font-size: 12px;
+    font-weight: 500;
+
+    @media (min-width: 768px) {
+      font-size: 13px;
+    }
+  }
+
+  &__switch {
+    display: flex;
+    align-items: center;
+  }
+// кастомний чекбокс
+  &__switchInput {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 20px;
+  }
+  &__switchInput + label {
+    position: relative;
+    padding: 0 0 0 55px;
+    cursor: pointer;
+  }
+  &__switchInput + label:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 50px;
+    height: 26px;
+    border-radius: 13px;
+    background: #CDD1DA;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+    transition: .2s;
+  }
+  &__switchInput + label:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    transition: .2s;
+  }
+  &__switchInput:checked + label:before {
+    background: #f92e3e;
+  }
+  &__switchInput:checked + label:after {
+    left: 26px;
+  }
+  &__switchInput:focus + label:before {
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 0.25rem rgba(255,83,0,.25);
+  }
+
+  &__forgotLink:hover {
+    color:#f92e3e;
+  }
+}
