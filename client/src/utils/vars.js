@@ -1,0 +1,1 @@
+export const baseUrl = 'https://sea-turtle-app-tgzpt.ondigitalocean.app/api/';

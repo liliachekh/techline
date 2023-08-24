@@ -1,3 +1,7 @@
+$color-light: #f7fbfa;
+$color-dark: #202025;
+$color-grey: #5d5d5d;
+
 .productList {
   font-family: 'Roboto', sans-serif;
 
@@ -8,13 +12,26 @@
   }
 
   &__btns {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  &__sort {
     display: grid;
-    grid-template-columns: 432px 1fr 100px;
+    grid-template-columns: 432px 1fr;
+    justify-items: center;
+    margin: 2rem 0;
   }
 
   &__btn {
+    padding: 0.63rem 1rem;
+    border-radius: 0.63rem;
+    color: $color-light;
+    background: $color-dark;
     font-size: 1rem;
     text-align-last: left;
+    cursor: pointer;
   }
 
   &__list {

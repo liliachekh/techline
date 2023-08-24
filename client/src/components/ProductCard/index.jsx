@@ -63,6 +63,7 @@ function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories,
             className={`${styles.amount__btn} ${styles.amount__btn_decrease}`}
             onClick={amount > 1 ? (e) => increase(false) : null} />
           <input
+            name={name}
             type="number"
             className={styles.amount__input}
             value={amount}
