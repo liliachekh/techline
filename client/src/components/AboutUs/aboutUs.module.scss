@@ -1,15 +1,21 @@
 .aboutUs {
+  padding: 3rem 0;
   background-color: rgb(242, 242, 242);
 
   .container {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 3rem;
     max-width: 1470px;
     margin: 0 auto;
     padding: 0 10px;
     box-sizing: border-box;
     flex-wrap: wrap;
+
+    @media (min-width: 820px) {
+      gap: initial;
+    }
   }
 
   .content {
@@ -19,7 +25,7 @@
     text-align: center;
     padding: 0 5px;
     margin-top: 10px;
-    }
+  }
 
   .title {
     font-family: 'Roboto', sans-serif;
@@ -37,24 +43,23 @@
     font-weight: 500;
     color: rgb(12, 29, 57);
     font-style: normal;
-    }
+  }
 
   .paragraphs {
-    font-family: 'Thasadith', sans-serif;
     font-size: 21px;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
     letter-spacing: 0em;
     text-align: left;
-}
+  }
 
   .statistics {
     display: grid;
     grid-template-areas:
-    'area1 area1'
-    'area2 area3'
-    'area4 area4'
-    'area5 area5';
+      'area1 area1'
+      'area2 area3'
+      'area4 area4'
+      'area5 area5';
     row-gap: 20px;
     align-content: center;
     height: auto;
@@ -62,28 +67,29 @@
     grid-template-rows: min-content;
     justify-items: center;
     margin-bottom: 20px;
-}
+  }
 
   .area1 {
     grid-area: area1;
-}
+  }
 
   .area2 {
     grid-area: area2;
-}
+  }
 
   .area3 {
     grid-area: area3;
-}
+  }
 
   .area4 {
     grid-area: area4;
-}
+  }
 
   .area5 {
     grid-area: area5;
-}
-.statItem {
+  }
+
+  .statItem {
     height: auto;
     // width: 183px;
     display: grid;
@@ -94,45 +100,47 @@
   }
 
   .statValue {
-      padding: 9px 0;
-      margin-bottom: 10px;
-      width: 120px;
-      background-color: rgba( 30,29,64, 1 );
-      border: rgba( 50,65,88, 1 );
-      border-radius: 10px;
-      bottom: 0;
-      box-shadow: 0 0 1px 0 rgba(0,0,0,.6);
-      font-size: 27px;
-      text-align: center;
-      color: white;
-      font-weight: bold;
-      
+    padding: 9px 0;
+    margin-bottom: 10px;
+    width: 120px;
+    background-color: rgba(30, 29, 64, 1);
+    border: rgba(50, 65, 88, 1);
+    border-radius: 10px;
+    bottom: 0;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, .6);
+    font-size: 27px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+
   }
+
   // .statValue_plus::after {
   //   content: '+';
   // }
   .statLabel {
-    font-family: 'Thasadith', sans-serif;
     font-size: 21px;
     font-weight: 600;
     text-align: center;
   }
+
   @media (min-width: 568px) {
     .statistics {
-        grid-template-areas:
+      grid-template-areas:
         'area1 area1 area2 area2 area3 area3'
         '. area4 area4 area5 area5 .';
     }
 
     .content {
-        margin-bottom: 10px;
+      margin-bottom: 10px;
     }
   }
-  @media (min-width: 768px) {
+
+  @media (min-width: 820px) {
 
     .container {
-        padding: 0 50px;
-        flex-wrap: nowrap;
+      padding: 0 50px;
+      flex-wrap: nowrap;
     }
 
     .content {
@@ -147,13 +155,14 @@
 
     .subtitle {
       font-size: 34px;
-      font-weight: bold;  
+      font-weight: bold;
     }
+
     .statistics {
-    row-gap: 54px;
-    flex: 0 1 50%;
-    min-height: 602px;
-    column-gap: 10px;
+      row-gap: 54px;
+      flex: 0 1 50%;
+      min-height: 602px;
+      column-gap: 10px;
     }
 
     .statValue {
@@ -161,21 +170,22 @@
     }
 
     .area4 .statValue {
-        font-size: 29px;
-        padding: 14px 0;
+      font-size: 29px;
+      padding: 14px 0;
     }
 
     .area5 .statValue {
-        font-size: 29px;
-        padding: 14px 2px;
+      font-size: 29px;
+      padding: 14px 2px;
     }
-  
+
   }
+
   @media (min-width: 993px) {
     .container {
-        width: 980px;
-        padding: 0;
+      width: 980px;
+      padding: 0;
     }
   }
-  
+
 }

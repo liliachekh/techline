@@ -2,7 +2,8 @@
 //   text-align: center;
 // }
 body {
-  font-family: 'Roboto',Sans-Serif;;
+  font-family: 'Roboto', Sans-Serif;
+  ;
   font-size: 10px;
   overflow-x: auto;
   overflow-y: scroll;
@@ -22,6 +23,20 @@ button {
 section {
   overflow-x: hidden;
 }
+
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: revert;
+  color: inherit;
+}
+
 // .App-logo {
 //   height: 40vmin;
 //   pointer-events: none;

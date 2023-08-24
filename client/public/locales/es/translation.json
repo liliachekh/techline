@@ -1,0 +1,84 @@
+{
+  "headerLink": {
+    "LogIn": "Acceso",
+    "Home": "Hogar",
+    "About us": "Conocenos",
+    "B2B": "B2B",
+    "Contacts": "Contactos",
+    "Sign up": "Inicio de Sesión"
+  },
+  "becomePartner": {
+    "title": "Desbloquea el potencial de tu negocio con nuestra plataforma B2B al por mayor",
+    "listItem1": "Obtén acceso exclusivo a electrónicos de marcas reconocidas a precios competitivos",
+    "listItem2": "Optimiza tu cadena de suministro con nuestra plataforma B2B",
+    "btn": "Convertirse en un compañero"
+  },
+  "aboutUs": {
+    "title": "Conocenos",
+    "subtitle1": "Proveedor confiable",
+    "subtitle2": "de electrónica a nivel mundial",
+    "paragraphText1": "Nos especializamos en ventas al por mayor de electrónica y podemos suministrar productos de numerosas marcas a nivel mundial:",
+    "paragraphText2": "<i>Apple, Samsung, Dyson, Xiaomi, Huawei, Sony - tu eliges y nosotros te lo entregamos!</i><br/> Establecidos desde 2016 en Ucrania y desde 2022 en España. Nuestra larga experiencia nos ha dado una especialización en tiempos de entrega rápidos y alianzas significativas. Actualmente contamos con un equipo de 12 personas y hemos vendido más de 50,000 productos en 2023.",
+    "statisticItems": {
+      "partner": "Socio confiable desde",
+      "employees": "Número de empleados",
+      "trade": "Socios comerciales",
+      "beginnings": "Inicio de obra en España",
+      "products": "Número de productos vendidos en 2023"
+    }
+  },
+  "b2b": {
+    "title": "Plataforma B2B",
+    "description": {
+      "paragraph1": "Presentamos nuestra nueva e innovadora plataforma de ventas B2B, diseñada para optimizar tu proceso de búsqueda y compra de electrónicos para consumidores.",
+      "paragraph2": "Ya sea que estés buscando productos de marcas como Apple o Samsung o busques ofertas y descuentos exclusivos, estamos aquí para ayudarte.",
+      "paragraph3": "No pierdas esta oportunidad de expandir tu negocio y aprovechar nuestras ofertas exclusivas.",
+      "paragraph4": "Una vez registrado, te proporcionaremos acceso para explorar nuestro catálogo de productos, realizar pedidos y seguir tus entregas. Nuestra plataforma también permite integraciones XML, extraer informes de precios y realizar entregas directas."
+    },
+    "subtitle": "Características",
+    "listItems": {
+      "listItem1": "Precios competitivos",
+      "listItem2": "Descuentos por volumen",
+      "listItem3": "Descuentos para clientes",
+      "listItem4": "Conectividad XML",
+      "listItem5": "Entrega rápida",
+      "listItem6": "Ofertas en expansión",
+      "listItem7": "Servicio personalizado",
+      "listItem8": "Diseño amigable para el usuario"
+    }
+  },
+  "signup": {
+    "title": "Convertirse en un compañero",
+    "сompanyName": "Nombre de empresa",
+    "companyNamePlaceholder": "[Nombre de empresa]",
+    "countryName": "País",
+    "countryNamePlaceholder": "[País]",
+    "vatNr": "VAT Nr",
+    "сontactPerson": "Persona de contacto",
+    "сontactPersonPlaceholder": "[Persona de contacto]",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "[example@gmail.com]",
+    "password": "Contraseña",
+    "passwordPlaceholder": "******",
+    "phoneNumber": "Número de teléfono",
+    "companyWebsite": "Página Web de la compañía",
+    "companyWebsitePlaceholder": "[Página Web de la compañía]",
+    "productsOfInterest": "¿Productos de interés?",
+    "productsOfInterestPlaceholder": "[teléfonos inteligentes, computadoras, drones, consolas, etc]",
+    "brandsOfInterest": "¿Marcas de interés?",
+    "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, etc]",
+    "comment": "Comentario",
+    "submitButton": "Inscribirse"
+  },
+  "footer": {
+    "title": "Contactos",
+    "subtitle": "TECHLINE",
+    "info": {
+      "text1": "Domicilio legal: с. Baladre 6, 03570, Villajoyosa, Alicante, Spain",
+      "text2": "Número de registro: B72884349",
+      "text3": "IVA nr: ESB72884349",
+      "text4": "Email: b2b@techlines.es",
+      "text5": "Número de teléfono: +34 627 575 578"
+    }
+  }
+}

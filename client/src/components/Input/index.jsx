@@ -1,6 +1,5 @@
-import { useField, useFormikContext } from "formik";
-import { useEffect } from "react";
-
+import { useField, useFormikContext } from 'formik';
+import { useEffect } from 'react';
 
 const Input = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -37,4 +36,4 @@ const Input = ({ label, ...props }) => {
     )
 }
 
-export default Input
+export default Input;
