@@ -47,6 +47,29 @@
       "listItem8": "Зручність використання"
     }
   },
+  "signup": {
+    "title": "Стати партнером",
+    "сompanyName": "Назва компанії",
+    "companyNamePlaceholder": "[Назва компанії]",
+    "countryName": "Країна",
+    "countryNameNamePlaceholder": "[Країна]",
+    "vatNr": "VAT Nr",
+    "сontactPerson": "Контактна особа",
+    "сontactPersonPlaceholder": "[Контактна особа]",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "[example@gmail.com]",
+    "password": "Пароль",
+    "passwordPlaceholder": "******",
+    "phoneNumber": "Номер телефону",
+    "companyWebsite": "Сайт Компанії",
+    "companyWebsitePlaceholder": "[Сайт Компанії]",
+    "productsOfInterest": "Продукти, які цікавлять?",
+    "productsOfInterestPlaceholder": "[смартфони, комп'ютери, дрони, ігрові консолі, і тд.]",
+    "brandsOfInterest": "Бренди, які цікавлять?",
+    "brandsOfInterestPlaceholder": "[apple, samsung, sony, LG, і тд.]",
+    "comment": "Коментар",
+    "submitButton": "Зареєструватися"
+  },
   "footer": {
     "title": "Контакти",
     "subtitle": "TECHLINE",
