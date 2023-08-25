@@ -7,6 +7,7 @@ $color-grey: #5d5d5d;
     transform: rotate(90deg);
   }
 }
+
 .arrowDown {
   svg {
     transform: rotate(270deg);
@@ -42,14 +43,17 @@ $color-grey: #5d5d5d;
   & svg {
     width: 15px;
     height: 15px;
+    transition: transform .3s;
 
     &>path {
-      transition: stroke .3s;
+      transition: fill .3s;
+      // transition: stroke .3s;
     }
   }
 
   &:hover>svg>path {
-    stroke: $color-dark;
+    fill: $color-dark;
+    // stroke: $color-dark;
   }
 
   &::after {

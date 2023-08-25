@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import styles from './sortByBtn.module.scss';
 import { useState } from 'react';
+import styles from './sortByBtn.module.scss';
+import { Arrow } from '../icons/arrow';
 
 function SortByBtn({ query, setQuery, label, type }) {
   const navigate = useNavigate();
@@ -24,10 +25,10 @@ function SortByBtn({ query, setQuery, label, type }) {
 
   return (
     <button
-      className={`${styles.btn} ${direction}`}
+      className={`${styles.btn} ${query.sort.includes(`sort=+${type}`) ? styles.arrowUp : styles.arrowDown}`}
       type='button'
       onClick={clickHandler}>
-      {label}
+      {label}{query.sort.includes(type) && <Arrow fill={'#f7fbfa'} />}
     </button>
   )
 }

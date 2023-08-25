@@ -80,7 +80,7 @@ function ProductList() {
             <SortByBtn
               query={query}
               setQuery={setQuery}
-              label={<>Product<Arrow fill={'#f7fbfa'} /></>}
+              label='Product'
               type='name' />
             <SortByBtn
               query={query}
