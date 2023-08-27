@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Cart } from '../icons';
 // import { AdminProductCard } from '../AdminProductCard';
 
-function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories, color, productUrl, brand, memory, itemNo, rows }) {
+function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories, color, productUrl, brand, memory, itemNo, displayTable }) {
   const [amount, setAmount] = useState(1);
 
   function handleAmountChange(e) {
@@ -33,7 +33,7 @@ function ProductCard({ _id, imageUrls, quantity, name, currentPrice, categories,
   }
 
   return (
-    <div className={`${styles.productCard} ${rows ? styles.productRow : ''}`}>
+    <div className={`${styles.productCard} ${displayTable ? styles.productRow : ''}`}>
       <Link to={`/product/${itemNo}`} className={styles.productCard__mainLink}>
         <LazyLoadImage
           className={styles.productCard__img}

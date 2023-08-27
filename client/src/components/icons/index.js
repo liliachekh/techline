@@ -4,3 +4,6 @@ export * from "./flagEs.jsx";
 export * from "./flagRu.jsx";
 export * from "./flagUa.jsx";
 export * from "./cart.jsx";
+export * from "./arrow.jsx";
+export * from "./iconCardList.jsx";
+export * from "./iconTableList.jsx";

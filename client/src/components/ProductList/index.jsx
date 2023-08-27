@@ -3,7 +3,7 @@ import ProductCard from '../ProductCard';
 import PerPageBtn from '../PerPageBtn';
 import SortByBtn from '../SortByBtn';
 import SetPageBtn from '../SetPageBtn';
-import {Arrow} from '../icons/arrow';
+import { Arrow, IconCardList, IconTableList } from '../icons';
 import styles from './productList.module.scss';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ function ProductList() {
   // не чіпай const navigate = useNavigate(), без нього навігація не працює!?
   const navigate = useNavigate();
   // ==============================
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
 
   const getProducts = useCallback(async () => {
     // const data = await fetchData(`${baseUrl}products/${`?${query.sort && query.sort + '&'}${query.perPage}`}`);
@@ -32,14 +32,19 @@ function ProductList() {
 
   useEffect(() => {
     getProducts();
+    window.location.search.length === 0 && setQuery({
+      sort: '',
+      perPage: 'perPage=10',
+      page: 'startPage=1',
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getProducts, query, window.location.search])
+  }, [getProducts, window.location.search])
 
   return (
     <div className={`${styles.productList} ${displayTable ? styles.productTable : ''}`}>
       <div className={styles.productList__container}>
         <div className={styles.productList__btns}>
-          <div>
+          <div className={styles.productList__controlTitle}>
             Items per page
           </div>
           {[10, 25, 50, 100].map((amount) => (
@@ -49,12 +54,6 @@ function ProductList() {
               setQuery={setQuery}
               amount={amount} />
           ))}
-          <button
-            className={styles.productList__btn}
-            type='button'
-            onClick={() => setDisplayTable(!displayTable)}>
-            Change Style
-          </button>
         </div>
         <div className={styles.productList__btns}>
           <SetPageBtn
@@ -65,8 +64,8 @@ function ProductList() {
           <div>
             {products?.length < query.perPage.match(/\d+/)[0]
               ? productsQuantity - products?.length + 1 + ' - ' + productsQuantity
-              : query.page.match(/\d+/)[0] * products?.length - query.perPage.match(/\d+/)[0] + 1 + ' - ' + query.page.match(/\d+/)[0] * products?.length
-              + ' of ' + productsQuantity}
+              : query.page.match(/\d+/)[0] * products?.length - query.perPage.match(/\d+/)[0] + 1 + ' - ' + query.page.match(/\d+/)[0] * products?.length}
+            {' of ' + productsQuantity}
           </div>
           <SetPageBtn
             query={query}
@@ -75,23 +74,30 @@ function ProductList() {
             label={<Arrow fill={'#f7fbfa'} />}
             direction={true} />
         </div>
-        {!isMobile &&
-          <div className={styles.productList__sort}>
-            <SortByBtn
-              query={query}
-              setQuery={setQuery}
-              label='Product'
-              type='name' />
-            <SortByBtn
-              query={query}
-              setQuery={setQuery}
-              label='Cost'
-              type='currentPrice' />
-          </div>}
+        <div className={styles.productList__sort}>
+          <SortByBtn
+            query={query}
+            setQuery={setQuery}
+            label='Product'
+            type='name' />
+          <SortByBtn
+            query={query}
+            setQuery={setQuery}
+            label='Cost'
+            type='currentPrice' />
+          {!isMobile &&
+            <button
+              className={styles.productList__btn}
+              type='button'
+              onClick={() => setDisplayTable(!displayTable)}>
+              Display Style
+              {displayTable ? <IconTableList /> : <IconCardList />}
+            </button>}
+        </div>
         <div className={styles.productList__list}>
           {products?.length > 0 &&
             products?.map((product) => (
-              <ProductCard {...product} rows={displayTable} key={product?._id} />
+              <ProductCard {...product} displayTable={displayTable} key={product?._id} />
             ))}
         </div>
       </div>

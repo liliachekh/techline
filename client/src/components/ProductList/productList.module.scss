@@ -18,10 +18,15 @@ $color-grey: #5d5d5d;
   }
 
   &__sort {
-    display: grid;
-    grid-template-columns: 432px 1fr;
-    justify-items: center;
+    display: flex;
+    gap: 1rem;
     margin: 2rem 0;
+
+    // @media (min-width: 768px) {
+    //   display: grid;
+    //   grid-template-columns: 432px 1fr;
+    //   justify-items: center;
+    // }
   }
 
   &__btn {
@@ -55,12 +60,12 @@ $color-grey: #5d5d5d;
       height: 15px;
 
       &>path {
-        transition: stroke .3s;
+        transition: fill .3s;
       }
     }
 
     &:hover>svg>path {
-      stroke: $color-dark;
+      fill: $color-dark;
     }
 
     &::after {
