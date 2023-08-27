@@ -44,7 +44,7 @@ export default function Header({ refList, inViewList }) {
           <div className={style.section}>
             <Link to="/" onClick={scrollToTop}>
               <div className={style.logo}>
-                <img src="/images/tech.png" alt="techlines logo" />
+                <img src="./images/Tech.png" alt="techlines logo" />
               </div>
             </Link>
           </div>
