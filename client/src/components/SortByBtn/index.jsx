@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import styles from './sortByBtn.module.scss';
 import { Arrow } from '../icons/arrow';
 
 function SortByBtn({ query, setQuery, label, type }) {
   const navigate = useNavigate();
-  const [direction, setDirection] = useState();
 
   async function clickHandler() {
     let newQuary = {};

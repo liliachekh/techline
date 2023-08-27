@@ -2,6 +2,10 @@ export const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
+export const scrollToRef = (ref) => {
+  ref.current.scrollIntoView({ block: "start", behavior: "smooth" })
+};
+
 export async function fetchData(url, reqBody) {
   try {
     const response = await fetch(url, reqBody);

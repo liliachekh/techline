@@ -11,22 +11,22 @@ $color-grey: #5d5d5d;
     max-width: 1470px;
   }
 
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
   &__btns {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: .5rem;
     margin: 2rem 0;
   }
 
-  &__sort {
-    display: flex;
-    gap: 1rem;
-    margin: 2rem 0;
-
-    // @media (min-width: 768px) {
-    //   display: grid;
-    //   grid-template-columns: 432px 1fr;
-    //   justify-items: center;
-    // }
+  &__controlTitle {
+    font-size: .8rem;
   }
 
   &__btn {
@@ -51,9 +51,9 @@ $color-grey: #5d5d5d;
       font-size: 1rem;
     }
 
-    &:has(> svg) {
-      padding: 7px 10px;
-    }
+    // &:has(> svg) {
+    //   padding: 7px 10px;
+    // }
 
     & svg {
       width: 15px;

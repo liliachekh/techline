@@ -1,0 +1,12 @@
+$color-light: #f7fbfa;
+$color-dark: #202025;
+$color-grey: #5d5d5d;
+
+.text {
+  font-size: 1rem;
+
+  &__between {
+    margin: 0 .3rem;
+    font-size: .7rem;
+  }
+}

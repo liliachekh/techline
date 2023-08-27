@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './perPageBtn.module.scss';
+import { scrollToRef } from '../../utils';
 
-function PerPageBtn({ query, setQuery, amount }) {
+function PerPageBtn({ query, setQuery, amount, scrollTo }) {
   const navigate = useNavigate();
 
   async function clickHandler() {
@@ -10,11 +11,11 @@ function PerPageBtn({ query, setQuery, amount }) {
     const queryString = `?${query.sort && query.sort + '&'}${newPerPage}&${'startPage=1'}`;
 
     navigate(`/${queryString}`);
+    scrollToRef(scrollTo);
   }
-
   return (
     <button
-      className={styles.btn}
+      className={`${styles.btn} ${Number(query.perPage.match(/\d+/)[0]) === amount ? styles.btn_active : ''}`}
       type='button'
       onClick={clickHandler}>
       {amount}
