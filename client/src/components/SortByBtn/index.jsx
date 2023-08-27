@@ -1,32 +1,31 @@
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styles from './sortByBtn.module.scss';
 import { Arrow } from '../icons/arrow';
 
-function SortByBtn({ query, setQuery, label, type }) {
-  const navigate = useNavigate();
+function SortByBtn({ label, type }) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
   async function clickHandler() {
-    let newQuary = {};
-    if (query.sort.includes(`sort=+${type}`)) {
-      newQuary = { ...query, sort: `sort=-${type}` }
-    } else if (query.sort.includes(`sort=-${type}`)) {
-      newQuary = { ...query, sort: '' }
+    let newSort = '';
+    if (searchParams.get('sort') === type) {
+      newSort = `-${type}`
+    } else if (searchParams.get('sort') === `-${type}`) {
+      newSort = ''
     } else {
-      newQuary = { ...query, sort: `sort=+${type}` }
+      newSort = type
     }
 
-    setQuery(newQuary);
-    const queryString = `?${newQuary.sort && newQuary.sort + '&'}${newQuary.perPage}&${newQuary.page}`;
-
-    navigate(`/${queryString}`);
+    newSort
+      ? setSearchParams({ sort: newSort, perPage: searchParams.get('perPage') || 10, startPage: 1 })
+      : setSearchParams({ perPage: searchParams.get('perPage') || 10, startPage: 1 })
   }
 
   return (
     <button
-      className={`${styles.btn} ${query.sort.includes(`sort=+${type}`) ? styles.arrowUp : styles.arrowDown}`}
+      className={`${styles.btn} ${searchParams.get('sort') === type ? styles.arrowUp : styles.arrowDown}`}
       type='button'
       onClick={clickHandler}>
-      {label}{query.sort.includes(type) && <Arrow fill={'#f7fbfa'} />}
+      {label}{searchParams.get('sort')?.includes(type) && <Arrow fill={'#f7fbfa'} />}
     </button>
   )
 }

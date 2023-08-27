@@ -1,10 +1,14 @@
 import styles from './pagination.module.scss';
+import { useSearchParams } from 'react-router-dom';
 import SetPageBtn from "../SetPageBtn";
 import { Arrow } from "../icons";
 
-function Pagination({ query, setQuery, scrollTo, productsLength, productsQuantity }) {
-  const perPage = query.perPage.match(/\d+/)[0];
-  const page = query.page.match(/\d+/)[0];
+function Pagination({ scrollTo, productsLength, productsQuantity }) {
+  const [searchParams] = useSearchParams();
+
+  const perPage = searchParams.get('perPage');
+  const page = searchParams.get('startPage');
+  
   const startItem = productsQuantity - productsLength + 1;
   const lastItem = page * productsLength;
 
@@ -12,8 +16,6 @@ function Pagination({ query, setQuery, scrollTo, productsLength, productsQuantit
     <>
       <SetPageBtn
         scrollTo={scrollTo}
-        query={query}
-        setQuery={setQuery}
         label={<Arrow fill={'#f7fbfa'} />}
         direction={false} />
       <div className={styles.text}>
@@ -25,8 +27,6 @@ function Pagination({ query, setQuery, scrollTo, productsLength, productsQuantit
       </div>
       <SetPageBtn
         scrollTo={scrollTo}
-        query={query}
-        setQuery={setQuery}
         productsLength={productsLength}
         label={<Arrow fill={'#f7fbfa'} />}
         direction={true} />

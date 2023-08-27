@@ -1,24 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styles from './perPageBtn.module.scss';
 import { scrollToRef } from '../../utils';
 
-function PerPageBtn({ query, setQuery, amount, scrollTo }) {
-  const navigate = useNavigate();
+function PerPageBtn({ newPerPage, scrollTo }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sort = searchParams.get('sort');
+  const perPage = searchParams.get('perPage');
+  const activeBtn = (Number(perPage) === newPerPage || (!perPage && newPerPage === 10));
 
   async function clickHandler() {
-    const newPerPage = query.perPage.replace(/\d+/, amount);
-    setQuery({ ...query, perPage: newPerPage, page: 'startPage=1' });
-    const queryString = `?${query.sort && query.sort + '&'}${newPerPage}&${'startPage=1'}`;
-
-    navigate(`/${queryString}`);
+    if (!activeBtn) {
+      sort
+        ? setSearchParams({ sort: sort, perPage: newPerPage, startPage: 1 })
+        : setSearchParams({ perPage: newPerPage, startPage: 1 })
+    }
     scrollToRef(scrollTo);
   }
+
   return (
     <button
-      className={`${styles.btn} ${Number(query.perPage.match(/\d+/)[0]) === amount ? styles.btn_active : ''}`}
+      className={`${styles.btn} ${activeBtn ? styles.btn_active : ''}`}
       type='button'
       onClick={clickHandler}>
-      {amount}
+      {newPerPage}
     </button>
   )
 }

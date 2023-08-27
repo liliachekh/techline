@@ -1,28 +1,31 @@
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styles from './setPageBtn.module.scss';
 import { scrollToRef } from '../../utils';
 
-function SetPageBtn({ query, setQuery, scrollTo, productsLength, label, direction }) {
-  const navigate = useNavigate();
+function SetPageBtn({ scrollTo, productsLength, label, direction }) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const disabled = direction && productsLength < query.perPage.match(/\d+/)[0];
+  const sort = searchParams.get('sort');
+  const perPage = searchParams.get('perPage');
+  const page = searchParams.get('startPage');
+
+  const disabled = direction && productsLength < perPage;
 
   async function clickHandler() {
     if (disabled) return;
-    const currentPage = query.page.match(/\d+/)[0];
-    const newPage = direction ? Number(currentPage) + 1 : Number(currentPage) - 1;
+    const newPage = direction ? Number(page || 1) + 1 : Number(page || 1) - 1;
     if (newPage === 0) return;
 
-    setQuery({ ...query, page: `startPage=${newPage}` });
-    const queryString = `?${query.sort && query.sort + '&'}${query.perPage}&${`startPage=${newPage}`}`;
-
-    navigate(`/${queryString}`);
+    sort
+      ? setSearchParams({ sort: sort, perPage: perPage || 10, startPage: newPage })
+      : setSearchParams({ perPage: perPage || 10, startPage: newPage })
+    
     scrollToRef(scrollTo);
   }
 
   return (
     <button
-      className={`${styles.btn} ${direction ? styles.rotate : ''} ${disabled || (Number(query.page.match(/\d+/)[0]) === 1 && !direction) ? styles.btn_disabled : ''}`}
+      className={`${styles.btn} ${disabled || ((Number(page) === 1 || !page) && !direction) ? styles.btn_disabled : ''} ${direction ? styles.rotate : ''}`}
       type='button'
       onClick={clickHandler}>
       {label}
