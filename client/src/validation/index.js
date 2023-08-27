@@ -80,3 +80,9 @@ export const validationSchemaProduct = Yup.object().shape({
   details: Yup.string(),
   itemNo: Yup.string(),
 });
+
+export const validationSchemaRegisteredEmail = Yup.object({
+  registeredEmail: Yup.string()
+    .required("Required Field!")
+    .email('Invalid email'),
+});
