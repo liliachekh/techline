@@ -9,23 +9,24 @@ import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../utils/vars';
 import { fetchData } from '../../utils';
 import Pagination from '../Pagination';
+import useQueryString from '../../hooks';
 
 function ProductList() {
   const [displayTable, setDisplayTable] = useState(false);
   const [{ products, productsQuantity }, setProducts] = useState([]);
   const ref = useRef(null);
-
+  const { perPage } = useQueryString();
   // не чіпай const navigate = useNavigate(), без нього навігація не працює!?
   // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
-  // ==============================
+  // ========================================================================
 
   const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
 
   const getProducts = useCallback(async () => {
-    const data = await fetchData(`${baseUrl}products/filter${window.location.search ? window.location.search : '?perPage=10'}`);
+    const data = await fetchData(`${baseUrl}products/filter${window.location.search ? window.location.search : `?perPage=${perPage}`}`);
     setProducts(data);
-  }, [])
+  }, [perPage])
 
   useEffect(() => {
     getProducts();

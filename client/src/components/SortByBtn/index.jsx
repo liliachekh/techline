@@ -1,31 +1,31 @@
-import { useSearchParams } from 'react-router-dom';
 import styles from './sortByBtn.module.scss';
 import { Arrow } from '../icons/arrow';
+import useQueryString from '../../hooks';
 
 function SortByBtn({ label, type }) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { sort, perPage, setSearchParams } = useQueryString()
 
   async function clickHandler() {
     let newSort = '';
-    if (searchParams.get('sort') === type) {
+    if (sort === type) {
       newSort = `-${type}`
-    } else if (searchParams.get('sort') === `-${type}`) {
+    } else if (sort === `-${type}`) {
       newSort = ''
     } else {
       newSort = type
     }
 
     newSort
-      ? setSearchParams({ sort: newSort, perPage: searchParams.get('perPage') || 10, startPage: 1 })
-      : setSearchParams({ perPage: searchParams.get('perPage') || 10, startPage: 1 })
+      ? setSearchParams({ sort: newSort, perPage, startPage: 1 })
+      : setSearchParams({ perPage, startPage: 1 })
   }
 
   return (
     <button
-      className={`${styles.btn} ${searchParams.get('sort') === type ? styles.arrowUp : styles.arrowDown}`}
+      className={`${styles.btn} ${sort === type ? styles.arrowUp : styles.arrowDown}`}
       type='button'
       onClick={clickHandler}>
-      {label}{searchParams.get('sort')?.includes(type) && <Arrow fill={'#f7fbfa'} />}
+      {label}{sort?.includes(type) && <Arrow fill={'#f7fbfa'} />}
     </button>
   )
 }
