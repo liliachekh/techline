@@ -37,15 +37,16 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  // Accept file (only jpeg/jpg/png)
+  // Accept file (only jpeg/jpg/png/webp)
   if (
     file.mimetype === "image/jpeg" ||
     file.mimetype === "image/png" ||
-    file.mimetype === "image/jpg"
+    file.mimetype === "image/jpg"||
+    file.mimetype === "image/webp"
   ) {
     cb(null, true);
   } else {
-    // reject file (if not jpeg/jpg/png)
+    // reject file (if not jpeg/jpg/png/webp)
     cb(null, false);
   }
 };
