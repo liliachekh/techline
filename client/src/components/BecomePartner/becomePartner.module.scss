@@ -22,6 +22,7 @@
     max-width: 1470px;
     padding: 0 15px;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .parallaxImg {
@@ -51,8 +52,13 @@
       display: flex;
       align-items: center;
       margin-bottom: 20px;
+      gap: 10px;
     }
-
+    
+  figure {
+    margin: 0;
+  }
+  
     &__img {
       width: 63px;
       height: 55px;
