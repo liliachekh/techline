@@ -49,7 +49,7 @@ const CustomerSchema = new Schema(
     enabled: {
       type: Boolean,
       required: true,
-      default: true
+      default: false
     },
     date: {
       type: Date,
