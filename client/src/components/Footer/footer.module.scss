@@ -36,7 +36,7 @@
     }
     
     &::after {
-      bottom: 0;
+      bottom: 15px;
     }
   }
 
@@ -60,6 +60,15 @@
     letter-spacing: 0.01em;
     line-height: 1.5em;
     font-size: 13px;
+  }
+
+  &__devinfo {
+    font-size: 13px;
+    color: #CDD1DA;
+
+    @media (min-width: 768px) {
+      font-size: 14px;
+    }
   }
 }
 
