@@ -98,7 +98,7 @@ exports.loginCustomer = async (req, res, next) => {
   })
     .then(customer => {
       // Check for customer
-      if (!customer) {
+      if (!customer || !customer.enabled) {
         errors.loginOrEmail = "Customer not found";
         return res.status(404).json(errors);
       }

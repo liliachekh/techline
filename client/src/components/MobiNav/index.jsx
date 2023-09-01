@@ -6,13 +6,17 @@ import PropTypes from 'prop-types';
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { animateMobileMenu } from "../../animation";
+import { useRef, useEffect } from "react";
 
-export default function MobiNav({ isOpen, toggleBurgerMenu, inViewList, refList }) {
+export default function MobiNav({ isOpen, toggleBurgerMenu, inViewList, refList, setBtnRef }) {
   const { t } = useTranslation();
-
+  const btnRef = useRef();
+  useEffect(() => {
+    setBtnRef(btnRef);
+  }, [setBtnRef]);
   return (
     <div className={style.mobilNav}>
-      <button type="button" className={`${style.burgerBtn} ${isOpen ? style.active : ''}`} onClick={toggleBurgerMenu}>
+      <button ref={btnRef} type="button" className={`${style.burgerBtn} ${isOpen ? style.active : ''}`} onClick={toggleBurgerMenu}>
         <span className={`${style.burgerBtn__lines} ${isOpen ? style.active : ''}`}></span>
       </button>
       <AnimatePresence>
@@ -42,4 +46,5 @@ MobiNav.propTypes = {
   toggleBurgerMenu: PropTypes.func,
   inViewList: PropTypes.object,
   refList: PropTypes.object,
+  setBtnRef: PropTypes.func
 }
