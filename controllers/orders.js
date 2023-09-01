@@ -52,6 +52,10 @@ exports.placeOrder = async (req, res, next) => {
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
     );
+   // if order < 1500 add shipping cost 50
+    if (order.totalSum < 1500) {
+      order.totalSum += 50; 
+    }
 
     const productAvailibilityInfo = await productAvailibilityChecker(
       order.products
