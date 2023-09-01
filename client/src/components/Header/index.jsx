@@ -84,7 +84,7 @@ export default function Header({ refList, inViewList }) {
               </ul>
               <LanguageSelector />
             </nav>
-            <Link to="/b2b/login">
+            <Link to="https://b2b.techlines.es/login">
               <span className={style.nav_login}>{t("headerLink.LogIn")}</span>
             </Link>
           </div>
