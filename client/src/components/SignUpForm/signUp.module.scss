@@ -43,4 +43,18 @@
         font-size: 39px;
       }
     }
+
+    &__errorMessage {
+      color: #f92e3e;;
+      position: absolute;
+      bottom: 1%;
+      font-size: 14px;
+    }
+
+    &__successMessage {
+      color: #f92e3e;;
+      position: absolute;
+      bottom: 1%;
+      font-size: 14px;
+    }
   }
