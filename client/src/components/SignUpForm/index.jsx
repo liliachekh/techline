@@ -18,18 +18,40 @@ export default function SignUpForm({ callback, refName }) {
 
   // async function onSubmitHandler(values) {
   //   try {
-  //     await fetchData(`${baseUrl}customers`, reqPost(JSON.stringify(values)))
-  //     callback(true)
-  //     dispatch(setModalType('registred'))
+  //    const response = await fetch('https://storage.techlines.es/api/customers', JSON.stringify(values))
+  //     return await response.json();
   //   } catch (error) {
-  //     dispatch(setErrorAction(error.message));
-  //     dispatch(setModalType('error'))
-  //   }
+  //  throw new Error(error?.message);
   // }
-  function onSubmitHandler(values) {
-    alert('Success!')
-    console.log(values);
+  // }
+  
+  // function onSubmitHandler(values) {
+  //   alert('Success!')
+  //   console.log(values);
+  // }https://storage.techlines.es/api/customers
+  async function onSubmitHandler(values) {
+    const newValues = {...values, firstName: values.companyName, lastName: values.companyName, login: values.email.split('@')[0].split(".").join("")}
+   console.log(newValues);
+    try {
+      const response = await fetch("http://localhost:4000/api/customers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newValues)
+      });
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const savedCustomer = await response.json();
+      console.log(savedCustomer);
+    } catch (err) {
+      console.log(err);
+    }
   }
+  
 
   return (
     <section ref={refName} className={style.signUp}>
