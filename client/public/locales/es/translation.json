@@ -61,6 +61,7 @@
     "password": "Contraseña",
     "passwordPlaceholder": "******",
     "phoneNumber": "Número de teléfono",
+    "phoneNumberPlaceholder": "+############",
     "companyWebsite": "Página Web de la compañía",
     "companyWebsitePlaceholder": "[Página Web de la compañía]",
     "productsOfInterest": "¿Productos de interés?",

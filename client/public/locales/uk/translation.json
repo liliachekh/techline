@@ -61,6 +61,7 @@
     "password": "Пароль",
     "passwordPlaceholder": "******",
     "phoneNumber": "Номер телефону",
+    "phoneNumberPlaceholder": "+############",
     "companyWebsite": "Сайт Компанії",
     "companyWebsitePlaceholder": "[Сайт Компанії]",
     "productsOfInterest": "Продукти, які цікавлять?",
