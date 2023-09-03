@@ -32,7 +32,7 @@ export const validationSchemaUser = Yup.object({
     .trim()
     .required("Required Field!"),
   telephone: Yup.string()
-    .matches(/^\+\d{2} \d{10}$/, "Invalid phone number format")
+    .matches(/^\+\d{11,12}$/, "Invalid phone number format")
     .required("Required Field!"),
 })
 
@@ -58,7 +58,7 @@ export const validationSchemaOrder = Yup.object({
     .email('Invalid email')
     .required('Required'),
   telephone: Yup.string()
-    .matches(/^\+380\d{3}\d{2}\d{2}\d{2}$/)
+    .matches(/^\+\d{11,12}$/)
     .required("Required Field!"),
     wallet: Yup.string()
     .min(40, 'Must contain at least 40 characters')
