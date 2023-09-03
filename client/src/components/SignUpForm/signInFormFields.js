@@ -50,13 +50,12 @@ export const signInFormFields = [
     placeholder: "passwordPlaceholder",
   },
   {
-    tagType: 'masked',
+    tagType: 'regular',
     label: "phoneNumber",
     id: "telephone",
     name: "telephone",
     type: "text",
-    format: "+## ##########",
-    mask: "#",
+    placeholder: "phoneNumberPlaceholder"
   },
   {
     tagType: 'regular',
