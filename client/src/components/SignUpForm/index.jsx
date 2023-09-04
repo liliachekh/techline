@@ -5,12 +5,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { animateFromLeft } from "../../animation";
 import { useTranslation } from "react-i18next";
 import { validationSchemaUser } from "../../validation";
-import { useState, useEffect} from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function SignUpForm({ refName }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { t } = useTranslation();
+  const formikRef = useRef(null);
+
+  const handleResetForm = () => {
+    if (formikRef.current) {
+      formikRef.current.resetForm();
+    }
+  };
 
   useEffect(() => {
     if (successMessage) {
@@ -44,20 +51,25 @@ export default function SignUpForm({ refName }) {
         setSuccessMessage("");
       } else {
         setErrorMessage("");
-        setSuccessMessage("Registration successfully completed! Check your mail"); 
+        setSuccessMessage("Registration successfully completed! Check your mail");
+        handleResetForm()
       }
     } catch (error) {
-      setErrorMessage("Произошла ошибка при отправке запроса.");
-      setSuccessMessage(""); 
+      setErrorMessage("An error occurred while sending the request.");
+      setSuccessMessage("");
     }
   }
 
   return (
-    <section ref={refName} className={style.signUp}>
+    <section
+      ref={refName}
+      className={style.signUp}>
       <div className={style.signUp__wrapper}>
         <AnimatePresence>
           <div className={style.signUp__container}>
-            <motion.h1 {...animateFromLeft(0)} className={style.signUp__title}>
+            <motion.h1
+              {...animateFromLeft(0)}
+              className={style.signUp__title}>
               {t("signup.title")}
             </motion.h1>
             <motion.div {...animateFromLeft(0, 0.2)}>
@@ -85,13 +97,17 @@ export default function SignUpForm({ refName }) {
                 }))}
                 callback={onSubmitHandler}
                 submitBtn={t("signup.submitButton")}
+                formikRef={formikRef}
+                currentValues={formikRef.current ? formikRef.current.values : null}
               />
             </motion.div>
             {errorMessage && (
               <div className={style.signUp__errorMessage}>{errorMessage}</div>
             )}
             {successMessage && (
-              <div className={style.signUp__successMessage}>{successMessage}</div>
+              <div className={style.signUp__successMessage}>
+                {successMessage}
+              </div>
             )}
           </div>
         </AnimatePresence>

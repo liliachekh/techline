@@ -22,8 +22,11 @@ export const validationSchemaUser = Yup.object({
     .matches(/^[a-zA-Zа-яА-Я]+( [a-zA-Zа-яА-Я]+)*$/, 'Must be a-z A-Z а-я А-Я with optional space between words')
     .trim()
     .required("Required Field!"),
+  // email: Yup.string()
+  //   .email('Invalid email')
+  //   .required('Required'),
   email: Yup.string()
-    .email('Invalid email')
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format')
     .required('Required'),
   password: Yup.string()
     .min(7, 'Must contain at least 7 letters')
@@ -60,7 +63,7 @@ export const validationSchemaOrder = Yup.object({
   telephone: Yup.string()
     .matches(/^\+\d{11,12}$/)
     .required("Required Field!"),
-    wallet: Yup.string()
+  wallet: Yup.string()
     .min(40, 'Must contain at least 40 characters')
     .max(42, 'Can be no more than 42 characters')
     .matches(/^(0x)?[0-9a-fA-F]{40}$/, 'Must be 0-9 a-f A-F')
