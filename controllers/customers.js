@@ -6,6 +6,8 @@ const getConfigs = require("../config/getConfigs");
 const passport = require("passport");
 const uniqueRandom = require("unique-random");
 const rand = uniqueRandom(10000000, 99999999);
+const sendMail = require("../commonHelpers/mailSender");
+
 
 // Load Customer model
 const Customer = require("../models/Customer");
@@ -15,6 +17,70 @@ const validateRegistrationForm = require("../validation/validationHelper");
 
 // Load helper for creating correct query to save customer to DB
 const queryCreator = require("../commonHelpers/queryCreator");
+
+// // Controller for creating customer and saving to DB
+// exports.createCustomer = (req, res, next) => {
+//   // Clone query object, because validator module mutates req.body, adding other fields to object
+//   const initialQuery = _.cloneDeep(req.body);
+//   initialQuery.customerNo = rand();
+
+//   // Check Validation
+//   const { errors, isValid } = validateRegistrationForm(req.body);
+
+//   if (!isValid) {
+//     return res.status(400).json(errors);
+//   }
+
+//   Customer.findOne({
+//     $or: [{ email: req.body.email }, { login: req.body.login }]
+//   })
+//     .then(customer => {
+//       if (customer) {
+//         if (customer.email === req.body.email) {
+//           return res
+//             .status(400)
+//             .json({ message: `Email ${customer.email} already exists` });
+//         }
+
+//         if (customer.login === req.body.login) {
+//           return res
+//             .status(400)
+//             .json({ message: `Login ${customer.login} already exists` });
+//         }
+//       }
+
+//       // Create query object for qustomer for saving him to DB
+//       const newCustomer = new Customer(queryCreator(initialQuery));
+
+//       bcrypt.genSalt(10, (err, salt) => {
+//         bcrypt.hash(newCustomer.password, salt, (err, hash) => {
+//           if (err) {
+//             res
+//               .status(400)
+//               .json({ message: `Error happened on server: ${err}` });
+
+//             return;
+//           }
+
+//           newCustomer.password = hash;
+//           newCustomer
+//             .save()
+//             .then(customer => res.json(customer))
+//             .catch(err =>
+//               res.status(400).json({
+//                 message: `Error happened on server: "${err}" `
+//               })
+//             );
+//         });
+//       });
+//     })
+//     .catch(err =>
+//       res.status(400).json({
+//         message: `Error happened on server: "${err}" `
+//       })
+//     );
+// };
+
 
 // Controller for creating customer and saving to DB
 exports.createCustomer = (req, res, next) => {
@@ -47,7 +113,7 @@ exports.createCustomer = (req, res, next) => {
         }
       }
 
-      // Create query object for qustomer for saving him to DB
+      // Create query object for customer for saving him to DB
       const newCustomer = new Customer(queryCreator(initialQuery));
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -63,7 +129,22 @@ exports.createCustomer = (req, res, next) => {
           newCustomer.password = hash;
           newCustomer
             .save()
-            .then(customer => res.json(customer))
+            .then(async customer => {
+              
+              const subscriberMail = customer.email;
+              const letterSubject = "Welcome to Techlines B2B Portal!";
+              const letterHtml = `<h1>Thank you for registration!</h1> <h3>Dear,${customer.contactPerson || customer.firstName},</h3><p>It is with great pleasure that we extend a warm welcome to you as a valued member of Techlines B2B portal. We are delighted that you have chosen to join our community.</p><p>To ensure that your registration is completed and you can fully benefit from all the features our portal offers, we kindly request that you provide us with the necessary registration documents by replying to this email. Our team will promptly verify your information, and your account will be activated.</p><p>Should you have any inquiries or require assistance throughout the registration process, please feel free to reach out to our dedicated support team at atylnyi@techlines.es.</p><p>Thank you for entrusting us with your business needs. We anticipate a prosperous partnership ahead!</p><p>Warm regards,</p><p>Andrew Tylnyi</p><p>Techlines</p>`;
+
+              // Надішліть лист
+              const mailResult = await sendMail(
+                subscriberMail,
+                letterSubject,
+                letterHtml,
+                res
+              );
+
+              res.json({ customer, mailResult });
+            })
             .catch(err =>
               res.status(400).json({
                 message: `Error happened on server: "${err}" `
