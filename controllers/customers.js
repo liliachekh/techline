@@ -106,12 +106,12 @@ exports.createCustomer = (req, res, next) => {
             .json({ message: `Email ${customer.email} already exists` });
         }
 
-        if (customer.login === req.body.login) {
-          return res
-            .status(400)
-            .json({ message: `Login ${customer.login} already exists` });
-        }
-      }
+      //   if (customer.login === req.body.login) {
+      //     return res
+      //       .status(400)
+      //       .json({ message: `Login ${customer.login} already exists` });
+      //   }
+       }
 
       // Create query object for customer for saving him to DB
       const newCustomer = new Customer(queryCreator(initialQuery));
@@ -245,9 +245,9 @@ exports.editCustomerInfo = (req, res) => {
       }
 
       const currentEmail = customer.email;
-      const currentLogin = customer.login;
+      // const currentLogin = customer.login;
       let newEmail;
-      let newLogin;
+      // let newLogin;
 
       if (req.body.email) {
         newEmail = req.body.email;
@@ -263,19 +263,19 @@ exports.editCustomerInfo = (req, res) => {
         }
       }
 
-      if (req.body.login) {
-        newLogin = req.body.login;
+      // if (req.body.login) {
+      //   newLogin = req.body.login;
 
-        if (currentLogin !== newLogin) {
-          Customer.findOne({ login: newLogin }).then(customer => {
-            if (customer) {
-              errors.login = `Login ${newLogin} is already exists`;
-              res.status(400).json(errors);
-              return;
-            }
-          });
-        }
-      }
+      //   if (currentLogin !== newLogin) {
+      //     Customer.findOne({ login: newLogin }).then(customer => {
+      //       if (customer) {
+      //         errors.login = `Login ${newLogin} is already exists`;
+      //         res.status(400).json(errors);
+      //         return;
+      //       }
+      //     });
+      //   }
+      // }
 
       // Create query object for qustomer for saving him to DB
       const updatedCustomer = queryCreator(initialQuery);

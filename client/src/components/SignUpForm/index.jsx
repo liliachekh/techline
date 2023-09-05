@@ -32,9 +32,8 @@ export default function SignUpForm({ refName }) {
   async function onSubmitHandler(values) {
     const newValues = {
       ...values,
-      firstName: values.companyName,
-      lastName: values.companyName,
-      login: values.email.split("@")[0].split(".").join(""),
+      firstName: values.contactPerson.split(" ")[0],
+      lastName: values.contactPerson.split(" ")[1] || values.contactPerson.split(" ")[0],
     };
     try {
       const response = await fetch("https://storage.techlines.es/api/customers", {
