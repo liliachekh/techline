@@ -37,7 +37,7 @@ export default function SignUpForm({ refName }) {
       login: values.email.split("@")[0].split(".").join(""),
     };
     try {
-      const response = await fetch("http://localhost:4000/api/customers", {
+      const response = await fetch("https://storage.techlines.es/api/customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
