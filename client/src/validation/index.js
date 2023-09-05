@@ -4,7 +4,7 @@ export const validationSchemaUser = Yup.object({
   companyName: Yup.string()
     .min(2, 'Must contain at least 2 letters')
     .max(25, 'Can be no more than 25 characters')
-    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Must be a-z A-Z а-я А-Я')
+    .matches(/^[a-zA-Zа-яА-Я]+( [a-zA-Zа-яА-Я]+)*$/, 'Must be a-z A-Z а-я А-Я with optional space between words')
     .trim()
     .required("Required Field!"),
   countryName: Yup.string()
