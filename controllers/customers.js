@@ -135,7 +135,7 @@ exports.createCustomer = (req, res, next) => {
               const letterSubject = "Welcome to Techlines B2B Portal!";
               const letterHtml = `<h1>Thank you for registration!</h1> <h3>Dear,${customer.contactPerson || customer.firstName},</h3><p>It is with great pleasure that we extend a warm welcome to you as a valued member of Techlines B2B portal. We are delighted that you have chosen to join our community.</p><p>To ensure that your registration is completed and you can fully benefit from all the features our portal offers, we kindly request that you provide us with the necessary registration documents by replying to this email. Our team will promptly verify your information, and your account will be activated.</p><p>Should you have any inquiries or require assistance throughout the registration process, please feel free to reach out to our dedicated support team at atylnyi@techlines.es.</p><p>Thank you for entrusting us with your business needs. We anticipate a prosperous partnership ahead!</p><p>Warm regards,</p><p>Andrew Tylnyi</p><p>Techlines</p>`;
 
-              // Надішліть лист
+              // Send mail
               const mailResult = await sendMail(
                 subscriberMail,
                 letterSubject,
