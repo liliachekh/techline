@@ -72,7 +72,7 @@ const formValidationRules = [
     field: "login",
     method: "isLength",
     validWhen: true,
-    args: [{ min: 3, max: 10 }],
+    args: [{ min: 3, max: 20 }],
     message: "Login must be between 3 and 10 characters"
   },
   {
@@ -124,7 +124,7 @@ const formValidationRules = [
   {
     field: "telephone",
     method: "matches",
-    args: [/^\+380\d{3}\d{2}\d{2}\d{2}$/],
+    args: [/^\+\d{11,12}$/],
     validWhen: true,
     message: "That is not a valid phone number."
   },
