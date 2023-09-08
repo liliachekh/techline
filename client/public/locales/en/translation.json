@@ -61,6 +61,7 @@
     "password": "Password",
     "passwordPlaceholder": "******",
     "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "+############",
     "companyWebsite": "Company Website",
     "companyWebsitePlaceholder": "[Company Website]",
     "productsOfInterest": "Products Of Interest?",

@@ -19,7 +19,7 @@ const CustomerSchema = new Schema(
     },
     login: {
       type: String,
-      required: true
+      required: false
     },
     email: {
       type: String,
