@@ -141,14 +141,18 @@ exports.getProductsFilterParams = async (req, res, next) => {
   const perPage = Number(req.query.perPage);
   const startPage = Number(req.query.startPage);
   const sort = req.query.sort;
-
+  const search = req.query.search;
+  const regex = new RegExp(search, 'i');
   try {
-    const products = await Product.find(mongooseQuery)
+    const products = await Product
+      .find({ name: { $regex: regex } })
+      .find(mongooseQuery)
       .skip(startPage * perPage - perPage)
       .limit(perPage)
+      .collation({ locale: 'en', strength: 2 })
       .sort(sort);
 
-    const productsQuantity = await Product.find(mongooseQuery);
+    const productsQuantity = await Product.find({ name: { $regex: regex } }).find(mongooseQuery);
 
     res.json({ products, productsQuantity: productsQuantity.length });
   } catch (err) {
