@@ -17,6 +17,7 @@ const validateRegistrationForm = require("../validation/validationHelper");
 
 // Load helper for creating correct query to save customer to DB
 const queryCreator = require("../commonHelpers/queryCreator");
+const router = require("../routes/globalConfigs");
 
 // // Controller for creating customer and saving to DB
 // exports.createCustomer = (req, res, next) => {
@@ -201,10 +202,14 @@ exports.loginCustomer = async (req, res, next) => {
             keys.secretOrKey,
             { expiresIn: 36000 },
             (err, token) => {
-              res.json({
-                success: true,
-                token: token
-              });
+              // res.json({
+              //   success: true,
+              //   token: token
+              // })
+              res.cookie('token', token, {
+                httpOnly: true
+              })
+              .send()
             }
           );
         } else {
@@ -219,6 +224,34 @@ exports.loginCustomer = async (req, res, next) => {
       })
     );
 };
+
+//Controller for customer logOut
+exports.logOutCustomer = (req, res) => {
+  res.cookie('token', "",{
+    httpOnly: true,
+    expires: new Date(0)
+  })
+  .send()
+};
+
+//Controller for check is customer logged in 
+exports.isCustomerLoggedIn = (req, res) => {
+  
+    try{
+  
+  const token = req.cookies.token;
+  
+  if (!token) 
+  return res.status.json(false)
+  
+  jwt.verify(token, process.env.SECRET_OR_KEY);
+  
+  res.send(true)
+    }
+    catch (err) {
+      res.json(false)
+    }
+}
 
 // Controller for getting current customer
 exports.getCustomer = (req, res) => {

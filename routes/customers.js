@@ -6,6 +6,8 @@ const passport = require("passport");
 const {
   createCustomer,
   loginCustomer,
+  isCustomerLoggedIn,
+  logOutCustomer,
   getCustomer,
   editCustomerInfo,
   updatePassword
@@ -20,6 +22,16 @@ router.post("/", createCustomer);
 // @desc    Login Customer / Returning JWT Token
 // @access  Public
 router.post("/login", loginCustomer);
+
+// @route   GET /customers/logout
+// @desc    Logout Customer / Delete cookie Token
+// @access  Public
+router.get("/logout", logOutCustomer);
+
+// @route   GET /customers/loggedIn
+// @desc    Check is customer logged in
+// @access  Public
+router.get ("/loggedIn", isCustomerLoggedIn)
 
 // @route   GET /
 // @desc    Return current customer
