@@ -11,12 +11,14 @@ const {
   getFiltersByType
 } = require("../controllers/filters");
 
+const authAdmin = require("../middleware/authAdmin");
+
 // @route   POST /filters
 // @desc    Create new filter
 // @access  Private
 router.post(
-  "/",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/", authAdmin ,
+  // passport.authenticate("jwt-admin", { session: false }),
   addFilter
 );
 
@@ -24,8 +26,8 @@ router.post(
 // @desc    Update existing filter
 // @access  Private
 router.put(
-  "/:id",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:id", authAdmin ,
+  // passport.authenticate("jwt-admin", { session: false }),
   updateFilter
 );
 
@@ -33,8 +35,8 @@ router.put(
 // @desc    DELETE existing filter
 // @access  Private
 router.delete(
-  "/:id",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:id", authAdmin ,
+  // passport.authenticate("jwt-admin", { session: false }),
   deleteFilter
 );
 

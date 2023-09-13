@@ -252,7 +252,28 @@ exports.isCustomerLoggedIn = (req, res) => {
       res.json(false)
     }
 }
+//Controller for check is Admin logged in 
+exports.isAdminLoggedIn = async (req, res) => {
+  
+  try{
 
+const token = req.cookies.token;
+
+if (!token) 
+return res.status.json(false)
+
+const verified = jwt.verify(token, process.env.SECRET_OR_KEY);
+const customer = await Customer.findById(verified.id);
+if (!customer || !customer.isAdmin) return res.status.json(false)
+
+jwt.verify(token, process.env.SECRET_OR_KEY);
+
+res.send(true)
+  }
+  catch (err) {
+    res.json(false)
+  }
+}
 // Controller for getting current customer
 exports.getCustomer = (req, res) => {
   res.json(req.user);

@@ -7,6 +7,7 @@ const {
   createCustomer,
   loginCustomer,
   isCustomerLoggedIn,
+  isAdminLoggedIn,
   logOutCustomer,
   getCustomer,
   editCustomerInfo,
@@ -33,6 +34,11 @@ router.get("/logout", logOutCustomer);
 // @desc    Check is customer logged in
 // @access  Public
 router.get ("/loggedIn", isCustomerLoggedIn)
+
+// @route   GET /customers/loggedInAdmin
+// @desc    Check is Admin logged in
+// @access  Public
+router.get ("/loggedinadmin", isAdminLoggedIn)
 
 // @route   GET /
 // @desc    Return current customer

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport"); // multer for parsing multipart form data (files)
+// const passport = require("passport"); // multer for parsing multipart form data (files)
+const authAdmin = require("../middleware/authAdmin");
 
 //Import controllers
 const {
@@ -15,8 +16,8 @@ const {
 // @desc    Create new shipping method
 // @access  Private
 router.post(
-  "/",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   addShippingMethod
 );
 
@@ -24,8 +25,8 @@ router.post(
 // @desc    Update existing shipping method
 // @access  Private
 router.put(
-  "/:customId",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:customId", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   updateShippingMethod
 );
 
@@ -33,8 +34,8 @@ router.put(
 // @desc    DELETE existing shipping method
 // @access  Private
 router.delete(
-  "/:customId",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:customId", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   deleteShippingMethod
 );
 

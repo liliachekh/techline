@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport"); // multer for parsing multipart form data (files)
+// const passport = require("passport"); // multer for parsing multipart form data (files)
+const authAdmin = require("../middleware/authAdmin");
 
 //Import controllers
 const {
@@ -15,8 +16,8 @@ const {
 // @desc    Create new links or links
 // @access  Private
 router.post(
-  "/",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   addLinks
 );
 
@@ -24,8 +25,8 @@ router.post(
 // @desc    Update existing links
 // @access  Private
 router.put(
-  "/:id",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:id", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   updateLinks
 );
 
@@ -33,8 +34,8 @@ router.put(
 // @desc    DELETE existing links
 // @access  Private
 router.delete(
-  "/:id",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:id", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   deleteLinks
 );
 
