@@ -12,6 +12,7 @@ const {
   editCustomerInfo,
   updatePassword
 } = require("../controllers/customers");
+const auth = require("../middleware/auth");
 
 // @route   POST /customers
 // @desc    Register customer
@@ -37,8 +38,8 @@ router.get ("/loggedIn", isCustomerLoggedIn)
 // @desc    Return current customer
 // @access  Private
 router.get(
-  "/customer",
-  passport.authenticate("jwt", { session: false }),
+  "/customer",auth,
+  // passport.authenticate("jwt", { session: false }),
   getCustomer
 );
 
@@ -46,8 +47,8 @@ router.get(
 // @desc    Return current customer
 // @access  Private
 router.put(
-  "/",
-  passport.authenticate("jwt", { session: false }),
+  "/",auth,
+  // passport.authenticate("jwt", { session: false }),
   editCustomerInfo
 );
 
@@ -55,8 +56,8 @@ router.put(
 // @desc    Return current customer and success or error message
 // @access  Private
 router.put(
-  "/password",
-  passport.authenticate("jwt", { session: false }),
+  "/password",auth,
+  // passport.authenticate("jwt", { session: false }),
   updatePassword
 );
 
