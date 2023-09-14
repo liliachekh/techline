@@ -50,7 +50,8 @@ app.get('/set-cookie', (req, res) => {
   
   res.cookie('cookieName', 'cookieValue', {
     sameSite: 'none',
-    secure: true
+    secure: true,
+    httpOnly: true
   });
 
   res.send('Cookie SameSite=None and Secure');
