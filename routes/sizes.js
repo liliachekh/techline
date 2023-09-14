@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport"); // multer for parsing multipart form data (files)
+// const passport = require("passport"); // multer for parsing multipart form data (files)
+const authAdmin = require("../middleware/authAdmin");
 
 //Import controllers
 const {
@@ -14,8 +15,8 @@ const {
 // @desc    Create new size
 // @access  Private
 router.post(
-  "/",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   addSize
 );
 
@@ -23,8 +24,8 @@ router.post(
 // @desc    Update existing size
 // @access  Private
 router.put(
-  "/:id",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:id", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   updateSize
 );
 
@@ -32,8 +33,8 @@ router.put(
 // @desc    DELETE existing size
 // @access  Private
 router.delete(
-  "/:id",
-  passport.authenticate("jwt-admin", { session: false }),
+  "/:id", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
   deleteSize
 );
 
