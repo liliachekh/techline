@@ -46,7 +46,7 @@ export const signInFormFields = [
     label: "password",
     id: "password",
     name: "password",
-    type: "text",
+    type: "password",
     placeholder: "passwordPlaceholder",
   },
   {

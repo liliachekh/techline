@@ -6,10 +6,14 @@ const passport = require("passport");
 const {
   createCustomer,
   loginCustomer,
+  isCustomerLoggedIn,
+  isAdminLoggedIn,
+  logOutCustomer,
   getCustomer,
   editCustomerInfo,
   updatePassword
 } = require("../controllers/customers");
+const auth = require("../middleware/auth");
 
 // @route   POST /customers
 // @desc    Register customer
@@ -21,12 +25,27 @@ router.post("/", createCustomer);
 // @access  Public
 router.post("/login", loginCustomer);
 
+// @route   GET /customers/logout
+// @desc    Logout Customer / Delete cookie Token
+// @access  Public
+router.get("/logout", logOutCustomer);
+
+// @route   GET /customers/loggedIn
+// @desc    Check is customer logged in
+// @access  Public
+router.get ("/loggedIn", isCustomerLoggedIn)
+
+// @route   GET /customers/loggedInAdmin
+// @desc    Check is Admin logged in
+// @access  Public
+router.get ("/loggedinadmin", isAdminLoggedIn)
+
 // @route   GET /
 // @desc    Return current customer
 // @access  Private
 router.get(
-  "/customer",
-  passport.authenticate("jwt", { session: false }),
+  "/customer",auth,
+  // passport.authenticate("jwt", { session: false }),
   getCustomer
 );
 
@@ -34,8 +53,8 @@ router.get(
 // @desc    Return current customer
 // @access  Private
 router.put(
-  "/",
-  passport.authenticate("jwt", { session: false }),
+  "/",auth,
+  // passport.authenticate("jwt", { session: false }),
   editCustomerInfo
 );
 
@@ -43,8 +62,8 @@ router.put(
 // @desc    Return current customer and success or error message
 // @access  Private
 router.put(
-  "/password",
-  passport.authenticate("jwt", { session: false }),
+  "/password",auth,
+  // passport.authenticate("jwt", { session: false }),
   updatePassword
 );
 
