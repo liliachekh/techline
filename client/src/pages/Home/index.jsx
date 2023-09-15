@@ -3,12 +3,14 @@ import Header from "../../components/Header";
 import BecomePartner from "../../components/BecomePartner";
 import Footer from "../../components/Footer";
 import B2B from "../../components/B2B"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import BackToTop from "../../components/BackToTop";
 import SignUpForm from "../../components/SignUpForm";
+import { Modal } from "../../components/Modal";
 
 export function Home() {
+  const [modalType, setModalType] = useState(null);
   const partner = useRef(null);
   const about = useRef(null);
   const b2b = useRef(null);
@@ -23,6 +25,11 @@ export function Home() {
 
   return (
     <>
+      {modalType && 
+        <Modal
+          onSubmit={closeModalHandler}
+          data={modalProps.find(modal => modal.type === modalType)} />}
+
       <Header
         refList={{ partner, about, b2b, signup, contacts }}
         inViewList={{ 'partner': partnerInView, 'about': aboutInView, 'b2b': b2bInView, 'signup': signupInView, 'contacts': contactsInView }} />
