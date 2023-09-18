@@ -16,14 +16,12 @@ export const signInFormFields = [
     placeholder: "countryNamePlaceholder",
   },
   {
-    tagType: 'masked',
+    tagType: 'regular',
     label: "vatNr",
     id: "vatNr",
     name: "vatNr",
     type: "text",
-    placeholder: "xxxxxxxxxxxxx",
-    format: "#############",
-    mask: "#",
+    placeholder: "vatNrPlaceholder",
   },
   {
     tagType: 'regular',
