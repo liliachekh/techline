@@ -22,7 +22,7 @@ next()
   }
   catch (err) {
     console.error(err);
-    req.status(401).json({errorMessage: "Unathorized"})
+    res.status(401).json({errorMessage: "Unathorized"})
 
   }
 }
