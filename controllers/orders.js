@@ -53,8 +53,8 @@ exports.placeOrder = async (req, res, next) => {
       0
     );
    // if order < 1500 add shipping cost 50
-    if (order.totalSum < 1500) {
-      order.totalSum += 50; 
+    if (order.totalSum < 2500) {
+      order.totalSum += 35; 
     }
 
     const productAvailibilityInfo = await productAvailibilityChecker(
@@ -70,7 +70,6 @@ exports.placeOrder = async (req, res, next) => {
       const subscriberMail = req.body.email;
       const letterSubject = req.body.letterSubject;
       const letterHtml = req.body.letterHtml;
-
       const { errors, isValid } = validateOrderForm(req.body);
 
       // Check Validation
