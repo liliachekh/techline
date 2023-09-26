@@ -68,8 +68,10 @@ exports.placeOrder = async (req, res, next) => {
       });
     } else {
       const subscriberMail = req.body.email;
-      const letterSubject = req.body.letterSubject;
-      const letterHtml = req.body.letterHtml;
+      // const letterSubject = req.body.letterSubject;
+      //  const letterHtml = req.body.letterHtml;
+       const letterSubject ="Thank's for buying on b2b.techlines.es";
+      const letterHtml = `<h1>Thank you for your order ${order.orderNo}!</h1>`;
       const { errors, isValid } = validateOrderForm(req.body);
 
       // Check Validation
