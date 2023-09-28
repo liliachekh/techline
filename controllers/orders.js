@@ -7,15 +7,21 @@ const queryCreator = require("../commonHelpers/queryCreator");
 const productAvailibilityChecker = require("../commonHelpers/productAvailibilityChecker");
 const subtractProductsFromCart = require("../commonHelpers/subtractProductsFromCart");
 const _ = require("lodash");
-
+const fs = require("fs-extra");
+const { PDFDocument, StandardFonts, rgb } = require("pdf-lib")
+const { readFile, writeFile } = require("fs/promises")
+const { staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields } = require("../commonHelpers/pdf/invoiceFields")
 const uniqueRandom = require("unique-random");
+const Customer = require("../models/Customer");
 const rand = uniqueRandom(1000000, 9999999);
+const createPdf = require("../commonHelpers/pdf/createPdf")
 
 exports.placeOrder = async (req, res, next) => {
   try {
     const order = _.cloneDeep(req.body);
     order.orderNo = String(rand());
     let cartProducts = [];
+    const customer = await Customer.findOne({ _id: req.body.customerId });
 
     if (req.body.deliveryAddress) {
       order.deliveryAddress = req.body.deliveryAddress;
@@ -52,9 +58,9 @@ exports.placeOrder = async (req, res, next) => {
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
     );
-   // if order < 1500 add shipping cost 50
+    // if order < 2500 add shipping cost 35
     if (order.totalSum < 2500) {
-      order.totalSum += 35; 
+      order.totalSum += 35;
     }
 
     const productAvailibilityInfo = await productAvailibilityChecker(
@@ -68,30 +74,40 @@ exports.placeOrder = async (req, res, next) => {
       });
     } else {
       const subscriberMail = req.body.email;
-      // const letterSubject = req.body.letterSubject;
-      //  const letterHtml = req.body.letterHtml;
-       const letterSubject ="Thank's for buying on b2b.techlines.es";
-      const letterHtml = `<h1>Thank you for your order ${order.orderNo}!</h1>`;
+      const letterSubject = `Your order confirmation ${order.orderNo} from b2b.techlines.es`;
+      const letterHtml = `<h1>Dear ${customer.contactPerson},</h1>
+      <p>we thank you for your order and are pleased that we can confirm it to you. Enclosed you will receive your order confirmation ${order.orderNo} 
+      in the attachment. In the next step, you will receive the delivery note by e-mail as soon as the shipment has taken place.</p>
+      <p>Sincerely, </br>
+      Your b2b.techlines.es</p>`;
       const { errors, isValid } = validateOrderForm(req.body);
+
+        createPdf("static/invoices/invoice.pdf", order, customer)
+        const letterAttachment = [
+          {
+            filename: 'invoice.pdf',
+            path: 'static/invoices/invoice.pdf',
+          }
+        ]
 
       // Check Validation
       if (!isValid) {
         return res.status(400).json(errors);
       }
 
-      if (!letterSubject) {
-        return res.status(400).json({
-          message:
-            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
-        });
-      }
+      // if (!letterSubject) {
+      //   return res.status(400).json({
+      //     message:
+      //       "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+      //   });
+      // }
 
-      if (!letterHtml) {
-        return res.status(400).json({
-          message:
-            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
-        });
-      }
+      // if (!letterHtml) {
+      //   return res.status(400).json({
+      //     message:
+      //       "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+      //   });
+      // }
 
       const newOrder = new Order(order);
 
@@ -106,16 +122,16 @@ exports.placeOrder = async (req, res, next) => {
             subscriberMail,
             letterSubject,
             letterHtml,
+            letterAttachment,
             res
           );
 
-          for (item of order.products){
+          for (item of order.products) {
             const id = item.product._id;
             const product = await Product.findOne({ _id: id });
             const productQuantity = product.quantity;
             await Product.findOneAndUpdate({ _id: id }, { quantity: productQuantity - item.cartQuantity }, { new: true })
           }
-
           res.json({ order, mailResult });
         })
         .catch(err =>
