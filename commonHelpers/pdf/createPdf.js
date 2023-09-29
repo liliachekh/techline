@@ -34,7 +34,7 @@ module.exports = async function createPdf (output, order, customer) {
     let verticalPosition = 31
     let cartQuantity = 0;
     
-    staticInvoiceFields(height, fontSize, formatDate, order, customer, cartQuantity, verticalPosition).forEach(field => {
+    staticInvoiceFields(height, fontSize, formatDate, order, customer, cartQuantity).forEach(field => {
       if (field.type === "text") {
         return page.drawText(field.text, { ...field })
       }
@@ -42,11 +42,14 @@ module.exports = async function createPdf (output, order, customer) {
         return page.drawRectangle({ ...field })
       }
     })
-
+    const pages = pdfDoc.getPages()
     order.products.forEach((product) => {
      const amount = product.product.currentPrice * product.cartQuantity
     productInvoiceFields (height, fontSize, verticalPosition, product,amount).forEach(field => {
       if (field.type === "text-product") {
+//         if( verticalPosition > 40){
+// PDFDocument.addPage()
+//         }
         return page.drawText(field.text, { ...field })
       }
       if (field.type === "rectangle-product") {
