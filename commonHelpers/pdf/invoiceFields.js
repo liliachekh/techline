@@ -1,4 +1,22 @@
-const { PDFDocument, rgb } = require("pdf-lib")
+const { PDFDocument, StandardFonts, rgb } = require("pdf-lib")
+
+const wrapText = (text, width, font, fontSize) => {
+  const words = text.split(' ');
+  let line = '';
+  let result = '';
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const testWidth = font.widthOfTextAtSize(testLine, fontSize);
+    if (testWidth > width) {
+      result += line + '\n';
+      line = words[n] + ' ';
+    } else {
+      line = testLine;
+    }
+  }
+  result += line;
+  return result;
+}
 
  function staticInvoiceFields(height, fontSize, formatDate, order, customer){
   return [
@@ -149,20 +167,24 @@ const { PDFDocument, rgb } = require("pdf-lib")
   ]
 }
 
-function productInvoiceFields (height, fontSize, verticalPosition, product,amount) { 
+function productInvoiceFields (height, fontSize, verticalPosition, product, amount, timesRomanFont) { 
+  
+   const text = wrapText(product.product.name, 275,timesRomanFont,fontSize)
   return [
   {
     type: "text-product",
-    text: `${product.product.name}`,
+    // text: `${product.product.name}`,
+    text: text,
     x: 55,
     y: height - verticalPosition * fontSize,
+    lineHeight: 14
   },
   {
     type: "rectangle-product",
     x: 50,
-    y: height - (verticalPosition + 1) * fontSize,
+    y: height - (verticalPosition + 1.5) * fontSize,
     width: 275,
-    height: 25,
+    height: 30,
     borderColor: rgb(0, 0, 0),
     borderWidth: 1.5,
   },
@@ -175,9 +197,9 @@ function productInvoiceFields (height, fontSize, verticalPosition, product,amoun
   {
     type: "rectangle-product",
     x: 325,
-    y: height - (verticalPosition + 1) * fontSize,
+    y: height - (verticalPosition + 1.5) * fontSize,
     width: 50,
-    height: 25,
+    height: 30,
     borderColor: rgb(0, 0, 0),
     borderWidth: 1.5,
   },
@@ -190,9 +212,9 @@ function productInvoiceFields (height, fontSize, verticalPosition, product,amoun
   {
     type: "rectangle-product",
     x: 375,
-    y: height - (verticalPosition + 1) * fontSize,
+    y: height - (verticalPosition + 1.5) * fontSize,
     width: 70,
-    height: 25,
+    height: 30,
     borderColor: rgb(0, 0, 0),
     borderWidth: 1.5,
   }, 
@@ -205,9 +227,9 @@ function productInvoiceFields (height, fontSize, verticalPosition, product,amoun
   {
     type: "rectangle-product",
     x: 445,
-    y: height - (verticalPosition + 1) * fontSize,
+    y: height - (verticalPosition + 1.5) * fontSize,
     width: 100,
-    height: 25,
+    height: 30,
     borderColor: rgb(0, 0, 0),
     borderWidth: 1.5,
   }

@@ -52,7 +52,7 @@ module.exports = async function createPdf(output, order, customer) {
 
     order.products.forEach((product) => {
       const amount = product.product.currentPrice * product.cartQuantity
-      productInvoiceFields(height, fontSize, verticalPosition, product, amount).forEach(field => {
+      productInvoiceFields(height, fontSize, verticalPosition, product, amount, timesRomanFont).forEach(field => {
         if (field.type === "text-product") {
           return page.drawText(field.text, { ...field })
         }
@@ -64,7 +64,7 @@ module.exports = async function createPdf(output, order, customer) {
         verticalPosition = 4;
         page = addNewPage(pdfDoc, timesRomanFont);
       } else {
-        verticalPosition += 2;
+        verticalPosition += 2.5;
       }
       cartQuantity += product.cartQuantity
     })
