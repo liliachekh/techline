@@ -7,10 +7,6 @@ const queryCreator = require("../commonHelpers/queryCreator");
 const productAvailibilityChecker = require("../commonHelpers/productAvailibilityChecker");
 const subtractProductsFromCart = require("../commonHelpers/subtractProductsFromCart");
 const _ = require("lodash");
-const fs = require("fs-extra");
-const { PDFDocument, StandardFonts, rgb } = require("pdf-lib")
-const { readFile, writeFile } = require("fs/promises")
-const { staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields } = require("../commonHelpers/pdf/invoiceFields")
 const uniqueRandom = require("unique-random");
 const Customer = require("../models/Customer");
 const rand = uniqueRandom(1000000, 9999999);
@@ -59,7 +55,7 @@ exports.placeOrder = async (req, res, next) => {
       0
     );
     // if order < 2500 add shipping cost 35
-    if (order.totalSum < 2500) {
+    if (order.totalSum < 2501) {
       order.totalSum += 35;
     }
 
@@ -82,7 +78,7 @@ exports.placeOrder = async (req, res, next) => {
       Your b2b.techlines.es</p>`;
       const { errors, isValid } = validateOrderForm(req.body);
 
-        createPdf("static/invoices/invoice.pdf", order, customer)
+       await createPdf("static/invoices/invoice.pdf", order, customer)
         const letterAttachment = [
           {
             filename: 'invoice.pdf',
@@ -94,20 +90,6 @@ exports.placeOrder = async (req, res, next) => {
       if (!isValid) {
         return res.status(400).json(errors);
       }
-
-      // if (!letterSubject) {
-      //   return res.status(400).json({
-      //     message:
-      //       "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
-      //   });
-      // }
-
-      // if (!letterHtml) {
-      //   return res.status(400).json({
-      //     message:
-      //       "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
-      //   });
-      // }
 
       const newOrder = new Order(order);
 

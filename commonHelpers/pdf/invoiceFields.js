@@ -149,131 +149,6 @@ const { PDFDocument, rgb } = require("pdf-lib")
   ]
 }
 
-function dynamicInvoiceFields (height, fontSize, order, customer, cartQuantity, verticalPosition) {
-  return [
-  {
-    type: "text-dynamic",
-    text: "TOTAL",
-    x: 280,
-    y: height - (verticalPosition) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${cartQuantity}`,
-    x: 345,
-    y: height - (verticalPosition) * fontSize,
-  },
-  {
-    type: "rectangle-dynamic",
-    x: 325,
-    y: height - (verticalPosition + 1) * fontSize,
-    width: 50,
-    height: 25,
-    borderColor: rgb(0, 0, 0),
-    borderWidth: 1.5,
-  },
-  {
-    type: "text-dynamic",
-    text: "",
-    x: 385,
-    y: height - (verticalPosition) * fontSize,
-  },
-  {
-    type: "rectangle-dynamic",
-    x: 375,
-    y: height - (verticalPosition + 1) * fontSize,
-    width: 70,
-    height: 25,
-    borderColor: rgb(0, 0, 0),
-    borderWidth: 1.5,
-  },
-  {
-    type: "text-dynamic",
-    text: `€ ${order.totalSum}`,
-    x: 480,
-    y: height - (verticalPosition) * fontSize,
-  },
-  {
-    type: "rectangle-dynamic",
-    x: 445,
-    y: height - (verticalPosition + 1) * fontSize,
-    width: 100,
-    height: 25,
-    borderColor: rgb(0, 0, 0),
-    borderWidth: 1.5,
-  },
-  {
-    type: "text-dynamic",
-    text: `"Exempt Intra-Community Operation located at the addressee's headquarters by virtue of art.69 of Law 37/1992, on VAT."`,
-    x: 50,
-    y: height - (verticalPosition + 2) * fontSize,
-    size: 9
-  },
-  {
-    type: "text-dynamic",
-    text: "Payment terms - Advance payment",
-    x: 50,
-    y: height - (verticalPosition + 4) * fontSize,
-    size: 13
-  },
-  {
-    type: "text-dynamic",
-    text: "Delivery address",
-    x: 50,
-    y: height - (verticalPosition + 5) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${customer.companyName}`,
-    x: 50,
-    y: height - (verticalPosition + 6) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${order.deliveryAddress.firstName} ${order.deliveryAddress.lastName}`,
-    x: 50,
-    y: height - (verticalPosition + 7) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${order.deliveryAddress.street} ${order.deliveryAddress.house} ${order.deliveryAddress.apartment}`,
-    x: 50,
-    y: height - (verticalPosition + 8) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${order.deliveryAddress.telephone}`,
-    x: 50,
-    y: height - (verticalPosition + 9) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${order.deliveryAddress.index} ${order.deliveryAddress.city}`,
-    x: 50,
-    y: height - (verticalPosition + 10) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: `${order.deliveryAddress.countryName}`,
-    x: 50,
-    y: height - (verticalPosition + 11) * fontSize,
-  },
-  {
-    type: "text-dynamic",
-    text: "*The mere possession of this invoice does not presuppose its paymen document.",
-    x: 55,
-    y: height - (verticalPosition + 13) * fontSize,
-    size: 10
-  },
-  {
-    type: "text-dynamic",
-    text: "THANK YOU FOR YOUR TRUST",
-    x: 200,
-    y: height - (verticalPosition + 15) * fontSize,
-  }
-]
-}
-
 function productInvoiceFields (height, fontSize, verticalPosition, product,amount) { 
   return [
   {
@@ -339,4 +214,194 @@ function productInvoiceFields (height, fontSize, verticalPosition, product,amoun
 ]
 }
 
-module.exports = {staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields }
+function dynamicTableFields (height, fontSize, order, cartQuantity, verticalPosition) {
+  return [
+    {
+      type: "text-dynamic",
+      text: "Delivery",
+      x: 55,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 50,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 275,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    },
+    {
+      type: "text-dynamic",
+      text: ``,
+      x: 345,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 325,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 50,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    },
+    {
+      type: "text-dynamic",
+      text: `€ ${order.deliveryPrice}`,
+      x: 385,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 375,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 70,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    }, 
+    {
+      type: "text-dynamic",
+      text: `€ ${order.deliveryPrice}`,
+      x: 480,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 445,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 100,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    }, 
+  {
+    type: "text-dynamic",
+    text: "TOTAL",
+    x: 280,
+    y: height - (verticalPosition + 2) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${cartQuantity}`,
+    x: 345,
+    y: height - (verticalPosition+ 2) * fontSize,
+  },
+  {
+    type: "rectangle-dynamic",
+    x: 325,
+    y: height - (verticalPosition + 3) * fontSize,
+    width: 50,
+    height: 25,
+    borderColor: rgb(0, 0, 0),
+    borderWidth: 1.5,
+  },
+  {
+    type: "text-dynamic",
+    text: "",
+    x: 385,
+    y: height - (verticalPosition + 2) * fontSize,
+  },
+  {
+    type: "rectangle-dynamic",
+    x: 375,
+    y: height - (verticalPosition + 3) * fontSize,
+    width: 70,
+    height: 25,
+    borderColor: rgb(0, 0, 0),
+    borderWidth: 1.5,
+  },
+  {
+    type: "text-dynamic",
+    text: `€ ${order.totalSum}`,
+    x: 480,
+    y: height - (verticalPosition + 2) * fontSize,
+  },
+  {
+    type: "rectangle-dynamic",
+    x: 445,
+    y: height - (verticalPosition + 3) * fontSize,
+    width: 100,
+    height: 25,
+    borderColor: rgb(0, 0, 0),
+    borderWidth: 1.5,
+  },
+  ]
+}
+
+function dynamicInvoiceFields (height, fontSize, order, customer, verticalPosition) {
+  return [
+  {
+    type: "text-dynamic",
+    text: `"Exempt Intra-Community Operation located at the addressee's headquarters by virtue of art.69 of Law 37/1992, on VAT."`,
+    x: 50,
+    y: height - (verticalPosition + 4) * fontSize,
+    size: 9
+  },
+  {
+    type: "text-dynamic",
+    text: "Payment terms - Advance payment",
+    x: 50,
+    y: height - (verticalPosition + 6) * fontSize,
+    size: 13
+  },
+  {
+    type: "text-dynamic",
+    text: "Delivery address",
+    x: 50,
+    y: height - (verticalPosition + 7) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${customer.companyName}`,
+    x: 50,
+    y: height - (verticalPosition + 8) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${order.deliveryAddress.firstName} ${order.deliveryAddress.lastName}`,
+    x: 50,
+    y: height - (verticalPosition + 9) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${order.deliveryAddress.street} ${order.deliveryAddress.house} ${order.deliveryAddress.apartment}`,
+    x: 50,
+    y: height - (verticalPosition + 10) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${order.deliveryAddress.telephone}`,
+    x: 50,
+    y: height - (verticalPosition + 11) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${order.deliveryAddress.index} ${order.deliveryAddress.city}`,
+    x: 50,
+    y: height - (verticalPosition + 12) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: `${order.deliveryAddress.countryName}`,
+    x: 50,
+    y: height - (verticalPosition + 13) * fontSize,
+  },
+  {
+    type: "text-dynamic",
+    text: "*The mere possession of this invoice does not presuppose its paymen document.",
+    x: 55,
+    y: height - (verticalPosition + 15) * fontSize,
+    size: 10
+  },
+  {
+    type: "text-dynamic",
+    text: "THANK YOU FOR YOUR TRUST",
+    x: 200,
+    y: height - (verticalPosition + 17) * fontSize,
+  }
+]
+}
+
+module.exports = {staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields, dynamicTableFields }
