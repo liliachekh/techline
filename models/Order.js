@@ -24,7 +24,8 @@ const OrderSchema = new Schema(
       type: Schema.Types.Mixed
     },
     paymentInfo: {
-      type: Schema.Types.Mixed
+      type: Schema.Types.Mixed,
+      required: true
     },
     totalSum: {
       type: Number,
