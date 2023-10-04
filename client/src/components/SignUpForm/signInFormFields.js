@@ -17,15 +17,7 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
-    label: "Index",
-    id: "index",
-    name: "index",
-    type: "text",
-    placeholder: "indexPlaceholder"
-  },
-  {
-    tagType: 'regular',
-    label: "Area or Region",
+    label: "region",
     id: "region",
     name: "region",
     type: "text",
@@ -33,7 +25,7 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
-    label: "City",
+    label: "city",
     id: "city",
     name: "city",
     type: "text",
@@ -41,7 +33,15 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
-    label: "Street",
+    label: "index",
+    id: "index",
+    name: "index",
+    type: "text",
+    placeholder: "indexPlaceholder"
+  },
+  {
+    tagType: 'regular',
+    label: "street",
     id: "street",
     name: "street",
     type: "text",
@@ -49,7 +49,7 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
-    label: "House number",
+    label: "houseNumber",
     id: "house",
     name: "house",
     type: "text",
@@ -57,7 +57,7 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
-    label: "Apartment or office number",
+    label: "apartment",
     id: "apartment",
     name: "apartment",
     type: "text",
