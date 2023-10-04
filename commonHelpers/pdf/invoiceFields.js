@@ -76,7 +76,7 @@ const wrapText = (text, width, font, fontSize) => {
     },
     {
       type: "text",
-      text: `Name: ${order.deliveryAddress.firstName} ${order.deliveryAddress.lastName}`,
+      text: `Name: ${customer.contactPerson}`,
       x: 50,
       y: height - 22 * fontSize,
     },
@@ -88,13 +88,13 @@ const wrapText = (text, width, font, fontSize) => {
     },
     {
       type: "text",
-      text: `Address: ${order.deliveryAddress.street} ${order.deliveryAddress.house}/ ${order.deliveryAddress.apartment}`,
+      text: `Address: ${customer.street} ${customer.house}/ ${customer.apartment}`,
       x: 50,
       y: height - 24 * fontSize,
     },
     {
       type: "text",
-      text: `Country, city, postal code: ${order.deliveryAddress.countryName} ${order.deliveryAddress.city} ${order.deliveryAddress.index}`,
+      text: `Country, city, postal code: ${customer.countryName} ${customer.city} ${customer.index}`,
       x: 50,
       y: height - 25 * fontSize,
     },
