@@ -17,6 +17,54 @@ export const signInFormFields = [
   },
   {
     tagType: 'regular',
+    label: "region",
+    id: "region",
+    name: "region",
+    type: "text",
+    placeholder: "regionPlaceholder"
+  },
+  {
+    tagType: 'regular',
+    label: "city",
+    id: "city",
+    name: "city",
+    type: "text",
+    placeholder: "cityPlaceholder"
+  },
+  {
+    tagType: 'regular',
+    label: "index",
+    id: "index",
+    name: "index",
+    type: "text",
+    placeholder: "indexPlaceholder"
+  },
+  {
+    tagType: 'regular',
+    label: "street",
+    id: "street",
+    name: "street",
+    type: "text",
+    placeholder: "streetPlaceholder"
+  },
+  {
+    tagType: 'regular',
+    label: "houseNumber",
+    id: "house",
+    name: "house",
+    type: "text",
+    placeholder: "housePlaceholder"
+  },
+  {
+    tagType: 'regular',
+    label: "apartment",
+    id: "apartment",
+    name: "apartment",
+    type: "text",
+    placeholder: "apartmentPlaceholder"
+  },
+  {
+    tagType: 'regular',
     label: "vatNr",
     id: "vatNr",
     name: "vatNr",

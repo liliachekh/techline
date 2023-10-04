@@ -13,6 +13,33 @@ export const validationSchemaUser = Yup.object({
     .matches(cyrillicPattern, 'Must be a-z A-Z а-я А-Я і І ї Ї є Є')
     .trim()
     .required("Required Field!"),
+    index: Yup.string()
+    .matches(/^\d+$/, 'Must contain only digits')
+    .required("Required Field!"),
+  region: Yup.string()
+    .min(2, 'Must contain at least 2 letters')
+    .max(30, 'Can be no more than 30 characters')
+    .matches(/^[A-Za-z\s\-']+$/, 'Must be a-z A-Z')
+    .required("Required Field!"),
+  city: Yup.string()
+    .min(2, 'Must contain at least 2 letters')
+    .max(25, 'Can be no more than 25 characters')
+    .matches(/^[A-Za-z\s\-']+$/, 'Must be a-z A-Z')
+    .trim()
+    .required("Required Field!"),
+  street: Yup.string()
+    .min(2, 'Must contain at least 2 letters')
+    .max(30, 'Can be no more than 30 characters')
+    .required("Required Field!"),
+  house: Yup.string()
+    .min(1, 'Must contain at least 1 letters')
+    .max(10, 'Can be no more than 10 characters')
+    .trim()
+    .required("Required Field!"),
+  apartment: Yup.string()
+    .min(1, 'Must contain at least 1 letters')
+    .max(10, 'Can be no more than 10 characters')
+    .required("Required Field!"),
   vatNr: Yup.string()
     .min(7, 'Must contain at least 7 characters')
     .matches(/^[a-zA-Z0-9]+$/, 'Must be a-z A-Z 0-9')
