@@ -10,7 +10,8 @@ const _ = require("lodash");
 const uniqueRandom = require("unique-random");
 const Customer = require("../models/Customer");
 const rand = uniqueRandom(1000000, 9999999);
-const createPdf = require("../commonHelpers/pdf/createPdf")
+const createPdf = require("../commonHelpers/pdf/createPdf");
+const { getTierPrice } = require("../utils");
 
 exports.placeOrder = async (req, res, next) => {
   try {
@@ -51,7 +52,7 @@ exports.placeOrder = async (req, res, next) => {
 
     order.totalSum = order.products.reduce(
       (sum, cartItem) =>
-        sum + cartItem.product.currentPrice * cartItem.cartQuantity,
+        sum + getTierPrice(customer, cartItem.product.currentPrice) * cartItem.cartQuantity,
       0
     );
     // if order < 2500 add shipping cost 35
@@ -78,13 +79,13 @@ exports.placeOrder = async (req, res, next) => {
       Your b2b.techlines.es</p>`;
       const { errors, isValid } = validateOrderForm(req.body);
 
-       await createPdf("static/invoices/invoice.pdf", order, customer)
-        const letterAttachment = [
-          {
-            filename: 'invoice.pdf',
-            path: 'static/invoices/invoice.pdf',
-          }
-        ]
+      await createPdf("static/invoices/invoice.pdf", order, customer)
+      const letterAttachment = [
+        {
+          filename: 'invoice.pdf',
+          path: 'static/invoices/invoice.pdf',
+        }
+      ]
 
       // Check Validation
       if (!isValid) {
@@ -137,6 +138,7 @@ exports.updateOrder = (req, res, next) => {
         .json({ message: `Order with id ${req.params.id} is not found` });
     } else {
       const order = _.cloneDeep(req.body);
+      const customer = await Customer.findOne({ _id: req.body.customerId });
 
       if (req.body.deliveryAddress) {
         order.deliveryAddress = req.body.deliveryAddress;
@@ -159,7 +161,7 @@ exports.updateOrder = (req, res, next) => {
 
         order.totalSum = order.products.reduce(
           (sum, cartItem) =>
-            sum + cartItem.product.currentPrice * cartItem.cartQuantity,
+            sum + getTierPrice(customer, cartItem.product.currentPrice) * cartItem.cartQuantity,
           0
         );
 
