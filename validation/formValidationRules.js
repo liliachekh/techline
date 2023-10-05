@@ -13,7 +13,7 @@ const formValidationRules = [
     field: "firstName",
     method: "matches",
     validWhen: true,
-    args: [/^[a-zA-Zа-яА-Я]+$/],
+    args: [/^[a-zA-Zа-яА-ЯіІїЇєЄ]+( [a-zA-Zа-яА-ЯіІїЇєЄ]+)*$/],
     message: "Allowed characters for First Name is a-z, A-Z, а-я, А-Я."
   },
   {
@@ -33,7 +33,7 @@ const formValidationRules = [
     field: "lastName",
     method: "matches",
     validWhen: true,
-    args: [/^[a-zA-Zа-яА-Я]+$/],
+    args: [/^[a-zA-Zа-яА-ЯіІїЇєЄ]+( [a-zA-Zа-яА-ЯіІїЇєЄ]+)*$/],
     message: "Allowed characters for Last Name is a-z, A-Z, а-я, А-Я."
   },
   {
@@ -140,20 +140,20 @@ const formValidationRules = [
     validWhen: true,
     message: "isAdmin field must be true or false"
   },
-  {
-    field: "letterSubject",
-    method: FormValidator.isEmpty,
-    validWhen: false,
-    message:
-      "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
-  },
-  {
-    field: "letterHtml",
-    method: FormValidator.isEmpty,
-    validWhen: false,
-    message:
-      "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
-  }
+  // {
+  //   field: "letterSubject",
+  //   method: FormValidator.isEmpty,
+  //   validWhen: false,
+  //   message:
+  //     "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+  // },
+  // {
+  //   field: "letterHtml",
+  //   method: FormValidator.isEmpty,
+  //   validWhen: false,
+  //   message:
+  //     "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+  // }
 ];
 
 module.exports = formValidationRules;

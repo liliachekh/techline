@@ -41,6 +41,15 @@ const CustomerSchema = new Schema(
     avatarUrl: {
       type: String
     },
+    contactPerson: {
+      type: String
+    },
+    companyName: {
+      type: String
+    },
+    vatNr: {
+      type: String
+    },
     isAdmin: {
       type: Boolean,
       required: true,

@@ -15,6 +15,7 @@ const {
   getProductsFilterParams,
   searchProducts,
 } = require("../controllers/products");
+const authAdmin = require("../middleware/authAdmin");
 
 // Configurations for multer
 const storage = multer.diskStorage({
@@ -63,7 +64,7 @@ const upload = multer({
 // @desc    Add images
 // @access  Private
 router.post(
-  "/images",
+  "/images", authAdmin,
   // passport.authenticate("jwt-admin", { session: false }),
   upload.array("photos"),
   addImages
@@ -73,7 +74,7 @@ router.post(
 // @desc    Create new product
 // @access  Private
 router.post(
-  "/",
+  "/", authAdmin,
   // passport.authenticate("jwt-admin", { session: false }),
   addProduct
 );
@@ -82,7 +83,7 @@ router.post(
 // @desc    Update existing product
 // @access  Private
 router.put(
-  "/:id",
+  "/:id", authAdmin,
   // passport.authenticate("jwt-admin", { session: false }),
   updateProduct
 );
@@ -105,6 +106,6 @@ router.post("/search", searchProducts);
 // @route   GET /products/:id
 // @desc    GET existing product by id
 // @access  Public
-router.get("/:itemNo", getProductById);
+router.get("/:productUrl", getProductById);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport"); // multer for parsing multipart form data (files)
+// const passport = require("passport"); // multer for parsing multipart form data (files)
+const auth = require("../middleware/auth");
 
 //Import controllers
 const {
@@ -11,11 +12,13 @@ const {
   getFiltersByType
 } = require("../controllers/filters");
 
+const authAdmin = require("../middleware/authAdmin");
+
 // @route   POST /filters
 // @desc    Create new filter
 // @access  Private
 router.post(
-  "/",
+  "/", authAdmin ,
   // passport.authenticate("jwt-admin", { session: false }),
   addFilter
 );
@@ -24,7 +27,7 @@ router.post(
 // @desc    Update existing filter
 // @access  Private
 router.put(
-  "/:id",
+  "/:id", authAdmin ,
   // passport.authenticate("jwt-admin", { session: false }),
   updateFilter
 );
@@ -33,7 +36,7 @@ router.put(
 // @desc    DELETE existing filter
 // @access  Private
 router.delete(
-  "/:id",
+  "/:id", authAdmin ,
   // passport.authenticate("jwt-admin", { session: false }),
   deleteFilter
 );

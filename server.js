@@ -37,10 +37,12 @@ const mintProducts = require("./routes/mintProducts");
 
 
 const app = express();
-app.use(cors());
+// app.use(cors(corsOptions));
+
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 //cookie
 app.use(cookieParser());
 
@@ -48,24 +50,18 @@ app.get('/set-cookie', (req, res) => {
   
   res.cookie('cookieName', 'cookieValue', {
     sameSite: 'none',
-    secure: true
+    secure: true,
+    httpOnly: true
   });
 
   res.send('Cookie SameSite=None and Secure');
 });
 
-//cookies 
-app.use(cookieParser());
-
-app.get('/set-cookie', (req, res) => {
-  
-  res.cookie('cookieName', 'cookieValue', {
-    sameSite: 'none',
-    secure: true
-  });
-
-  res.send('Cookie SameSite=None and Secure');
-});
+app.use(
+  cors({
+  origin:['http://localhost:3000','https://techlines.es', 'https://b2b.techlines.es'],
+  credentials: true
+}));
 // DB Config
 const db = require("./config/keys").mongoURI;
 

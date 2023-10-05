@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
+// const passport = require("passport");
 
 //Import controllers
 const {
@@ -12,6 +12,8 @@ const {
   getOrder
 } = require("../controllers/orders");
 
+const auth = require("../middleware/auth");
+
 // @route   POST /orders
 // @desc    Place Order
 // @access  Private
@@ -21,8 +23,8 @@ router.post("/", placeOrder);
 // @desc    Update order
 // @access  Private
 router.put(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
+  "/:id",auth,
+  // passport.authenticate("jwt", { session: false }),
   updateOrder
 );
 
@@ -30,8 +32,8 @@ router.put(
 // @desc    Cancel order
 // @access  Private
 router.put(
-  "/cancel/:id",
-  passport.authenticate("jwt", { session: false }),
+  "/cancel/:id",auth,
+  // passport.authenticate("jwt", { session: false }),
   cancelOrder
 );
 
@@ -39,22 +41,24 @@ router.put(
 // @desc    Delete order
 // @access  Private
 router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
+  "/:id",auth,
+  // passport.authenticate("jwt", { session: false }),
   deleteOrder
 );
 
 // @route   GET /orders
 // @desc    Get all orders
 // @access  Private
-router.get("/", passport.authenticate("jwt", { session: false }), getOrders);
+router.get("/", auth,
+// passport.authenticate("jwt", { session: false }),
+ getOrders);
 
 // @route   GET /orders/:orderNo
 // @desc    Get one order by orderNo
 // @access  Private
 router.get(
-  "/:orderNo",
-  passport.authenticate("jwt", { session: false }),
+  "/:orderNo",auth,
+  // passport.authenticate("jwt", { session: false }),
   getOrder
 );
 
