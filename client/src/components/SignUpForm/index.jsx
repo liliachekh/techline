@@ -71,7 +71,7 @@ export default function SignUpForm({ refName }) {
               className={style.signUp__title}>
               {t("signup.title")}
             </motion.h1>
-            <motion.div {...animateFromLeft(0, 0.2)}>
+            <motion.div {...animateFromLeft(0, 0.2)} className={style.signUp__form}>
               <FormikForm
                 initialValues={{
                   companyName: "",
