@@ -3,18 +3,7 @@ import style from './modal.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import { modalAnimation } from '../../animation';
 
-export function Modal({ data: { type, header, text, actions, icon } }) {
-
-  function onCloseModal() {
-    
-  }
-
-  function onSubmitModal() {
-    // if (onDelete && typeof onDelete === 'function') {
-    //   onDelete();
-    // }
-    onCloseModal();
-  }
+export function Modal({ data: { type, header, text, actions, icon }, onCloseModal, onSubmitModal}) {
 
   return (
     <AnimatePresence>

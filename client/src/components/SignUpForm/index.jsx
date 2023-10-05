@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { validationSchemaUser } from "../../validation";
 import { useState, useEffect, useRef } from "react";
 
-export default function SignUpForm({ refName }) {
+export default function SignUpForm({ refName, openModalHandler }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { t } = useTranslation();

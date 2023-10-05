@@ -8,6 +8,7 @@ import { useInView } from "framer-motion"
 import BackToTop from "../../components/BackToTop";
 import SignUpForm from "../../components/SignUpForm";
 import { Modal } from "../../components/Modal";
+import { modalProps } from "../../components/Modal/modalProps";
 
 export function Home() {
   const [modalType, setModalType] = useState(null);
@@ -23,20 +24,29 @@ export function Home() {
   const signupInView = useInView(signup, { margin: "-50% 0px" });
   const contactsInView = useInView(contacts, { margin: "-50% 0px" });
 
+  function openModalHandler(e, type) {
+    e.preventDefault();
+    setModalType(type);
+  };
+
+  function closeModal() {
+    setModalType(null);
+  };
+
   return (
     <>
       {modalType && 
-        <Modal
-          onSubmit={closeModalHandler}
-          data={modalProps.find(modal => modal.type === modalType)} />}
-
+        <Modal 
+          onCloseModal={closeModal} 
+          data={modalProps.find(modal => modal.type === modalType)}
+      />}
       <Header
         refList={{ partner, about, b2b, signup, contacts }}
         inViewList={{ 'partner': partnerInView, 'about': aboutInView, 'b2b': b2bInView, 'signup': signupInView, 'contacts': contactsInView }} />
       <BecomePartner refName={partner} />
       <AboutUs refName={about} />
       <B2B refName={b2b} />
-      <SignUpForm refName={signup}/>
+      <SignUpForm refName={signup} openModalHandler={openModalHandler}/>
       <Footer refName={contacts} />
       <BackToTop />
     </>
