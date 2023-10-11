@@ -23,6 +23,7 @@ export default function MobiNav({ isOpen, toggleBurgerMenu, inViewList, refList,
         {isOpen &&
           <motion.div
             className={`${style.wrapper}`}
+            onClick={(e) => e.stopPropagation()}
             {...animateMobileMenu}>
             <ul className={style.list}>
               {navData.map(({ refName, text }) => (
