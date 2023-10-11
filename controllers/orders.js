@@ -53,7 +53,7 @@ exports.placeOrder = async (req, res, next) => {
 
     order.totalSum = order.products.reduce(
       (sum, cartItem) =>
-        sum + cartItem.product.currentPrice * cartItem.cartQuantity,
+        (sum + cartItem.product.currentPrice * cartItem.cartQuantity).toFixed(2),
       0
     );
     // order.totalSum = order.products.reduce(
@@ -169,7 +169,7 @@ exports.updateOrder = (req, res, next) => {
 
         order.totalSum = order.products.reduce(
           (sum, cartItem) =>
-            sum + cartItem.product.currentPrice * cartItem.cartQuantity,
+            (sum + cartItem.product.currentPrice * cartItem.cartQuantity).toFixed(2),
           0
         );
         // order.totalSum = order.products.reduce(
