@@ -2,6 +2,10 @@ const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 const Customer = require("../models/Customer");
 const bcrypt = require("bcryptjs");
+const sendMail = require("../commonHelpers/mailSender");
+// const baseUrl = 'https://storage.techlines.es/api/';
+const baseUrl = 'http://localhost:4000/api/';
+
 
 // Controller for initiating password reset
 exports.resetPassword = async (req, res) => {
@@ -17,25 +21,38 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Создайте JWT-токен для сброса пароля
-    const token = jwt.sign(
+    const resetToken = jwt.sign(
       { id: customer._id },
       keys.secretOrKey,
-      { expiresIn: 36000 } // Устанавливает срок действия токена на 1 час
+      { expiresIn: 36000 },
+      // (err, token) => {
+      //   res.cookie('resetToken', resetToken, {
+      //     httpOnly: true
+      //   })
+      //   .send()
+      // }
     );
-
-    // Сохраните токен и срок его действия в базе данных
-    customer.resetToken = token;
-    customer.resetTokenExpiresAt = Date.now() + 3600 * 1000; // 1 час в миллисекундах
-    await customer.save();
 
     // Отправьте email с ссылкой на сброс пароля, включая токен
     // Здесь вы можете использовать библиотеку для отправки электронной почты (например, nodemailer)
     // и создать письмо с ссылкой, в которой будет указан этот токен
-    const link = `${clientURL}/password-reset?token=${resetToken}&id=${user._id}`;
-    sendEmail(user.email,"Password Reset Request",{name: user.name,link: link,},"./template/requestResetPassword.handlebars");
+    const link = `${baseUrl}/password-reset?token=${resetToken}&id=${customer._id}`;
 
+    const subscriberMail = customer.email;
+    const letterSubject = "Password reset link";
+    const letterHtml = `<h1>Reset Password</h1> <h3>Dear,${customer.firstName},</h3><p>You requested to reset you password.</p><p>Please, click the link below to reset your password.</p><p>${link}</p><p>Techlines</p>`;
+    // Send mail
+    const mailResult = await sendMail(
+      subscriberMail,
+      letterSubject,
+      letterHtml,
+      letterAttachment,
+      res
+    );
+
+    res.json({ customer, mailResult });
     // В этом примере, мы просто отправим токен в ответе на запрос
-    // res.json({ resetToken: token });
+    // res.json({ resetToken: resetToken });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
