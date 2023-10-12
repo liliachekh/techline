@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   requestPasswordReset,
+  verifyResetPasswordLink,
   resetPassword
 } = require("../controllers/resetPassword");
 
@@ -10,9 +11,14 @@ const {
 // @access  Public
 router.post("/", requestPasswordReset);
 
-// @route   POST /password-reset/:token
+// @route   GET /password-reset/:token/:id
 // @desc    Reset customer's password
 // @access  Public
-router.post("/:token", resetPassword);
+// router.get("/", verifyResetPasswordLink);
+
+// @route   POST /password-reset/:token/:id
+// @desc    Reset customer's password
+// @access  Public
+// router.post("/:token/:id", resetPassword);
 
 module.exports = router;

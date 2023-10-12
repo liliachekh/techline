@@ -3,8 +3,8 @@ const keys = require("../config/keys");
 const Customer = require("../models/Customer");
 const bcrypt = require("bcryptjs");
 const sendMail = require("../commonHelpers/mailSender");
-// const baseUrl = 'https://storage.techlines.es/api/';
-const baseUrl = 'http://localhost:4000/api/';
+// const baseUrl = 'https://storage.techlines.es/api';
+const baseUrl = 'http://localhost:4000/api';
 
 
 // Controller for initiating password reset
@@ -39,7 +39,6 @@ exports.requestPasswordReset = async (req, res) => {
     });
 
     // Отправьте email с ссылкой на сброс пароля, включая токен
-    // Здесь вы можете использовать библиотеку для отправки электронной почты (например, nodemailer)
     // и создать письмо с ссылкой, в которой будет указан этот токен
     const link = `${baseUrl}/password-reset?token=${resetToken}&id=${customer._id}`;
 
@@ -57,12 +56,56 @@ exports.requestPasswordReset = async (req, res) => {
     );
 
     res.json({ customer, mailResult });
+    // res.status(200).json({ customer, mailResult });
 
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
+// verify password reset link
+
+// exports.verifyResetPasswordLink = async (req, res) => {
+//   try {
+// 		const customer = await Customer.findOne({ _id: req.params.id });
+// 		if (!customer) return res.status(400).send({ message: "Invalid link" });
+
+// 		const token = req.params.token;
+
+// 		if (token !== req.cookies.resetToken) return res.status(400).send({ message: "Invalid link" });
+
+// 		res.status(200).send("Valid Url");
+// 	} catch (error) {
+// 		res.status(500).send({ message: "Internal Server Error" });
+// 	}
+// }
+
+
+// exports.verifyResetPasswordLink = async (req, res) => {
+//   // Извлеките токен из параметров запроса
+//   const resetToken = req.params.token;
+
+//   // Проверьте, существует ли токен
+//   if (!resetToken) {
+//     // Если токен отсутствует, отобразите сообщение об ошибке
+//     return res.status(404).json({ message: "Invalid or expired password reset token" });
+//   }
+
+//   // Попробуйте проверить токен
+//   try {
+//     const decoded = jwt.verify(resetToken, keys.secretOrKey); // Предполагается, что у вас есть ключ в keys.secretOrKey
+//     // Если токен действителен, отобразите HTML-страницу для сброса пароля
+//     if (!decoded) {
+//       return res.status(404).json({ message: "Invalid or expired password reset token" });
+//     }
+//     res.status(200);
+//   } catch (err) {
+//     // Если токен недействителен, отобразите сообщение об ошибке
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// }
 
 // Controller for resetting password using token
 exports.resetPassword = async (req, res) => {
