@@ -8,7 +8,7 @@ const baseUrl = 'http://localhost:4000/api/';
 
 
 // Controller for initiating password reset
-exports.resetPassword = async (req, res) => {
+exports.requestPasswordReset = async (req, res) => {
   try {
     // Получите email из запроса
     const email = req.body.registeredEmail;
@@ -25,13 +25,18 @@ exports.resetPassword = async (req, res) => {
       { id: customer._id },
       keys.secretOrKey,
       { expiresIn: 36000 },
-      // (err, token) => {
+      // (err, resetToken) => {
       //   res.cookie('resetToken', resetToken, {
       //     httpOnly: true
       //   })
       //   .send()
       // }
     );
+
+    // Установите куки
+    res.cookie('resetToken', resetToken, {
+      httpOnly: true
+    });
 
     // Отправьте email с ссылкой на сброс пароля, включая токен
     // Здесь вы можете использовать библиотеку для отправки электронной почты (например, nodemailer)
@@ -41,6 +46,7 @@ exports.resetPassword = async (req, res) => {
     const subscriberMail = customer.email;
     const letterSubject = "Password reset link";
     const letterHtml = `<h1>Reset Password</h1> <h3>Dear,${customer.firstName},</h3><p>You requested to reset you password.</p><p>Please, click the link below to reset your password.</p><p>${link}</p><p>Techlines</p>`;
+    const letterAttachment = null;
     // Send mail
     const mailResult = await sendMail(
       subscriberMail,
@@ -51,8 +57,7 @@ exports.resetPassword = async (req, res) => {
     );
 
     res.json({ customer, mailResult });
-    // В этом примере, мы просто отправим токен в ответе на запрос
-    // res.json({ resetToken: resetToken });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -60,7 +65,7 @@ exports.resetPassword = async (req, res) => {
 };
 
 // Controller for resetting password using token
-exports.resetPasswordWithToken = async (req, res) => {
+exports.resetPassword = async (req, res) => {
     try {
       // Получите токен сброса пароля из параметра маршрута
       const resetToken = req.params.token;

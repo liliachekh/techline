@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const {
-  resetPassword,
-  resetPasswordWithToken
+  requestPasswordReset,
+  resetPassword
 } = require("../controllers/resetPassword");
 
 // @route   POST /password-reset
 // @desc    Request password reset for a customer
 // @access  Public
-router.post("/", resetPassword);
+router.post("/", requestPasswordReset);
 
 // @route   POST /password-reset/:token
 // @desc    Reset customer's password
 // @access  Public
-router.post("/:token", resetPasswordWithToken);
+router.post("/:token", resetPassword);
 
 module.exports = router;
