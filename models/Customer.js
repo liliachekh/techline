@@ -65,6 +65,30 @@ const CustomerSchema = new Schema(
       required: true,
       default: false
     },
+    countryName: {
+      type: String,
+      required: true
+    },
+    city: {
+      type: String,
+      required: true
+    },
+    index: {
+      type: String,
+      required: true
+    },
+    street: {
+      type: String,
+      required: true
+    },
+    house: {
+      type: String,
+      required: true
+    },
+    apartment: {
+      type: String,
+      required: true
+    },
     date: {
       type: Date,
       default: Date.now
