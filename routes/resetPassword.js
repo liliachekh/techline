@@ -11,14 +11,14 @@ const {
 // @access  Public
 router.post("/", requestPasswordReset);
 
-// @route   GET /password-reset/:token/:id
-// @desc    Reset customer's password
+// @route   GET /password-reset/new-password/:token/:id
+// @desc    Verify customer's reset password link
 // @access  Public
-// router.get("/", verifyResetPasswordLink);
+router.get("/new-password/:token/:id", verifyResetPasswordLink);
 
 // @route   POST /password-reset/new-password/:token/:id
 // @desc    Reset customer's password
 // @access  Public
-// router.post("/password-reset/new-password:token/:id", resetPassword);
+// router.post("/password-reset/new-password/:token/:id", resetPassword);
 
 module.exports = router;
