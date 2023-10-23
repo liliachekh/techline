@@ -18,7 +18,7 @@ exports.requestPasswordReset = async (req, res) => {
     const customer = await Customer.findOne({ email: email });
 
     if (!customer) {
-      return res.status(404).json({ message: "Customer not found" });
+      return res.status(400).json({ message: "Customer with this email not found" });
     }
 
     const resetToken = await ResetToken.findOne({ customerId: customer._id });
@@ -48,7 +48,8 @@ exports.requestPasswordReset = async (req, res) => {
     // Отправьте email с ссылкой на сброс пароля, включая токен
     // и создать письмо с ссылкой, в которой будет указан этот токен
     // const link = `${baseUrl}/password-reset/new-password?token=${resetToken}&id=${customer._id}`;
-    const link = `${baseUrl}/password-reset/new-password?token=${resetToken.resetToken}&id=${customer._id}`;
+    // const link = `${baseUrl}/password-reset/new-password?token=${resetToken.resetToken}&id=${customer._id}`;
+    const link = `${baseUrl}/password-reset/new-password/${resetToken.resetToken}/${customer._id}`;
 
     const subscriberMail = customer.email;
     const letterSubject = "Password reset link";
@@ -63,8 +64,8 @@ exports.requestPasswordReset = async (req, res) => {
       res
     );
 
-    // res.json({ customer, mailResult });
-    res.status(200).json({ customer, mailResult, resetToken });
+    // res.status(200).json({ customer, mailResult, resetToken });
+    res.status(200).json({ message: "Password reset link sent to your email account" });
 
   } catch (err) {
     console.error(err);
@@ -78,13 +79,13 @@ exports.verifyResetPasswordLink = async (req, res) => {
   try {
 		const customer = await Customer.findOne({ _id: req.params.id });
 		if (!customer) return res.status(400).send({ message: "Invalid link" });
-
+    console.log(customer);
 		const token = await ResetToken.findOne({
 			customerId: customer._id,
 			resetToken: req.params.token,
 		});
 		if (!token) return res.status(400).send({ message: "Invalid link" });
-
+    console.log(token)
 		res.status(200).send("Valid Url");
 	} catch (error) {
 		res.status(500).send({ message: "Internal Server Error" });
