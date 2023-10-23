@@ -50,6 +50,11 @@ const CustomerSchema = new Schema(
     vatNr: {
       type: String
     },
+    tier: {
+      type: String,
+      default: 'beginner',
+      required: true,
+    },
     isAdmin: {
       type: Boolean,
       required: true,
@@ -59,6 +64,30 @@ const CustomerSchema = new Schema(
       type: Boolean,
       required: true,
       default: false
+    },
+    countryName: {
+      type: String,
+      required: true
+    },
+    city: {
+      type: String,
+      required: true
+    },
+    index: {
+      type: String,
+      required: true
+    },
+    street: {
+      type: String,
+      required: true
+    },
+    house: {
+      type: String,
+      required: true
+    },
+    apartment: {
+      type: String,
+      required: true
     },
     date: {
       type: Date,
