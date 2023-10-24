@@ -3,8 +3,10 @@ import style from './modal.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import { modalAnimation } from '../../animation';
 
-export function Modal({ data: { type, header, text, actions, icon }, onCloseModal, onSubmitModal}) {
-
+export function Modal({ header, text, onCloseModal, onSubmitModal, show, buttonClose}) {
+  if (!show){
+    return null;
+  }
   return (
     <AnimatePresence>
       <>
@@ -15,12 +17,11 @@ export function Modal({ data: { type, header, text, actions, icon }, onCloseModa
               <h3 className={style.modal__title}>{header}</h3>
             </div>
             <div className={style.modal__text}>
-              {icon && <div className={style.modal__icon}>
-                {icon}
-              </div>}
               <p>{text}</p>
             </div>
-            {actions && actions(onCloseModal, onSubmitModal, style.modal__btns)}
+            <div className={style.modal__btns}>
+              <button className={`${style.modal__btn} ${style.submitBtn}`} onClick={onCloseModal}>{buttonClose}</button>
+            </div>
           </div>
         </motion.div>
       </>
@@ -29,19 +30,13 @@ export function Modal({ data: { type, header, text, actions, icon }, onCloseModa
 }
 
 Modal.defaultProps = {
-  data: {
-    type: '',
     header: '',
     text: '',
-    actions: null,
-  },
+    buttonClose: ''
 };
 
 Modal.propTypes = {
-  data: PropTypes.shape({
-    type: PropTypes.string,
     header: PropTypes.string,
     text: PropTypes.string,
-    actions: PropTypes.func,
-  }),
+    buttonClose: PropTypes.string
 };

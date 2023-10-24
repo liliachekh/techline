@@ -6,10 +6,13 @@ import { animateFromLeft } from "../../animation";
 import { useTranslation } from "react-i18next";
 import { validationSchemaUser } from "../../validation";
 import { useState, useEffect, useRef } from "react";
+import { Modal } from "../Modal";
 
 export default function SignUpForm({ refName, openModalHandler }) {
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  // const [successMessage, setSuccessMessage] = useState("");
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [modalData, setModalData] = useState({});
   const { t } = useTranslation();
   const formikRef = useRef(null);
 
@@ -19,15 +22,15 @@ export default function SignUpForm({ refName, openModalHandler }) {
     }
   };
 
-  useEffect(() => {
-    if (successMessage) {
-      const timer = setTimeout(() => {
-        setSuccessMessage("");
-      }, 5000);
+  // useEffect(() => {
+  //   if (successMessage) {
+  //     const timer = setTimeout(() => {
+  //       setSuccessMessage("");
+  //     }, 5000);
 
-      return () => clearTimeout(timer);
-    }
-  }, [successMessage]);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [successMessage]);
 
   async function onSubmitHandler(values) {
     const newValues = {
@@ -47,16 +50,27 @@ export default function SignUpForm({ refName, openModalHandler }) {
       if (!response.ok) {
         const errorData = await response.json();
         setErrorMessage(errorData.message);
-        setSuccessMessage("");
+        // setSuccessMessage("");
       } else {
         setErrorMessage("");
-        setSuccessMessage("Registration successfully completed! Check your mail");
-        handleResetForm()
+        // setSuccessMessage("Registration successfully completed! Check your mail");
+        openModal();
+        handleResetForm();
       }
     } catch (error) {
       setErrorMessage("An error occurred while sending the request.");
-      setSuccessMessage("");
+      // setSuccessMessage("");
     }
+  }
+
+  function openModal() {
+    setIsModalOpened(true);
+    setModalData({header: t("signupModal.header"), text: t("signupModal.text"), buttonClose: 'OK'});
+  }
+
+  function closeModal() {
+    setIsModalOpened(false);
+    setModalData({});
   }
 
   return (
@@ -103,14 +117,21 @@ export default function SignUpForm({ refName, openModalHandler }) {
             {errorMessage && (
               <div className={style.signUp__errorMessage}>{errorMessage}</div>
             )}
-            {successMessage && (
+            {/* {successMessage && (
               <div className={style.signUp__successMessage}>
                 {successMessage}
               </div>
-            )}
+            )} */}
           </div>
         </AnimatePresence>
       </div>
+      <Modal
+        show={isModalOpened}
+        header={modalData.header}
+        text={modalData.text}
+        buttonClose={modalData.buttonClose}
+        onCloseModal={() => closeModal()} 
+        />
     </section>
   );
 }
