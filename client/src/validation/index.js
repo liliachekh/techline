@@ -1,16 +1,15 @@
 import * as Yup from 'yup';
-const cyrillicPattern = /^[a-zA-Zа-яА-ЯіІїЇєЄ]+( [a-zA-Zа-яА-ЯіІїЇєЄ]+)*$/;
 export const validationSchemaUser = Yup.object({
   companyName: Yup.string()
     .min(2, 'Must contain at least 2 letters')
     .max(25, 'Can be no more than 25 characters')
-    .matches(cyrillicPattern, 'Must be a-z A-Z а-я А-Я і І ї Ї є Є with optional space between words')
+    .matches(/^[A-Za-z\s\-']+$/, 'Must be a-z A-Z')
     .trim()
     .required("Required Field!"),
   countryName: Yup.string()
     .min(2, 'Must contain at least 2 letters')
     .max(25, 'Can be no more than 25 characters')
-    .matches(cyrillicPattern, 'Must be a-z A-Z а-я А-Я і І ї Ї є Є')
+    .matches(/^[A-Za-z\s\-']+$/, 'Must be a-z A-Z')
     .trim()
     .required("Required Field!"),
     index: Yup.string()
@@ -47,7 +46,7 @@ export const validationSchemaUser = Yup.object({
   contactPerson: Yup.string()
     .min(2, 'Must contain at least 2 letters')
     .max(25, 'Can be no more than 25 characters')
-    .matches(cyrillicPattern, 'Must be a-z A-Z а-я А-Я і І ї Ї є Є with optional space between words')
+    .matches(/^[A-Za-z\s\-']+$/, 'Must be a-z A-Z')
     .trim()
     .required("Required Field!"),
   email: Yup.string()
