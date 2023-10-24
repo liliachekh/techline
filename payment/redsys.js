@@ -15,10 +15,9 @@ var obj = {
     merchantURL: 'https://b2b.techlines.es/',
     successURL: 'http://localhost:8080/success',
     errorURL: 'http://localhost:8080/error',
-    DS_MERCHANT_PAN: "454881********04",
-    DS_MERCHANT_CVV2: "123",
-    DS_MERCHANT_EXPIRYDATE: "1512"
+    
 }
  
 const result = redsys.makePaymentParameters(obj);
 console.log(result);
+//4548 8120 4940 0004
