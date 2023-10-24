@@ -93,42 +93,83 @@ exports.verifyResetPasswordLink = async (req, res) => {
 }
 
 
-// Controller for resetting password using token
 exports.resetPassword = async (req, res) => {
   try {
-    const resetToken = req.params.token;
     const id = req.params.id;
     const newPassword = req.body.password;
 
-    // Проверка, совпадают ли токены
-    if (resetToken !== req.cookies.resetToken) {
-      return res.status(400).json({ message: "Invalid token" });
-    }
-
     // Найти пользователя по id
     const customer = await Customer.findOne({ _id: id });
-
     if (!customer) {
-      return res.status(404).json({ message: "Customer not found" });
+      return res.status(400).json({ message: "Customer not found" });
     }
+    console.log(customer);
+
+    const token = await ResetToken.findOne({
+			customerId: customer._id,
+			resetToken: req.params.token,
+		});
+		if (!token) return res.status(400).send({ message: "Invalid link" });
+    console.log(token)
 
     // Обновить пароль пользователя
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newPassword, salt, (err, hash) => {
-        if (err) {
-          return res.status(500).json({ message: "Internal Server Error" });
-        }
-        customer.password = hash;
-        customer.save()
-          .then(() => res.json({ message: "Password reset successfully" }))
-          .catch(() => res.status(500).json({ message: "Internal Server Error" }));
-      });
-    });
+    const salt = await bcrypt.genSalt(10);
+		const hashPassword = await bcrypt.hash(newPassword, salt);
+
+		customer.password = hashPassword;
+		await customer.save();
+		await token.remove();
+    console.log(customer);
+
+		res.status(200).send({ message: "Password reset successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
+
+
+
+
+
+// Controller for resetting password using token
+// exports.resetPassword = async (req, res) => {
+//   try {
+//     const resetToken = req.params.token;
+//     const id = req.params.id;
+//     const newPassword = req.body.password;
+
+//     // Проверка, совпадают ли токены
+//     if (resetToken !== req.cookies.resetToken) {
+//       return res.status(400).json({ message: "Invalid token" });
+//     }
+
+//     // Найти пользователя по id
+//     const customer = await Customer.findOne({ _id: id });
+
+//     if (!customer) {
+//       return res.status(404).json({ message: "Customer not found" });
+//     }
+
+//     // Обновить пароль пользователя
+//     bcrypt.genSalt(10, (err, salt) => {
+//       bcrypt.hash(newPassword, salt, (err, hash) => {
+//         if (err) {
+//           return res.status(500).json({ message: "Internal Server Error" });
+//         }
+//         customer.password = hash;
+//         customer.save()
+//           .then(() => res.json({ message: "Password reset successfully" }))
+//           .catch(() => res.status(500).json({ message: "Internal Server Error" }));
+//       });
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// };
 
 
 
