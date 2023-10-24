@@ -5,12 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { animateFromLeft } from "../../animation";
 import { useTranslation } from "react-i18next";
 import { validationSchemaUser } from "../../validation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Modal } from "../Modal";
 
-export default function SignUpForm({ refName, openModalHandler }) {
+export default function SignUpForm({ refName }) {
   const [errorMessage, setErrorMessage] = useState("");
-  // const [successMessage, setSuccessMessage] = useState("");
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [modalData, setModalData] = useState({});
   const { t } = useTranslation();
@@ -21,16 +20,6 @@ export default function SignUpForm({ refName, openModalHandler }) {
       formikRef.current.resetForm();
     }
   };
-
-  // useEffect(() => {
-  //   if (successMessage) {
-  //     const timer = setTimeout(() => {
-  //       setSuccessMessage("");
-  //     }, 5000);
-
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [successMessage]);
 
   async function onSubmitHandler(values) {
     const newValues = {
@@ -50,16 +39,13 @@ export default function SignUpForm({ refName, openModalHandler }) {
       if (!response.ok) {
         const errorData = await response.json();
         setErrorMessage(errorData.message);
-        // setSuccessMessage("");
       } else {
         setErrorMessage("");
-        // setSuccessMessage("Registration successfully completed! Check your mail");
         openModal();
         handleResetForm();
       }
     } catch (error) {
       setErrorMessage("An error occurred while sending the request.");
-      // setSuccessMessage("");
     }
   }
 
@@ -117,11 +103,6 @@ export default function SignUpForm({ refName, openModalHandler }) {
             {errorMessage && (
               <div className={style.signUp__errorMessage}>{errorMessage}</div>
             )}
-            {/* {successMessage && (
-              <div className={style.signUp__successMessage}>
-                {successMessage}
-              </div>
-            )} */}
           </div>
         </AnimatePresence>
       </div>
