@@ -17,7 +17,7 @@ function Footer({ refName }) {
           <p className={style.footer__infoText}>{t('footer.info.text4')}</p>
           <p className={style.footer__infoText}>{t('footer.info.text5')}</p>
         </div>
-        <p className={style.footer__devinfo}>2023 © Techline Distribution. All rights reserved.</p>
+        <p className={style.footer__devinfo}>2023 © Techlines Distribution. All rights reserved.</p>
         <p className={style.footer__devinfo}>Developed by <Link to="https://othersite.net/" target="blank">OTHERSITE STUDIO</Link></p>
 
       </div>
