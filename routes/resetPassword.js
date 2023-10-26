@@ -19,6 +19,6 @@ router.get("/new-password/:token/:id", verifyResetPasswordLink);
 // @route   POST /password-reset/new-password/:token/:id
 // @desc    Reset customer's password
 // @access  Public
-router.post("/password-reset/new-password/:token/:id", resetPassword);
+router.post("/new-password/:token/:id", resetPassword);
 
 module.exports = router;

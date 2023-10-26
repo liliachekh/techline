@@ -120,6 +120,7 @@ exports.resetPassword = async (req, res) => {
 		await customer.save();
 		await token.remove();
     console.log(customer);
+    console.log(token);
 
 		res.status(200).send({ message: "Password reset successfully" });
   } catch (err) {
