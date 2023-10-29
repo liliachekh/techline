@@ -21,34 +21,18 @@ exports.requestPasswordReset = async (req, res) => {
       return res.status(400).json({ message: "Customer with this email not found" });
     }
 
-    const resetToken = await ResetToken.findOne({ customerId: customer._id });
+    let resetToken = await ResetToken.findOne({ customerId: customer._id });
     if (!resetToken) {
       resetToken = await new ResetToken({
 				customerId: customer._id,
 				resetToken: jwt.sign(
           { id: customer._id },
           keys.secretOrKey,
-          { expiresIn: 36000 },
+          { expiresIn: 3600 },
         ),
 			}).save();
-      console.log(resetToken);
     }
-    // Создайте JWT-токен для сброса пароля
-    // const resetToken = jwt.sign(
-    //   { id: customer._id },
-    //   keys.secretOrKey,
-    //   { expiresIn: 36000 },
-    // );
 
-    // Установите куки
-    // res.cookie('resetToken', resetToken, {
-    //   httpOnly: true
-    // });
-
-    // Отправьте email с ссылкой на сброс пароля, включая токен
-    // и создать письмо с ссылкой, в которой будет указан этот токен
-    // const link = `${baseUrl}/password-reset/new-password?token=${resetToken}&id=${customer._id}`;
-    // const link = `${baseUrl}/password-reset/new-password?token=${resetToken.resetToken}&id=${customer._id}`;
     const link = `${baseUrl}/password-reset/new-password/${resetToken.resetToken}/${customer._id}`;
 
     const subscriberMail = customer.email;
@@ -128,9 +112,6 @@ exports.resetPassword = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-
-
 
 
 
