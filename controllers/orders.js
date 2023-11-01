@@ -58,7 +58,14 @@ exports.placeOrder = async (req, res, next) => {
     ).toFixed(2));
 
     if (order.totalSum < 2501) {
+      if (req.body.paymentInfo === 'CARD') {
+        order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
+      }
       order.totalSum += 35;
+    } else {
+      if (req.body.paymentInfo === 'CARD') {
+        order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
+      }
     }
 
     const productAvailibilityInfo = await productAvailibilityChecker(
