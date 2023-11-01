@@ -29,7 +29,7 @@ export function Home() {
       <BecomePartner refName={partner} />
       <AboutUs refName={about} />
       <B2B refName={b2b} />
-      <SignUpForm refName={signup}/>
+      <SignUpForm refName={signup} />
       <Footer refName={contacts} />
       <BackToTop />
     </>
