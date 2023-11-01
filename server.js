@@ -34,7 +34,7 @@ const partners = require("./routes/partners");
 // const mainRoute = require('./routes/index');
 const { getStaticFilesPath } = require("./utils");
 const mintProducts = require("./routes/mintProducts");
-
+const payment = require("./routes/payment")
 
 const app = express();
 // app.use(cors(corsOptions));
@@ -97,6 +97,7 @@ app.use("/api/shipping-methods", shippingMethods);
 app.use("/api/payment-methods", paymentMethods);
 app.use("/api/partners", partners);
 app.use("/api/mintProducts", mintProducts);
+app.use("/api/payment", payment)
 
 // app.use('/', mainRoute);
 
