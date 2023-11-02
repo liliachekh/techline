@@ -1,4 +1,4 @@
-const RedSys = require('redsys-pos');
+const RedSys = require('../commonHelpers/redsys/index.js');
 const { CURRENCIES, TRANSACTION_TYPES } = RedSys;
 const axios = require('axios');
 
