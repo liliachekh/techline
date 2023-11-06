@@ -62,7 +62,7 @@ class RedSys {
       DS_MERCHANT_URLOK: successURL || "",
       DS_MERCHANT_URLKO: errorURL || "",
       DS_MERCHANT_IDOPER: merchantIdOper,
-      DS_MERCHANT_EMV3DS: emv3ds || ""
+      DS_MERCHANT_EMV3DS: emv3ds
     };
 
     const Ds_MerchantParameters = new Buffer(

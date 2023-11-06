@@ -47,6 +47,7 @@ exports.createPayment = async (req, res) => {
     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST', result);
     if (response.data.errorCode) {
      console.log(response.data.errorCode)
+    //  getResponseCodeMessage(response.data.errorCode)
     }
     else {
     const merchantParams = response.data.Ds_MerchantParameters
