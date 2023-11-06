@@ -26,7 +26,7 @@ export function Home() {
       <Header
         refList={{ partner, about, b2b, signup, contacts }}
         inViewList={{ 'partner': partnerInView, 'about': aboutInView, 'b2b': b2bInView, 'signup': signupInView, 'contacts': contactsInView }} />
-      <BecomePartner refName={partner} />
+      <BecomePartner refName={partner} refTarget={signup} />
       <AboutUs refName={about} />
       <B2B refName={b2b} />
       <SignUpForm refName={signup} />
