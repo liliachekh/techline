@@ -3,8 +3,16 @@ import style from "./becomePartner.module.scss";
 import { animateFromBottom, animateFromLeft, animateFromRight } from "../../animation";
 import { useTranslation } from "react-i18next";
 
-export default function BecomePartner({ refName }) {
+export default function BecomePartner({ refName, refTarget }) {
   const { t } = useTranslation();
+  
+  const scrollTo = (ref) => {
+    ref && (
+      window.scrollTo({
+        top: ref.current.offsetTop,
+        behavior: 'smooth',
+      }));
+  };
 
   return (
     <section ref={refName} className={style.becomePartner}>
@@ -32,7 +40,7 @@ export default function BecomePartner({ refName }) {
           </li>
         </ul>
         <motion.div {...animateFromRight()} className={style.btn__container}>
-            <button className={style.btn}>{t('becomePartner.btn')}</button>
+          <button className={style.btn} onClick={() => scrollTo(refTarget)}>{t('becomePartner.btn')}</button>
         </motion.div>
         </div>
       </div>

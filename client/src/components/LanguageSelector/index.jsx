@@ -42,7 +42,7 @@ const LanguageSelector = () => {
         {IsOpen && (
           <motion.div className={styles.selector__list} {...animateLangSelect}>
             {Object.entries(langProps).map(([key, value]) => (
-              <div className={styles.selector__item}>
+              <div className={styles.selector__item} key={key}>
                 <FlagIcon type={value} />
                 <button
                   key={key}
