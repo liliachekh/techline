@@ -30,9 +30,9 @@ exports.createPayment = async (req, res) => {
       successURL: 'http://localhost:8080/success',
       errorURL: 'http://localhost:8080/error',
       merchantIdOper: DS_MERCHANT_IDOPER,
-      emv3ds:{
-        "threeDSInfo": "CardData"
-      }
+      // emv3ds:{
+      //   "threeDSInfo": "CardData"
+      // }
     };
 
     //Encrypt data with RedSys
@@ -44,7 +44,7 @@ exports.createPayment = async (req, res) => {
     const merchantParameters = JSON.parse(decodedData);
     console.log(merchantParameters);
     //send data
-    const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST', result);
+    const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', result);
     if (response.data.errorCode) {
      console.log(response.data.errorCode)
     //  getResponseCodeMessage(response.data.errorCode)
