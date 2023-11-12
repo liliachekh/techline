@@ -4,8 +4,8 @@ const Customer = require("../models/Customer");
 const ResetToken = require("../models/ResetToken");
 const bcrypt = require("bcryptjs");
 const sendMail = require("../commonHelpers/mailSender");
-// const baseUrl = 'https://storage.techlines.es/api';
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://storage.techlines.es/api';
+
 
 
 // Controller for initiating password reset
