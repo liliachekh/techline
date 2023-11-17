@@ -35,8 +35,8 @@ class RedSys {
     merchantURL,
     successURL,
     errorURL,
-    // merchantIdOper,
-    // emv3ds
+    merchantIdOper,
+    emv3ds
   }) {
     if (!amount) throw new Error("The amount to charge is mandatory");
     if (!merchantCode) throw new Error("The merchant code is mandatory");
@@ -61,8 +61,8 @@ class RedSys {
       DS_MERCHANT_MERCHANTURL: merchantURL || "",
       DS_MERCHANT_URLOK: successURL || "",
       DS_MERCHANT_URLKO: errorURL || "",
-      // DS_MERCHANT_IDOPER: merchantIdOper,
-      // DS_MERCHANT_EMV3DS: emv3ds
+      DS_MERCHANT_IDOPER: merchantIdOper,
+      DS_MERCHANT_EMV3DS: emv3ds
     };
 
     const Ds_MerchantParameters = new Buffer(
