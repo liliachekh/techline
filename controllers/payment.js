@@ -56,10 +56,10 @@ exports.createPayment = async (req, res) => {
     const signature = response.data.Ds_Signature
     const responseFromBank = redsys.checkResponseParameters(merchantParams, signature);
     console.log(responseFromBank );
-    
+
     const objToEncode = {
       threeDSServerTransID: responseFromBank.Ds_EMV3DS.threeDSServerTransID,
-      threeDSMethodNotificationURL: 'https://storage.techlines.es/api/payment/3DS'
+      threeDSMethodNotificationURL: 'https://dev.techlines.es/api/payment/3DS'
     };
     const threeDSMethodData = encodeBase64url(objToEncode)
     res.json({ threeDSMethodData });
