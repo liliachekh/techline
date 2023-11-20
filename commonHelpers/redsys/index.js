@@ -103,6 +103,7 @@ class RedSys {
     if (!merchantParams || !merchantParams.Ds_Order) return null; // invalid response
     // decode url encoded values
     for (let field in merchantParams) {
+      if (typeof merchantParams [field] ==='object') break
       merchantParams[field] = decodeURIComponent(merchantParams[field]);
     }
 
