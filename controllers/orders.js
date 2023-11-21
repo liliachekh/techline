@@ -56,6 +56,7 @@ exports.placeOrder = async (req, res, next) => {
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
     ).toFixed(2));
+    if (order.discount) order.totalSum -= order.discount
 
     if (order.totalSum < 2501) {
       if (req.body.paymentInfo === 'CARD') {
