@@ -35,7 +35,7 @@ exports.createPayment = async (req, res) => {
         "threeDSInfo": "CardData"
        }
     };
-   
+   console.log(paymentData)
     //Encrypt data with RedSys
     const result = redsys.makePaymentParameters(paymentData);
     // console.log(result)
@@ -61,6 +61,8 @@ exports.createPayment = async (req, res) => {
       threeDSServerTransID: responseFromBank.Ds_EMV3DS.threeDSServerTransID,
       threeDSMethodNotificationURL: 'https://dev.techlines.es/api/payment/3DS'
     };
+    console.log(objToEncode );
+
     const threeDSMethodData = encodeBase64url(objToEncode)
     res.json({ threeDSMethodData });
     }
