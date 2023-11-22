@@ -19,11 +19,11 @@ router.post(
   createDiscount
 );
 
-// @route   GET /discounts/discount
+// @route   GET /discounts/:code
 // @desc    Check is discountCode valid
 // @access  Public
 router.get(
-  "/discount", auth,
+  "/:code", auth,
   getDiscount
 );
 
