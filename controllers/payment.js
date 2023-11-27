@@ -54,6 +54,7 @@ exports.createPayment = async (req, res) => {
     //make obj for threeDSMethodData
     const threeDSServerTransID = responseFromBank.Ds_EMV3DS.threeDSServerTransID
     const threeDSMethodURL = responseFromBank.Ds_EMV3DS.threeDSMethodURL
+    const protocolVersion = responseFromBank.Ds_EMV3DS.protocolVersion
     const objToEncode = {
       threeDSServerTransID: threeDSServerTransID,
       threeDSMethodNotificationURL: 'https://dev.techlines.es/api/payment/3DS'
@@ -80,7 +81,7 @@ ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => 
 });
 
     const threeDSMethodData = encodeBase64url(objToEncode)
-    res.json({ threeDSMethodData, threeDSMethodURL });
+    res.json({ threeDSMethodData, threeDSMethodURL, threeDSServerTransID, protocolVersion });
   }
   } catch (error) {
     console.error(error);
