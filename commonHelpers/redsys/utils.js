@@ -8,4 +8,11 @@ function encodeBase64url(obj) {
   return base64urlEncoded;
 }
 
-module.exports = {encodeBase64url}
+function decodeBase64url(encodedString) {
+  const jsonString = base64url.decode(encodedString);
+  const decodedObj = JSON.parse(jsonString);
+
+  return decodedObj;
+}
+
+module.exports = { encodeBase64url, decodeBase64url };
