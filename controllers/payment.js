@@ -79,37 +79,6 @@ ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => 
   }
 });
 
- const newObj = 
-    {
-      amount: DS_MERCHANT_AMOUNT,
-      currency: "978",
-      merchantIdOper: DS_MERCHANT_IDOPER,
-      emv3ds:{
-      "threeDSInfo": "AuthenticationData",
-      "protocolVersion": "2.1.0",
-      "browserAcceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json",
-      "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
-      "browserJavaEnabled": "false",
-      "browserLanguage": "ES-es",
-      "browserColorDepth": "24",
-      "browserScreenHeight": "1250",
-      "browserScreenWidth": "1320",
-      "browserTZ": "52",
-      "threeDSServerTransID": threeDSServerTransID,
-      "notificationURL": "https://dev.techlines.es/api/payment/3DS",
-      "threeDSCompInd": "N"
-      },
-      merchantCode: "361686405",
-      orderReference: DS_MERCHANT_ORDER,
-      terminal: "1",
-      transactionType: "0",
-      merchantURL: 'https://b2b.techlines.es/',
-      successURL: 'https://dev.techlines.es/api/payment/3DS',
-      errorURL: 'https://dev.techlines.es/api/payment/3DS'
-    }
-    const authorization = redsys.makePaymentParameters(newObj);
-    console.log(authorization)
-
     const threeDSMethodData = encodeBase64url(objToEncode)
     res.json({ threeDSMethodData, threeDSMethodURL });
   }
@@ -119,23 +88,9 @@ ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => 
   }
 }
 
-// exports.receive3DSMethod = async (req, res) => {
-//   try {
-//     const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData)
-//     console.log(threeDSMethodDataResult);
-//     const threeDSServerTransID = threeDSMethodDataResult.threeDSServerTransID
-//     // find transID in db
-
-//     res.json({ message: '3DS request sent successfully.' })
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: '3DS method request failed.' });
-//   }
-// }
 exports.receive3DSMethod = async (req, res) => {
   try {
     const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData);
-    console.log(threeDSMethodDataResult);
     const threeDSServerTransID = threeDSMethodDataResult.threeDSServerTransID;
 
     // Find transID in db
@@ -146,7 +101,6 @@ exports.receive3DSMethod = async (req, res) => {
 
         // Save the updated record
         transID.save().then(updatedTransID => {
-          console.log("Record updated successfully:", updatedTransID);
           res.json({ message: '3DS request sent successfully.' });
         }).catch(err => {
           console.error({
@@ -171,24 +125,68 @@ exports.receive3DSMethod = async (req, res) => {
 };
 
  exports.authorizationPayment = async (req, res) => {
+try {
+  const {
+    DS_MERCHANT_AMOUNT,
+    DS_MERCHANT_CURRENCY,
+    DS_MERCHANT_IDOPER,
+    DS_MERCHANT_MERCHANTCODE,
+    DS_MERCHANT_ORDER,
+    DS_MERCHANT_TERMINAL,
+    DS_MERCHANT_TRANSACTIONTYPE,
+    DS_MERCHANT_EMV3DS
+  } = req.body;
 
+  const authorizationData = 
+  {
+    amount: DS_MERCHANT_AMOUNT,
+    currency: DS_MERCHANT_CURRENCY,
+    merchantIdOper: DS_MERCHANT_IDOPER,
+    emv3ds:DS_MERCHANT_EMV3DS,
+    merchantCode: DS_MERCHANT_MERCHANTCODE,
+    orderReference: DS_MERCHANT_ORDER,
+    terminal: DS_MERCHANT_TERMINAL,
+    transactionType: DS_MERCHANT_TRANSACTIONTYPE,
+    merchantURL: 'https://b2b.techlines.es/',
+    successURL: 'https://dev.techlines.es/api/payment/ok',
+    errorURL: 'https://dev.techlines.es/api/payment/ko'
+  }
+  const authorization = redsys.makePaymentParameters(authorizationData);
+  console.log("Auth",authorization)
+  //send data
+  const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authorization);
+  if (response.data.errorCode) {
+   console.log(response.data.errorCode)
+  //  getResponseCodeMessage(response.data.errorCode)
+  }
+  else { 
+  const merchantParams = response.data.Ds_MerchantParameters
+  const signature = response.data.Ds_Signature
+  const responseFromBank = redsys.checkResponseParameters(merchantParams, signature);
+  if (responseFromBank.Ds_Response) {
+    res.json({ message: `Response ${responseFromBank.Ds_Response}`});
+  } else {
+    res.json (responseFromBank.Ds_EMV3DS)
+  }
+}
+} catch (error) {
+  console.error(error);
+  res.status(500).json({ message: 'Authorization request failed.' });
+}
  }
-    // const response = {"Ds_SignatureVersion":"HMAC_SHA256_V1","Ds_MerchantParameters":"eyJEc19BbW91bnQiOiIyMDUyNjQiLCJEc19DdXJyZW5jeSI6Ijk3OCIsIkRzX09yZGVyIjoiMzY1NzIxOCIsIkRzX01lcmNoYW50Q29kZSI6IjM2MTY4NjQwNSIsIkRzX1Rlcm1pbmFsIjoiMSIsIkRzX1Jlc3BvbnNlIjoiMDAwMCIsIkRzX0F1dGhvcmlzYXRpb25Db2RlIjoiNDkyNjY4IiwiRHNfVHJhbnNhY3Rpb25UeXBlIjoiMCIsIkRzX1NlY3VyZVBheW1lbnQiOiIyIiwiRHNfTGFuZ3VhZ2UiOiIxIiwiRHNfTWVyY2hhbnREYXRhIjoiIiwiRHNfQ2FyZF9Db3VudHJ5IjoiNzI0IiwiRHNfQ2FyZF9CcmFuZCI6IjEiLCJEc19Qcm9jZXNzZWRQYXlNZXRob2QiOiI4MCIsIkRzX0NvbnRyb2xfMTcwMDgyMDE2NjA3NCI6IjE3MDA4MjAxNjYwNzQifQ==","Ds_Signature":"fslxWfDHV7ofUYvRawidklZAiWFNJWDs-DSt4Xd_ipo="}
-    // const merchantParams = response.Ds_MerchantParameters
-    // const signature = response.Ds_Signature
-    // const responseFromBank = redsys.checkResponseParameters(merchantParams, signature);
-    // console.log(responseFromBank )
-    
-    // const authorization = redsys.makePaymentParameters(newObj);
-    // console.log(authorization)
-    // const res = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authorization);
-    // if (res.data.errorCode) {
-    //  console.log(res.data.errorCode)
-    //  getResponseCodeMessage(res.data.errorCode)
-    // }
-    // else {
-    // const merchantParams = res.data.Ds_MerchantParameters
-    // const signature = res.data.Ds_Signature
-    // const resFromBank = redsys.checkResponseParameters(merchantParams, signature);
-    // console.log(resFromBank );
-    // }
+  
+    // {
+    //   "threeDSInfo": "AuthenticationData",
+    //   "protocolVersion": "2.1.0",
+    //   "browserAcceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json",
+    //   "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
+    //   "browserJavaEnabled": "false",
+    //   "browserLanguage": "ES-es",
+    //   "browserColorDepth": "24",
+    //   "browserScreenHeight": "1250",
+    //   "browserScreenWidth": "1320",
+    //   "browserTZ": "52",
+    //   "threeDSServerTransID": threeDSServerTransID,
+    //   "notificationURL": "https://dev.techlines.es/api/payment/3DS",
+    //   "threeDSCompInd": "N"
+    //   }
