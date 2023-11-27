@@ -99,7 +99,7 @@ exports.createPayment = async (req, res) => {
 
 exports.receive3DSMethod = async (req, res) => {
   try {
-    const threeDSMethodDataResult = decodeBase64url(req.body)
+    const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData)
     console.log(threeDSMethodDataResult);
     res.json({ message: '3DS request sent successfully.' })
   } catch (error) {
