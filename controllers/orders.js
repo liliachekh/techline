@@ -51,20 +51,23 @@ exports.placeOrder = async (req, res, next) => {
     }
     order.products.forEach((cartItem) => cartItem.product.currentPrice = getTierPrice(customer, cartItem.product.currentPrice));
 
-    order.totalSum = order.products.reduce(
+    order.totalSum = Number(order.products.reduce(
       (sum, cartItem) =>
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
-    ).toFixed(2);
-    // order.totalSum = order.products.reduce(
-    //   (sum, cartItem) =>
-    //     sum + getTierPrice(customer, cartItem.product.currentPrice) * cartItem.cartQuantity,
-    //   0
-    // );
-    // if order < 2500 add shipping cost 35
+    ).toFixed(2));
+
     if (order.totalSum < 2501) {
+      if (req.body.paymentInfo === 'CARD') {
+        order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
+      }
       order.totalSum += 35;
+    } else {
+      if (req.body.paymentInfo === 'CARD') {
+        order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
+      }
     }
+    if (order.discount) order.totalSum -= order.discount
 
     const productAvailibilityInfo = await productAvailibilityChecker(
       order.products
@@ -167,16 +170,11 @@ exports.updateOrder = (req, res, next) => {
 
         order.products.forEach((cartItem) => cartItem.product.currentPrice = getTierPrice(customer, cartItem.product.currentPrice));
 
-        order.totalSum = order.products.reduce(
+        order.totalSum = Number(order.products.reduce(
           (sum, cartItem) =>
             sum + cartItem.product.currentPrice * cartItem.cartQuantity,
           0
-        ).toFixed(2);
-        // order.totalSum = order.products.reduce(
-        //   (sum, cartItem) =>
-        //     sum + getTierPrice(customer, cartItem.product.currentPrice) * cartItem.cartQuantity,
-        //   0
-        // );
+        ).toFixed(2));
 
         const productAvailibilityInfo = await productAvailibilityChecker(
           order.products

@@ -31,6 +31,10 @@ const OrderSchema = new Schema(
       type: Number,
       required: true
     },
+    discount: {
+      type: Number,
+      required: false
+    },
     canceled: {
       type: Boolean,
       default: false
