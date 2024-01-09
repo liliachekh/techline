@@ -93,7 +93,7 @@ exports.receive3DSMethod = async (req, res) => {
   try {
     const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData);
     const threeDSServerTransID = threeDSMethodDataResult.threeDSServerTransID;
-
+console.log(threeDSMethodDataResult);
     // Find transID in db
     ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => {
       if (transID) {
