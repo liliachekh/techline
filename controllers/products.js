@@ -183,3 +183,27 @@ exports.searchProducts = async (req, res, next) => {
 
   res.send(matchedProducts);
 };
+
+exports.deleteProduct = (req, res, next) => {
+  Product.findOne({ itemNo: req.params.itemNo }).then(async product => {
+    if (!product) {
+      return res
+        .status(400)
+        .json({ message: `Product with itemNo ${req.params.itemNo} is not found.` });
+    } else {
+      const productToDelete = await Product.findOne({ itemNo: req.params.itemNo });
+
+      Product.deleteOne({ itemNo: req.params.itemNo })
+        .then(deletedCount =>
+          res.status(200).json({
+            message: `Product witn itemNo "${productToDelete.itemNo}" is successfully deletes from DB. Product Details: ${productToDelete}`
+          })
+        )
+        .catch(err =>
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `
+          })
+        );
+    }
+  });
+}
