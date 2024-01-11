@@ -113,7 +113,7 @@ router.get("/:productUrl", getProductById);
 // @desc    Delete existing product
 // @access  Private
 router.delete(
-  "/:itemNo", 
+  "/:itemNo", authAdmin,
   // passport.authenticate("jwt-admin", { session: false }),
   deleteProduct
 );
