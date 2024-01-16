@@ -1,4 +1,6 @@
 const express = require("express");
+// const http = require('http');
+// const WebSocket = require('ws');
 const cookieParser = require('cookie-parser');
 
 const cors = require("cors");
@@ -36,6 +38,7 @@ const { getStaticFilesPath } = require("./utils");
 const mintProducts = require("./routes/mintProducts");
 const discounts = require("./routes/discounts");
 const payment = require("./routes/payment");
+// const { error } = require("console");
 
 const app = express();
 // app.use(cors(corsOptions));
@@ -78,6 +81,30 @@ app.use(passport.initialize());
 // Passport Config
 require("./config/passport")(passport);
 
+// const server = http.createServer(app);
+// // Створюємо WebSocket.Server на тому ж сервері, що і Express
+// const socketServer = new WebSocket.Server({ noServer: true });
+
+// // Обробляємо оновлення сервера
+// server.on('upgrade', (request, socket, head) => {
+//   socketServer.handleUpgrade(request, socket, head, (ws) => {
+//     socketServer.emit('connection', ws, request);
+//   });
+// });
+
+// // Логіка WebSocket
+// socketServer.on('connection', (socket) => {
+//   console.log('WebSocket connection established.');
+
+  // app.post('/api/payment/3DS', (req, res) => {
+  //   const { threeDSMethodData } = req.body;
+
+  //   const result = { threeDSServerTransID:threeDSMethodData.threeDSServerTransID, threeDSCompInd: 'Y' }; 
+
+  //   socket.send(JSON.stringify(result));
+  //   res.json({ message: 'Result sent to the frontend.' });
+  // });
+// });
 // Use Routes
 app.use("/api/configs", globalConfigs);
 app.use("/api/customers", customers);
