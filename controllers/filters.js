@@ -57,29 +57,52 @@ exports.updateFilter = (req, res, next) => {
     );
 };
 
-exports.deleteFilter = (req, res, next) => {
-  Filter.findOne({ _id: req.params.id }).then(async filter => {
-    if (!filter) {
-      return res
-        .status(400)
-        .json({ message: `Filter with _id "${req.params.id}" is not found.` });
-    } else {
-      const filterToDelete = await Filter.findOne({ _id: req.params.id });
+exports.deleteFilters = (req, res, next) => {
+  // const filterIds = req.body.filterIds; 
+  const filterIds = req.body;
+  Filter.find({ _id: { $in: filterIds } })
+    .then(async filters => {
+      if (!filters || filters.length === 0) {
+        return res
+          .status(400)
+          .json({ message: `Filters with provided IDs are not found.` });
+      } else {
+        const deletedFilters = await Filter.deleteMany({ _id: { $in: filterIds } });
 
-      Filter.deleteOne({ _id: req.params.id })
-        .then(deletedCount =>
-          res.status(200).json({
-            message: `Filter witn type "${filterToDelete.type}" and name "${filterToDelete.name}" is successfully deletes from DB `
-          })
-        )
-        .catch(err =>
-          res.status(400).json({
-            message: `Error happened on server: "${err}" `
-          })
-        );
-    }
-  });
+        res.status(200).json({
+          message: `${deletedFilters.deletedCount} filters are successfully deleted from DB.`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      });
+    });
 };
+// exports.deleteFilter = (req, res, next) => {
+//   Filter.findOne({ _id: req.params.id }).then(async filter => {
+//     if (!filter) {
+//       return res
+//         .status(400)
+//         .json({ message: `Filter with _id "${req.params.id}" is not found.` });
+//     } else {
+//       const filterToDelete = await Filter.findOne({ _id: req.params.id });
+
+//       Filter.deleteOne({ _id: req.params.id })
+//         .then(deletedCount =>
+//           res.status(200).json({
+//             message: `Filter witn type "${filterToDelete.type}" and name "${filterToDelete.name}" is successfully deletes from DB `
+//           })
+//         )
+//         .catch(err =>
+//           res.status(400).json({
+//             message: `Error happened on server: "${err}" `
+//           })
+//         );
+//     }
+//   });
+// };
 
 exports.getFilters = (req, res, next) => {
   Filter.find()

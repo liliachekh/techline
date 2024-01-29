@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 const {
   addFilter,
   updateFilter,
-  deleteFilter,
+  deleteFilters,
   getFilters,
   getFiltersByType
 } = require("../controllers/filters");
@@ -32,13 +32,13 @@ router.put(
   updateFilter
 );
 
-// @route   DELETE /filters/:id
+// @route   DELETE /filters
 // @desc    DELETE existing filter
 // @access  Private
 router.delete(
-  "/:id", authAdmin ,
+  "/", authAdmin ,
   // passport.authenticate("jwt-admin", { session: false }),
-  deleteFilter
+  deleteFilters
 );
 
 // @route   GET /filters
