@@ -106,6 +106,7 @@ exports.deleteFilters = (req, res, next) => {
 
 exports.getFilters = (req, res, next) => {
   Filter.find()
+    .sort({ name: 1 }) // Сортування по полю 'name' в алфавітному порядку
     .then(filters => res.json(filters))
     .catch(err =>
       res.status(400).json({
@@ -116,6 +117,7 @@ exports.getFilters = (req, res, next) => {
 
 exports.getFiltersByType = (req, res, next) => {
   Filter.find({ type: req.params.type })
+    .sort({ name: 1 }) // Сортування по полю 'name' в алфавітному порядку
     .then(filters => res.json(filters))
     .catch(err =>
       res.status(400).json({
