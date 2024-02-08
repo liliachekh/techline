@@ -57,7 +57,7 @@ exports.createPayment = async (req, res) => {
       const protocolVersion = responseFromBank.Ds_EMV3DS.protocolVersion
       const objToEncode = {
         threeDSServerTransID: threeDSServerTransID,
-        threeDSMethodNotificationURL: 'https://dev.techlines.es/api/payment/3DS'
+        threeDSMethodNotificationURL: 'https://storage.techlines.es/api/payment/3DS'
       };
       console.log(objToEncode);
       // save transID to db
@@ -169,8 +169,8 @@ exports.authorizationPayment = async (req, res) => {
       terminal: DS_MERCHANT_TERMINAL,
       transactionType: DS_MERCHANT_TRANSACTIONTYPE,
       merchantURL: 'https://b2b.techlines.es/',
-      successURL: 'https://dev.techlines.es/api/payment/ok',
-      errorURL: 'https://dev.techlines.es/api/payment/ko'
+      successURL: 'https://storage.techlines.es/api/payment/ok',
+      errorURL: 'https://storage.techlines.es/api/payment/ko'
     }
     const authorization = redsys.makePaymentParameters(authorizationData);
     console.log("Auth", authorization)
@@ -208,6 +208,6 @@ exports.authorizationPayment = async (req, res) => {
     //   "browserScreenWidth": "1320",
     //   "browserTZ": "52",
     //   "threeDSServerTransID": threeDSServerTransID,
-    //   "notificationURL": "https://dev.techlines.es/api/payment/3DS",
+    //   "notificationURL": "https://storage.techlines.es/api/payment/3DS",
     //   "threeDSCompInd": "N"
     //   }
