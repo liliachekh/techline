@@ -224,6 +224,50 @@ exports.getCustomer = (req, res) => {
   res.json(req.user);
 };
 
+// Controller for getting all customers
+exports.getCustomers = (req, res) => {
+  Customer.find({isAdmin: false}).select('-password')
+    .then(customers => res.status(200).json(customers))
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
+// Controller for updating customer info
+exports.updateCustomer = (req, res) => {
+  Customer.findOne({ _id: req.params.id })
+    .then(customer => {
+      if (!customer) {
+        return res.status(400).json({
+          message: `Customer with id "${req.params.id}" is not found.`
+        });
+      } else {
+        const customerFields = _.cloneDeep(req.body);
+
+        const updatedCustomer = queryCreator(customerFields);
+
+        Customer.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: updatedCustomer },
+          { new: true }
+        )
+          .then(customer => res.json(customer))
+          .catch(err =>
+            res.status(400).json({
+              message: `Error happened on server: "${err}" `
+            })
+          );
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
 // Controller for editing customer personal info
 exports.editCustomerInfo = (req, res) => {
   // Clone query object, because validator module mutates req.body, adding other fields to object

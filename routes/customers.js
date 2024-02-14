@@ -11,9 +11,12 @@ const {
   logOutCustomer,
   getCustomer,
   editCustomerInfo,
-  updatePassword
+  updatePassword,
+  getCustomers,
+  updateCustomer
 } = require("../controllers/customers");
 const auth = require("../middleware/auth");
+const authAdmin = require("../middleware/authAdmin");
 
 // @route   POST /customers
 // @desc    Register customer
@@ -47,6 +50,24 @@ router.get(
   "/customer",auth,
   // passport.authenticate("jwt", { session: false }),
   getCustomer
+);
+
+// @route   GET /
+// @desc    Return all customers
+// @access  Private (Admin-Only)
+router.get(
+  "/customers", authAdmin,
+  // passport.authenticate("jwt", { session: false }),
+  getCustomers
+);
+
+// @route   PUT /customers
+// @desc    Return customers id
+// @access  Private (Admin-Only)
+router.put(
+  "/customers/:id", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
+  updateCustomer
 );
 
 // @route   PUT /customers
