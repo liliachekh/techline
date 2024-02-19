@@ -173,7 +173,6 @@ function productInvoiceFields (height, fontSize, verticalPosition, product, amou
   return [
   {
     type: "text-product",
-    // text: `${product.product.name}`,
     text: text,
     x: 55,
     y: height - verticalPosition * fontSize,
@@ -235,73 +234,8 @@ function productInvoiceFields (height, fontSize, verticalPosition, product, amou
   }
 ]
 }
-
-function dynamicTableFields (height, fontSize, order, cartQuantity, verticalPosition) {
-  let paymentFee = 0;
-  if (order.paymentInfo === "CARD") {
-    paymentFee = ((order.totalSum - order.deliveryPrice) * 0.017).toFixed(2);}
- 
+function deliveryTableFields (height, fontSize, order, verticalPosition) {
   return [
-    // {
-    //   type: "text-dynamic",
-    //   text: "Payment fee (1,7%)",
-    //   x: 55,
-    //   y: height - verticalPosition * fontSize,
-    // },
-    // {
-    //   type: "rectangle-dynamic",
-    //   x: 50,
-    //   y: height - (verticalPosition + 1) * fontSize,
-    //   width: 275,
-    //   height: 25,
-    //   borderColor: rgb(0, 0, 0),
-    //   borderWidth: 1.5,
-    // },
-    // {
-    //   type: "text-dynamic",
-    //   text: ``,
-    //   x: 345,
-    //   y: height - verticalPosition * fontSize,
-    // },
-    // {
-    //   type: "rectangle-dynamic",
-    //   x: 325,
-    //   y: height - (verticalPosition + 1) * fontSize,
-    //   width: 50,
-    //   height: 25,
-    //   borderColor: rgb(0, 0, 0),
-    //   borderWidth: 1.5,
-    // },
-    // {
-    //   type: "text-dynamic",
-    //   text: `€ ${paymentFee}`,
-    //   x: 385,
-    //   y: height - verticalPosition * fontSize,
-    // },
-    // {
-    //   type: "rectangle-dynamic",
-    //   x: 375,
-    //   y: height - (verticalPosition + 1) * fontSize,
-    //   width: 70,
-    //   height: 25,
-    //   borderColor: rgb(0, 0, 0),
-    //   borderWidth: 1.5,
-    // }, 
-    // {
-    //   type: "text-dynamic",
-    //   text: `€ ${paymentFee}`,
-    //   x: 480,
-    //   y: height - verticalPosition * fontSize,
-    // },
-    // {
-    //   type: "rectangle-dynamic",
-    //   x: 445,
-    //   y: height - (verticalPosition + 1) * fontSize,
-    //   width: 100,
-    //   height: 25,
-    //   borderColor: rgb(0, 0, 0),
-    //   borderWidth: 1.5,
-    // }, 
     {
       type: "text-dynamic",
       text: "Delivery",
@@ -361,23 +295,157 @@ function dynamicTableFields (height, fontSize, order, cartQuantity, verticalPosi
       height: 25,
       borderColor: rgb(0, 0, 0),
       borderWidth: 1.5,
+    }
+  ]
+}
+function paymentTableFields (height, fontSize, paymentFee, verticalPosition) {
+
+  return [
+     {
+      type: "text-dynamic",
+      text: "Payment fee (1,7%)",
+      x: 55,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 50,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 275,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    },
+    {
+      type: "text-dynamic",
+      text: ``,
+      x: 345,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 325,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 50,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    },
+    {
+      type: "text-dynamic",
+      text: `€ ${paymentFee}`,
+      x: 385,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 375,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 70,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
     }, 
+    {
+      type: "text-dynamic",
+      text: `€ ${paymentFee}`,
+      x: 480,
+      y: height - verticalPosition * fontSize,
+    },
+    {
+      type: "rectangle-dynamic",
+      x: 445,
+      y: height - (verticalPosition + 1) * fontSize,
+      width: 100,
+      height: 25,
+      borderColor: rgb(0, 0, 0),
+      borderWidth: 1.5,
+    }
+  ]}
+
+  function discountTableFields (height, fontSize, order, verticalPosition) {
+    return[
+      {
+        type: "text-dynamic",
+        text: "Discount",
+        x: 55,
+        y: height - verticalPosition * fontSize,
+      },
+      {
+        type: "rectangle-dynamic",
+        x: 50,
+        y: height - (verticalPosition + 1) * fontSize,
+        width: 275,
+        height: 25,
+        borderColor: rgb(0, 0, 0),
+        borderWidth: 1.5,
+      },
+      {
+        type: "text-dynamic",
+        text: ``,
+        x: 345,
+        y: height - verticalPosition * fontSize,
+      },
+      {
+        type: "rectangle-dynamic",
+        x: 325,
+        y: height - (verticalPosition + 1) * fontSize,
+        width: 50,
+        height: 25,
+        borderColor: rgb(0, 0, 0),
+        borderWidth: 1.5,
+      },
+      {
+        type: "text-dynamic",
+        text: `€ ${order.discount}`,
+        x: 385,
+        y: height - verticalPosition * fontSize,
+      },
+      {
+        type: "rectangle-dynamic",
+        x: 375,
+        y: height - (verticalPosition + 1) * fontSize,
+        width: 70,
+        height: 25,
+        borderColor: rgb(0, 0, 0),
+        borderWidth: 1.5,
+      }, 
+      {
+        type: "text-dynamic",
+        text: `€ ${order.discount}`,
+        x: 480,
+        y: height - verticalPosition * fontSize,
+      },
+      {
+        type: "rectangle-dynamic",
+        x: 445,
+        y: height - (verticalPosition + 1) * fontSize,
+        width: 100,
+        height: 25,
+        borderColor: rgb(0, 0, 0),
+        borderWidth: 1.5,
+      }
+    ]
+  }
+function totalTableFields (height, fontSize, order, cartQuantity, verticalPosition) {
+ 
+  return [
   {
     type: "text-dynamic",
     text: "TOTAL",
     x: 280,
-    y: height - (verticalPosition + 2) * fontSize,
+    y: height - verticalPosition  * fontSize,
   },
   {
     type: "text-dynamic",
     text: `${cartQuantity}`,
     x: 345,
-    y: height - (verticalPosition+ 2) * fontSize,
+    y: height - verticalPosition * fontSize,
   },
   {
     type: "rectangle-dynamic",
     x: 325,
-    y: height - (verticalPosition + 3) * fontSize,
+    y: height - (verticalPosition + 1) * fontSize,
     width: 50,
     height: 25,
     borderColor: rgb(0, 0, 0),
@@ -387,12 +455,12 @@ function dynamicTableFields (height, fontSize, order, cartQuantity, verticalPosi
     type: "text-dynamic",
     text: "",
     x: 385,
-    y: height - (verticalPosition + 2) * fontSize,
+    y: height - verticalPosition * fontSize,
   },
   {
     type: "rectangle-dynamic",
     x: 375,
-    y: height - (verticalPosition + 3) * fontSize,
+    y: height - (verticalPosition + 1) * fontSize,
     width: 70,
     height: 25,
     borderColor: rgb(0, 0, 0),
@@ -402,12 +470,12 @@ function dynamicTableFields (height, fontSize, order, cartQuantity, verticalPosi
     type: "text-dynamic",
     text: `€ ${order.totalSum}`,
     x: 480,
-    y: height - (verticalPosition + 2) * fontSize,
+    y: height - verticalPosition * fontSize,
   },
   {
     type: "rectangle-dynamic",
     x: 445,
-    y: height - (verticalPosition + 3) * fontSize,
+    y: height - (verticalPosition + 1) * fontSize,
     width: 100,
     height: 25,
     borderColor: rgb(0, 0, 0),
@@ -490,4 +558,4 @@ function dynamicInvoiceFields (height, fontSize, order, customer, verticalPositi
 ]
 }
 
-module.exports = {staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields, dynamicTableFields }
+module.exports = {staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields, totalTableFields, deliveryTableFields, paymentTableFields, discountTableFields }

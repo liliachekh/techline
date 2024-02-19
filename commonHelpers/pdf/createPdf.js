@@ -1,7 +1,15 @@
 const { PDFDocument, StandardFonts, rgb } = require("pdf-lib")
 const fs = require("fs-extra");
 const { readFile, writeFile } = require("fs/promises")
-const { staticInvoiceFields, dynamicInvoiceFields, productInvoiceFields, dynamicTableFields } = require("./invoiceFields")
+const { 
+  staticInvoiceFields,
+  dynamicInvoiceFields,
+  productInvoiceFields,
+  totalTableFields,
+  deliveryTableFields,
+  paymentTableFields,
+  discountTableFields } = require("./invoiceFields");
+const { log } = require("console");
 
 
 const date = new Date()
@@ -69,7 +77,45 @@ module.exports = async function createPdf(output, order, customer) {
       cartQuantity += product.cartQuantity
     })
 
-    dynamicTableFields (height, fontSize, order, cartQuantity, verticalPosition).forEach(field => {
+    let paymentFee = 0;
+  if (order.paymentInfo === "CARD") {
+    paymentFee = ((order.totalSum - order.deliveryPrice) * 0.017).toFixed(2);
+    paymentTableFields(height, fontSize, paymentFee, verticalPosition).forEach(field => {
+      if (field.type === "text-dynamic") {
+        return page.drawText(field.text, { ...field })
+      }
+      if (field.type === "rectangle-dynamic") {
+        return page.drawRectangle({ ...field })
+      }
+    })
+    verticalPosition += 2
+  }
+
+if (order.deliveryPrice > 0) {
+  deliveryTableFields (height, fontSize, order, verticalPosition).forEach(field => {
+    if (field.type === "text-dynamic") {
+      return page.drawText(field.text, { ...field })
+    }
+    if (field.type === "rectangle-dynamic") {
+      return page.drawRectangle({ ...field })
+    }
+  })
+  verticalPosition += 2
+}
+
+if (order.discount){
+discountTableFields (height, fontSize, order, verticalPosition).forEach(field => {
+  if (field.type === "text-dynamic") {
+    return page.drawText(field.text, { ...field })
+  }
+  if (field.type === "rectangle-dynamic") {
+    return page.drawRectangle({ ...field })
+  }
+})
+verticalPosition += 2
+}
+
+    totalTableFields (height, fontSize, order, cartQuantity, verticalPosition).forEach(field => {
       if (field.type === "text-dynamic") {
         return page.drawText(field.text, { ...field })
       }

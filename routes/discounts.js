@@ -27,11 +27,11 @@ router.get(
   getDiscount
 );
 
-// @route   PUT /discounts/discount
+// @route   PUT /discounts/:code
 // @desc    Update discountCode as not active
 // @access  Public
 router.put(
-  "/discount", auth,
+  "/:code", auth,
   useDiscount
 );
 module.exports = router;

@@ -27,23 +27,7 @@ res.send({newDiscountCode})
 }
 while (isExistDiscount);
 }
-
-// exports.getDiscount = (req, res) => {
-//   Discounts.findOne({ code: req.body.code })
-//   .then(code => {
-//      // Check if code exist
-//   if (!code || !code.isActive) {
-//     return res.status(404).json({message: "Discount not found"});
-//   } else {
-//     res.json(code)
-//   }
-// })
-// .catch(err =>
-//   res.status(400).json({
-//     message: `Error happened on server: "${err}" `
-//   })
-// );
- // }  
+ 
   exports.getDiscount = (req, res) => {
     Discounts.findOne({ code: req.params.code })
     .then(code => {
@@ -61,18 +45,17 @@ while (isExistDiscount);
   );
     } 
   exports.useDiscount = (req, res) => {
-    Discounts.findOne({ code: req.body.code })
+    Discounts.findOne({ code: req.params.code })
     .then(code => {
        // Check if code exist
     if (!code || !code.isActive) {
       return res.status(404).json({message: "Discount not found"});
     } else {
-      const initialQuery = _.cloneDeep(req.body);
-      const updatedDiscount = queryCreator(initialQuery);
+      code.isActive = false
 
       Discounts.findOneAndUpdate(
-        { code: req.body.code},
-        { $set: updatedDiscount },
+        { code: req.params.code},
+        { $set: code },
         { new: true }
       )
         .then(discount => res.json(discount))
