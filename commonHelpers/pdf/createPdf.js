@@ -79,7 +79,7 @@ module.exports = async function createPdf(output, order, customer) {
 
     let paymentFee = 0;
   if (order.paymentInfo === "CARD") {
-    paymentFee = ((order.totalSum - order.deliveryPrice) * 0.017).toFixed(2);
+    paymentFee = (order.totalSum/1.017 * 0.017).toFixed(2);
     paymentTableFields(height, fontSize, paymentFee, verticalPosition).forEach(field => {
       if (field.type === "text-dynamic") {
         return page.drawText(field.text, { ...field })

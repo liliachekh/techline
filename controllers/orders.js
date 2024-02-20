@@ -56,19 +56,20 @@ exports.placeOrder = async (req, res, next) => {
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
     ).toFixed(2));
+    
+    if (order.discount) order.totalSum -= order.discount
 
     if (order.totalSum < 2501) {
+      order.totalSum += 35;
       if (req.body.paymentInfo === 'CARD') {
         order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
       }
-      order.totalSum += 35;
     } else {
       if (req.body.paymentInfo === 'CARD') {
         order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
       }
     }
-    if (order.discount) order.totalSum -= order.discount
-
+  
     const productAvailibilityInfo = await productAvailibilityChecker(
       order.products
     );
