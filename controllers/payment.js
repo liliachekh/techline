@@ -91,59 +91,63 @@ exports.createPayment = async (req, res) => {
 
 exports.receive3DSMethod = async (req, res) => {
   try {
-    const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData);
-    const threeDSServerTransID = threeDSMethodDataResult.threeDSServerTransID;
-console.log(threeDSMethodDataResult);
-    // Find transID in db
-    ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => {
-      if (transID) {
-        // Update the record with the new field
-        transID.threeDSCompInd = "Y";
+//     const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData);
+//     const threeDSServerTransID = threeDSMethodDataResult.threeDSServerTransID;
+// console.log(threeDSMethodDataResult);
+//     // Find transID in db
+//     ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => {
+//       if (transID) {
+//         // Update the record with the new field
+//         transID.threeDSCompInd = "Y";
 
-        // Save the updated record
-        transID.save().then(updatedTransID => {
-          res.json({ message: '3DS request sent successfully.' });
-        }).catch(err => {
-          console.error({
-            message: `Error updating record: "${err}" `
-          });
-          res.status(500).json({ message: '3DS method request failed.' });
-        });
-      } else {
-        console.error({ message: `TransID with threeDSServerTransID "${threeDSServerTransID}" not found in the database.` });
-        res.status(404).json({ message: 'TransID not found in the database.' });
-      }
-    }).catch(err => {
-      console.error({
-        message: `Error finding record: "${err}" `
-      });
-      res.status(500).json({ message: '3DS method request failed.' });
-    });
+//         // Save the updated record
+//         transID.save().then(updatedTransID => {
+//           res.json({ message: '3DS request sent successfully.' });
+//         }).catch(err => {
+//           console.error({
+//             message: `Error updating record: "${err}" `
+//           });
+//           res.status(500).json({ message: '3DS method request failed.' });
+//         });
+//       } else {
+//         console.error({ message: `TransID with threeDSServerTransID "${threeDSServerTransID}" not found in the database.` });
+//         res.status(404).json({ message: 'TransID not found in the database.' });
+//       }
+//     }).catch(err => {
+//       console.error({
+//         message: `Error finding record: "${err}" `
+//       });
+//       res.status(500).json({ message: '3DS method request failed.' });
+//     });
+setTimeout(() => {
+  res.json({ message: '10 сек 3DS request sent successfully.' });
+}, 10000)
+// res.json({ message: '3DS request sent successfully.' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: '3DS method request failed.' });
   }
 };
 
-exports.get3DSTransId = async (req, res) => {
-  ThreeDS.findOne({
-    threeDSServerTransID: req.params.threeDSServerTransID
-  })
-    .then(transID => {
-      if (!transID) {
-        res.status(400).json({
-          message: `ThreeDSServerTransID ${req.params.threeDSServerTransID} is not found`
-        });
-      } else {
-        res.json(transID);
-      }
-    })
-    .catch(err =>
-      res.status(400).json({
-        message: `Error happened on server: "${err}" `
-      })
-    );
-}
+// exports.get3DSTransId = async (req, res) => {
+//   ThreeDS.findOne({
+//     threeDSServerTransID: req.params.threeDSServerTransID
+//   })
+//     .then(transID => {
+//       if (!transID) {
+//         res.status(400).json({
+//           message: `ThreeDSServerTransID ${req.params.threeDSServerTransID} is not found`
+//         });
+//       } else {
+//         res.json(transID);
+//       }
+//     })
+//     .catch(err =>
+//       res.status(400).json({
+//         message: `Error happened on server: "${err}" `
+//       })
+//     );
+// }
 
 exports.authorizationPayment = async (req, res) => {
   try {
@@ -195,19 +199,3 @@ exports.authorizationPayment = async (req, res) => {
     res.status(500).json({ message: 'Authorization request failed.' });
   }
 }
-
-    // {
-    //   "threeDSInfo": "AuthenticationData",
-    //   "protocolVersion": "2.1.0",
-    //   "browserAcceptHeader": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json",
-    //   "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
-    //   "browserJavaEnabled": "false",
-    //   "browserLanguage": "ES-es",
-    //   "browserColorDepth": "24",
-    //   "browserScreenHeight": "1250",
-    //   "browserScreenWidth": "1320",
-    //   "browserTZ": "52",
-    //   "threeDSServerTransID": threeDSServerTransID,
-    //   "notificationURL": "https://storage.techlines.es/api/payment/3DS",
-    //   "threeDSCompInd": "N"
-    //   }
