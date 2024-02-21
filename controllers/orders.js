@@ -57,10 +57,10 @@ exports.placeOrder = async (req, res, next) => {
       0
     ).toFixed(2));
     
-    if (order.discount) order.totalSum -= order.discount
+    if (order.discount) order.totalSum = (Number(order.totalSum) - Number(order.discount)).toFixed(2);
 
     if (order.totalSum < 2501) {
-      order.totalSum += 35;
+      order.totalSum = (Number(order.totalSum) + 35).toFixed(2);
       if (req.body.paymentInfo === 'CARD') {
         order.totalSum = Number((order.totalSum + (order.totalSum * 0.017)).toFixed(2));
       }
