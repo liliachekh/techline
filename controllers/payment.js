@@ -36,7 +36,7 @@ exports.createPayment = async (req, res) => {
         "threeDSInfo": "CardData"
       }
     };
-    console.log(paymentData)
+    console.log("paymentData: ",paymentData)
     //Encrypt data with RedSys
     const result = redsys.makePaymentParameters(paymentData);
 
@@ -50,7 +50,7 @@ exports.createPayment = async (req, res) => {
       const merchantParams = response.data.Ds_MerchantParameters
       const signature = response.data.Ds_Signature
       const responseFromBank = redsys.checkResponseParameters(merchantParams, signature);
-      console.log(responseFromBank);
+      console.log("responseFromBank: ",responseFromBank);
       //make obj for threeDSMethodData
       const threeDSServerTransID = responseFromBank.Ds_EMV3DS.threeDSServerTransID
       const threeDSMethodURL = responseFromBank.Ds_EMV3DS.threeDSMethodURL
@@ -59,26 +59,7 @@ exports.createPayment = async (req, res) => {
         threeDSServerTransID: threeDSServerTransID,
         threeDSMethodNotificationURL: 'https://storage.techlines.es/api/payment/3DS'
       };
-      console.log(objToEncode);
-      // save transID to db
-      ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => {
-        if (transID) {
-          console.error({ message: `TransID with threeDSServerTransID "${transID.threeDSServerTransID}" already exists` });
-        } else {
-          const newThreeDS = new ThreeDS({
-            threeDSServerTransID: threeDSServerTransID
-          });
-
-          newThreeDS
-            .save()
-            .then(transID => console.log(transID))
-            .catch(err =>
-              console.error({
-                message: `Error happened on server: "${err}" `
-              })
-            );
-        }
-      });
+      console.log("threeDSMethodData: ",objToEncode);
 
       const threeDSMethodData = encodeBase64url(objToEncode)
       res.json({ threeDSMethodData, threeDSMethodURL, threeDSServerTransID, protocolVersion });
@@ -91,63 +72,16 @@ exports.createPayment = async (req, res) => {
 
 exports.receive3DSMethod = async (req, res) => {
   try {
-//     const threeDSMethodDataResult = decodeBase64url(req.body.threeDSMethodData);
-//     const threeDSServerTransID = threeDSMethodDataResult.threeDSServerTransID;
-// console.log(threeDSMethodDataResult);
-//     // Find transID in db
-//     ThreeDS.findOne({ threeDSServerTransID: threeDSServerTransID }).then(transID => {
-//       if (transID) {
-//         // Update the record with the new field
-//         transID.threeDSCompInd = "Y";
-
-//         // Save the updated record
-//         transID.save().then(updatedTransID => {
-//           res.json({ message: '3DS request sent successfully.' });
-//         }).catch(err => {
-//           console.error({
-//             message: `Error updating record: "${err}" `
-//           });
-//           res.status(500).json({ message: '3DS method request failed.' });
-//         });
-//       } else {
-//         console.error({ message: `TransID with threeDSServerTransID "${threeDSServerTransID}" not found in the database.` });
-//         res.status(404).json({ message: 'TransID not found in the database.' });
-//       }
-//     }).catch(err => {
-//       console.error({
-//         message: `Error finding record: "${err}" `
-//       });
-//       res.status(500).json({ message: '3DS method request failed.' });
-//     });
-setTimeout(() => {
-  res.json({ message: '10 сек 3DS request sent successfully.' });
-}, 10000)
+// setTimeout(() => {
+//   res.json({ message: '10 сек 3DS request sent successfully.' });
+// }, 10000)
 // res.json({ message: '3DS request sent successfully.' });
+res.json(req.body);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: '3DS method request failed.' });
   }
 };
-
-// exports.get3DSTransId = async (req, res) => {
-//   ThreeDS.findOne({
-//     threeDSServerTransID: req.params.threeDSServerTransID
-//   })
-//     .then(transID => {
-//       if (!transID) {
-//         res.status(400).json({
-//           message: `ThreeDSServerTransID ${req.params.threeDSServerTransID} is not found`
-//         });
-//       } else {
-//         res.json(transID);
-//       }
-//     })
-//     .catch(err =>
-//       res.status(400).json({
-//         message: `Error happened on server: "${err}" `
-//       })
-//     );
-// }
 
 exports.authorizationPayment = async (req, res) => {
   try {

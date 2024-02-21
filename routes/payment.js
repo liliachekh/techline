@@ -20,11 +20,6 @@ router.post("/", auth, createPayment);
 // @access  Public
 router.post ("/3DS", receive3DSMethod)
 
-// @route   GET /payment/3DS/threeDSServerTransID
-// @desc    receive response from bank info
-// @access  Public
-// router.get ("/3DS/:threeDSServerTransID", auth, get3DSTransId)
-
 // @route   POST /payment/authorization
 // @desc    receive response from bank info
 // @access  Public
