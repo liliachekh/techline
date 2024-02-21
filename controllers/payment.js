@@ -74,6 +74,7 @@ exports.receive3DSMethod = async (req, res) => {
 // setTimeout(() => {
 //   res.json({ message: '10 сек 3DS request sent successfully.' });
 // }, 10000)
+console.log("3DS answer", req.body);
 res.json({ message: '3DS request sent successfully.' });
   } catch (error) {
     console.error(error);
@@ -109,7 +110,7 @@ exports.authorizationPayment = async (req, res) => {
       errorURL: 'https://storage.techlines.es/api/payment/ko'
     }
     const authorization = redsys.makePaymentParameters(authorizationData);
-    console.log("Auth", authorization)
+    console.log("Auth",redsys.checkResponseParameters(authorization))
     //send data
     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authorization);
     if (response.data.errorCode) {
