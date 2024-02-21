@@ -6,8 +6,7 @@ const auth = require("../middleware/auth");
 const {
   createPayment,
   receive3DSMethod,
-  authorizationPayment,
-  get3DSTransId
+  authorizationPayment
 } = require("../controllers/payment");
 
 // @route   POST /payment

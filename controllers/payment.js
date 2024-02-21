@@ -1,7 +1,6 @@
 const RedSys = require('../commonHelpers/redsys/index.js');
 const { CURRENCIES, TRANSACTION_TYPES } = RedSys;
 const axios = require('axios');
-const ThreeDS = require("../models/3DS");
 
 const MERCHANT_KEY = "sq7HjrUOBfKmC576ILgskD5srU870gJ7"; // TESTING KEY
 const redsys = new RedSys(MERCHANT_KEY);
