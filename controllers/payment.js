@@ -110,7 +110,7 @@ exports.authorizationPayment = async (req, res) => {
       errorURL: 'https://storage.techlines.es/api/payment/ko'
     }
     const authorization = redsys.makePaymentParameters(authorizationData);
-    console.log("Auth",redsys.checkResponseParameters(authorization))
+    console.log("Auth", authorization)
     //send data
     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authorization);
     if (response.data.errorCode) {
