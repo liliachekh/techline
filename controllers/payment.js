@@ -28,8 +28,8 @@ exports.createPayment = async (req, res) => {
       transactionType: DS_MERCHANT_TRANSACTIONTYPE,
       terminal: DS_MERCHANT_TERMINAL,
       merchantURL: 'https://b2b.techlines.es/',
-      successURL: 'http://localhost:8080/success',
-      errorURL: 'http://localhost:8080/error',
+      successURL: 'https://b2b.techlines.es/',
+      errorURL: 'https://b2b.techlines.es/',
       merchantIdOper: DS_MERCHANT_IDOPER,
       emv3ds: {
         "threeDSInfo": "CardData"
@@ -75,8 +75,9 @@ exports.receive3DSMethod = async (req, res) => {
 //   res.json({ message: '10 сек 3DS request sent successfully.' });
 // }, 10000)
 if (req.body.cres) {
+  res.redirect('https://b2b.techlines.es')
   console.log("Answer from bank", req.body);
-  res.json( req.body)
+  // res.json( req.body)
 }
 else {
   res.json({ message: '3DS request sent successfully.' });
