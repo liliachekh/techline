@@ -74,8 +74,13 @@ exports.receive3DSMethod = async (req, res) => {
 // setTimeout(() => {
 //   res.json({ message: '10 сек 3DS request sent successfully.' });
 // }, 10000)
-console.log("3DS answer", req.body);
-res.json({ message: '3DS request sent successfully.' });
+if (req.body.cres) {
+  console.log("Answer from bank", req.body);
+  res.json( req.body)
+}
+else {
+  res.json({ message: '3DS request sent successfully.' });
+}
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: '3DS method request failed.' });
