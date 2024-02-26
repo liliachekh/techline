@@ -77,7 +77,7 @@ if (req.body.cres) {
      paymentDataFromSession.emv3ds = {
       threeDSInfo : "ChallengeResponse",
       cres : req.body.cres,
-      protocolVersion : paymentDataFromSession.emv3ds.protocolVersion
+      protocolVersion : paymentDataFromSession?.emv3ds.protocolVersion
      }
     
      console.log("paymentDataFromSession", paymentDataFromSession);
@@ -135,7 +135,7 @@ exports.authorizationPayment = async (req, res) => {
     }
     req.session.temporaryPaymentData = authorizationData;
     const authorization = redsys.makePaymentParameters(authorizationData);
-    console.log("Auth", authorization)
+    console.log("Auth", req.session.temporaryPaymentData)
     //send data
     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authorization);
     if (response.data.errorCode) {
