@@ -75,9 +75,9 @@ exports.receive3DSMethod = async (req, res) => {
 //   res.json({ message: '10 сек 3DS request sent successfully.' });
 // }, 10000)
 if (req.body.cres) {
-  const paymentDataFromSession = req.session.temporaryPaymentData
+  // const paymentDataFromSession = req.session.temporaryPaymentData
   // res.redirect('https://b2b.techlines.es')
-  console.log("Answer from bank", req.body, paymentDataFromSession);
+  console.log("Answer from bank", req.body, req.session);
   res.json( req.body)
 }
 else {
@@ -117,6 +117,7 @@ exports.authorizationPayment = async (req, res) => {
       errorURL: 'https://storage.techlines.es/api/payment/ko'
     }
     req.session.temporaryPaymentData = authorizationData;
+    console.log(req.session);
     const authorization = redsys.makePaymentParameters(authorizationData);
     console.log("Auth", authorization)
     //send data
