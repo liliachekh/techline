@@ -76,9 +76,9 @@ exports.receive3DSMethod = async (req, res) => {
 // }, 10000)
 if (req.body.cres) {
   const paymentDataFromSession = req.session.temporaryPaymentData
-  res.redirect('https://b2b.techlines.es')
+  // res.redirect('https://b2b.techlines.es')
   console.log("Answer from bank", req.body, paymentDataFromSession);
-  // res.json( req.body)
+  res.json( req.body)
 }
 else {
   res.json({ message: '3DS request sent successfully.' });
