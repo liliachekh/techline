@@ -28,8 +28,8 @@ exports.createPayment = async (req, res) => {
       transactionType: DS_MERCHANT_TRANSACTIONTYPE,
       terminal: DS_MERCHANT_TERMINAL,
       merchantURL: 'https://b2b.techlines.es/',
-      successURL: 'https://storage.techlines.es/api/payment/ok',
-      errorURL: 'https://storage.techlines.es/api/payment/ko',
+      successURL: 'https://b2b.techlines.es/payment/ok',
+      errorURL: 'https://b2b.techlines.es/payment/ko',
       merchantIdOper: DS_MERCHANT_IDOPER,
       emv3ds: {
         "threeDSInfo": "CardData"
@@ -72,7 +72,7 @@ exports.receive3DSMethod = async (req, res) => {
   try {
 if (req.body.cres) {
   const paymentDataFromSession = req.session.temporaryPaymentData
-  console.log("Answer from bank", req.body);
+  console.log("Answer from bank", req.body, "paymentDataFromSession", paymentDataFromSession);
      //send data
      paymentDataFromSession.emv3ds = {
       threeDSInfo : "ChallengeResponse",
@@ -130,8 +130,8 @@ exports.authorizationPayment = async (req, res) => {
       terminal: DS_MERCHANT_TERMINAL,
       transactionType: DS_MERCHANT_TRANSACTIONTYPE,
       merchantURL: 'https://b2b.techlines.es/',
-      successURL: 'https://storage.techlines.es/api/payment/ok',
-      errorURL: 'https://storage.techlines.es/api/payment/ko'
+      successURL: 'https://b2b.techlines.es/payment/ok',
+      errorURL: 'https://b2b.techlines.es/payment/ko',
     }
     req.session.temporaryPaymentData = authorizationData;
     const authorization = redsys.makePaymentParameters(authorizationData);
