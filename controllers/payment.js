@@ -58,7 +58,6 @@ exports.createPayment = async (req, res) => {
         threeDSServerTransID: threeDSServerTransID,
         threeDSMethodNotificationURL: 'https://storage.techlines.es/api/payment/3DS'
       };
-      console.log("threeDSMethodData: ",objToEncode);
 
       const threeDSMethodData = encodeBase64url(objToEncode)
       res.json({ threeDSMethodData, threeDSMethodURL, threeDSServerTransID, protocolVersion });
@@ -73,9 +72,15 @@ exports.receive3DSMethod = async (req, res) => {
   try {
 if (req.body.cres) {
   const paymentDataFromSession = req.session.temporaryPaymentData
+  console.log("Answer from bank", req.body);
      //send data
-     paymentDataFromSession.emv3ds.threeDSInfo = "ChallengeResponse",
-     paymentDataFromSession.emv3ds.cres = req.body.cres
+     paymentDataFromSession.emv3ds = {
+      threeDSInfo : "ChallengeResponse",
+      cres : req.body.cres,
+      protocolVersion : paymentDataFromSession.emv3ds.protocolVersion
+     }
+    
+     console.log("paymentDataFromSession", paymentDataFromSession);
      const authentication = redsys.makePaymentParameters(paymentDataFromSession);
      const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authentication);
      if (response.data.errorCode) {
@@ -91,8 +96,6 @@ if (req.body.cres) {
           res.redirect('https://b2b.techlines.es')
        } 
      }
-  console.log("Answer from bank", req.body, paymentDataFromSession);
-  res.json( req.body)
 }
 else {
   res.json({ message: '3DS request sent successfully.' });
@@ -131,7 +134,6 @@ exports.authorizationPayment = async (req, res) => {
       errorURL: 'https://storage.techlines.es/api/payment/ko'
     }
     req.session.temporaryPaymentData = authorizationData;
-    console.log(req.session);
     const authorization = redsys.makePaymentParameters(authorizationData);
     console.log("Auth", authorization)
     //send data
