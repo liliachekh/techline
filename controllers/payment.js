@@ -5,7 +5,7 @@ const axios = require('axios');
 const MERCHANT_KEY = "sq7HjrUOBfKmC576ILgskD5srU870gJ7"; // TESTING KEY
 const redsys = new RedSys(MERCHANT_KEY);
 const { encodeBase64url, decodeBase64url } = require("../commonHelpers/redsys/utils.js")
-let authorizationData = {}
+
 exports.createPayment = async (req, res) => {
   try {
     //receive data from front
@@ -69,6 +69,25 @@ exports.createPayment = async (req, res) => {
   }
 }
 
+exports.receive3DSMethod = async (req, res) => {
+  try {
+// setTimeout(() => {
+//   res.json({ message: '10 сек 3DS request sent successfully.' });
+// }, 10000)
+if (req.body.cres) {
+  res.redirect('https://b2b.techlines.es')
+  console.log("Answer from bank", req.body);
+  // res.json( req.body)
+}
+else {
+  res.json({ message: '3DS request sent successfully.' });
+}
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: '3DS method request failed.' });
+  }
+};
+
 exports.authorizationPayment = async (req, res) => {
   try {
     const {
@@ -82,7 +101,7 @@ exports.authorizationPayment = async (req, res) => {
       DS_MERCHANT_EMV3DS
     } = req.body;
 
-     authorizationData =
+    const authorizationData =
     {
       amount: DS_MERCHANT_AMOUNT,
       currency: DS_MERCHANT_CURRENCY,
@@ -119,22 +138,3 @@ exports.authorizationPayment = async (req, res) => {
     res.status(500).json({ message: 'Authorization request failed.' });
   }
 }
-
-exports.receive3DSMethod = async (req, res) => {
-  try {
-// setTimeout(() => {
-//   res.json({ message: '10 сек 3DS request sent successfully.' });
-// }, 10000)
-if (req.body.cres) {
-  res.redirect('https://b2b.techlines.es')
-  console.log("Answer from bank", req.body, authorizationData);
-  // res.json( req.body)
-}
-else {
-  res.json({ message: '3DS request sent successfully.' });
-}
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: '3DS method request failed.' });
-  }
-};
