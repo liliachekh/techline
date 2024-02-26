@@ -76,7 +76,8 @@ if (req.body.cres) {
      //send data
      paymentDataFromSession.emv3ds.threeDSInfo = "ChallengeResponse",
      paymentDataFromSession.emv3ds.cres = req.body.cres
-     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', paymentDataFromSession);
+     const authentication = redsys.makePaymentParameters(paymentDataFromSession);
+     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', authentication);
      if (response.data.errorCode) {
        console.log(response.data.errorCode)
        //  getResponseCodeMessage(response.data.errorCode)
@@ -85,11 +86,12 @@ if (req.body.cres) {
        const merchantParams = response.data.Ds_MerchantParameters
        const signature = response.data.Ds_Signature
        const responseFromBank = redsys.checkResponseParameters(merchantParams, signature);
+       console.log("authentication responseFromBank ",responseFromBank);
        if (responseFromBank.Ds_Response) {
           res.redirect('https://b2b.techlines.es')
        } 
      }
-  console.log("Answer from bank", req.body, paymentDataFromSession, req.session);
+  console.log("Answer from bank", req.body, paymentDataFromSession);
   res.json( req.body)
 }
 else {
