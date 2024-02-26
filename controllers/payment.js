@@ -77,7 +77,7 @@ if (req.body.cres) {
      paymentDataFromSession.emv3ds = {
       threeDSInfo : "ChallengeResponse",
       cres : req.body.cres,
-      protocolVersion : paymentDataFromSession?.emv3ds.protocolVersion
+      protocolVersion : paymentDataFromSession?.emv3ds.protocolVersion || '2.1.0'
      }
     
      console.log("paymentDataFromSession", paymentDataFromSession);
