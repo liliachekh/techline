@@ -1,6 +1,6 @@
 const express = require("express");
 const cookieParser = require('cookie-parser');
-
+const session = require('express-session');
 const cors = require("cors");
 const corsOptions = {
   origin: "*",
@@ -78,6 +78,11 @@ app.use(passport.initialize());
 // Passport Config
 require("./config/passport")(passport);
 
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+}));
 // Use Routes
 app.use("/api/configs", globalConfigs);
 app.use("/api/customers", customers);
