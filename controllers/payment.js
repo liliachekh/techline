@@ -71,12 +71,24 @@ exports.createPayment = async (req, res) => {
 
 exports.receive3DSMethod = async (req, res) => {
   try {
-// setTimeout(() => {
-//   res.json({ message: '10 сек 3DS request sent successfully.' });
-// }, 10000)
 if (req.body.cres) {
   const paymentDataFromSession = req.session.temporaryPaymentData
-  // res.redirect('https://b2b.techlines.es')
+     //send data
+     paymentDataFromSession.emv3ds.threeDSInfo = "ChallengeResponse",
+     paymentDataFromSession.emv3ds.cres = req.body.cres
+     const response = await axios.post('https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST', paymentDataFromSession);
+     if (response.data.errorCode) {
+       console.log(response.data.errorCode)
+       //  getResponseCodeMessage(response.data.errorCode)
+     }
+     else {
+       const merchantParams = response.data.Ds_MerchantParameters
+       const signature = response.data.Ds_Signature
+       const responseFromBank = redsys.checkResponseParameters(merchantParams, signature);
+       if (responseFromBank.Ds_Response) {
+          res.redirect('https://b2b.techlines.es')
+       } 
+     }
   console.log("Answer from bank", req.body, paymentDataFromSession, req.session);
   res.json( req.body)
 }
