@@ -13,7 +13,8 @@ const {
   editCustomerInfo,
   updatePassword,
   getCustomers,
-  updateCustomer
+  updateCustomer,
+  getCustomerById
 } = require("../controllers/customers");
 const auth = require("../middleware/auth");
 const authAdmin = require("../middleware/authAdmin");
@@ -56,7 +57,7 @@ router.get(
 // @desc    Return all customers
 // @access  Private (Admin-Only)
 router.get(
-  "/customers", authAdmin,
+  "/all", authAdmin,
   // passport.authenticate("jwt", { session: false }),
   getCustomers
 );
@@ -65,9 +66,19 @@ router.get(
 // @desc    Return customers id
 // @access  Private (Admin-Only)
 router.put(
-  "/customers/:id", authAdmin,
+  "/:id", 
+  authAdmin,
   // passport.authenticate("jwt-admin", { session: false }),
   updateCustomer
+);
+
+// @route   GET /customers/:id
+// @desc    GET existing customer by id
+// @access  Private (Admin-Only)
+router.get(
+  "/:customerNo", 
+  authAdmin,
+  getCustomerById
 );
 
 // @route   PUT /customers

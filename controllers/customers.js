@@ -328,6 +328,26 @@ exports.editCustomerInfo = (req, res) => {
     );
 };
 
+exports.getCustomerById = (req, res, next) => {
+  Customer.findOne({
+    customerNo: req.params.customerNo
+  })
+    .then(customer => {
+      if (!customer) {
+        res.status(400).json({
+          message: `Customer ${req.params.customerNo} is not found`
+        });
+      } else {
+        res.json(customer);
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
 // Controller for editing customer password
 exports.updatePassword = (req, res) => {
   // Check Validation
