@@ -84,7 +84,7 @@ router.post(
 // @desc    Update existing product
 // @access  Private
 router.put(
-  "/:id", authAdmin,
+  "/:id", authAdmin ,
   // passport.authenticate("jwt-admin", { session: false }),
   updateProduct
 );
