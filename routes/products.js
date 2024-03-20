@@ -14,6 +14,7 @@ const {
   getProductById,
   getProductsFilterParams,
   searchProducts,
+  deleteProduct,
 } = require("../controllers/products");
 const authAdmin = require("../middleware/authAdmin");
 
@@ -83,7 +84,7 @@ router.post(
 // @desc    Update existing product
 // @access  Private
 router.put(
-  "/:id", authAdmin,
+  "/:id", authAdmin ,
   // passport.authenticate("jwt-admin", { session: false }),
   updateProduct
 );
@@ -107,5 +108,14 @@ router.post("/search", searchProducts);
 // @desc    GET existing product by id
 // @access  Public
 router.get("/:productUrl", getProductById);
+
+// @route   DELETE /products/:itemNo
+// @desc    Delete existing product
+// @access  Private
+router.delete(
+  "/:itemNo", authAdmin,
+  // passport.authenticate("jwt-admin", { session: false }),
+  deleteProduct
+);
 
 module.exports = router;

@@ -38,7 +38,7 @@ router.get ("/loggedIn", isCustomerLoggedIn)
 // @route   GET /customers/loggedInAdmin
 // @desc    Check is Admin logged in
 // @access  Public
-router.get ("/loggedinadmin", isAdminLoggedIn)
+router.get ("/loggedInAdmin", isAdminLoggedIn)
 
 // @route   GET /
 // @desc    Return current customer
