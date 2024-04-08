@@ -34,6 +34,7 @@ const partners = require("./routes/partners");
 // const mainRoute = require('./routes/index');
 const { getStaticFilesPath } = require("./utils");
 const mintProducts = require("./routes/mintProducts");
+const resetPassword = require("./routes/resetPassword");
 const discounts = require("./routes/discounts");
 const payment = require("./routes/payment");
 
@@ -103,6 +104,7 @@ app.use("/api/shipping-methods", shippingMethods);
 app.use("/api/payment-methods", paymentMethods);
 app.use("/api/partners", partners);
 app.use("/api/mintProducts", mintProducts);
+app.use("/api/password-reset", resetPassword);
 app.use("/api/discounts", discounts);
 app.use("/api/payment", payment)
 
