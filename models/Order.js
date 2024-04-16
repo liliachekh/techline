@@ -57,5 +57,6 @@ const OrderSchema = new Schema(
   },
   { strict: false }
 );
+OrderSchema.index({ "$**": "text" });
 
 module.exports = Order = mongoose.model("orders", OrderSchema);

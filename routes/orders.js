@@ -9,10 +9,12 @@ const {
   cancelOrder,
   deleteOrder,
   getOrders,
-  getOrder
+  getOrder,
+  getAllOrders
 } = require("../controllers/orders");
 
 const auth = require("../middleware/auth");
+const authAdmin = require("../middleware/authAdmin");
 
 // @route   POST /orders
 // @desc    Place Order
@@ -47,7 +49,7 @@ router.delete(
 );
 
 // @route   GET /orders
-// @desc    Get all orders
+// @desc    Get all client's orders
 // @access  Private
 router.get("/", auth,
 // passport.authenticate("jwt", { session: false }),
@@ -61,5 +63,12 @@ router.get(
   // passport.authenticate("jwt", { session: false }),
   getOrder
 );
+
+// @route   GET /orders/allOrders
+// @desc    Get all orders
+// @access  Private
+router.get("/all", 
+// auth,
+getOrders);
 
 module.exports = router;
