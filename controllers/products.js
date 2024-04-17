@@ -206,4 +206,41 @@ exports.deleteProduct = (req, res, next) => {
         );
     }
   });
-}
+};
+
+exports.updateProductPrice = (req, res, next) => {
+  // Проверяем, существует ли товар с указанным ID
+  Product.findOne({ _id: req.params.id })
+    .then(product => {
+      if (!product) {
+        // Если товар не найден, отправляем сообщение об ошибке
+        return res.status(404).json({
+          message: `Product with id "${req.params.id}" is not found.`
+        });
+      } else {
+        // Проверяем, существует ли новая цена в запросе
+        if (!req.body.currentPrice) {
+          return res.status(400).json({
+            message: `Price is required for updating product.`
+          });
+        }
+
+        // Обновляем только цену товара
+        product.currentPrice = req.body.currentPrice;
+
+        // Сохраняем обновленный товар
+        product.save()
+          .then(updatedProduct => res.json(updatedProduct))
+          .catch(err =>
+            res.status(400).json({
+              message: `Error happened while updating product price: "${err}" `
+            })
+          );
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
