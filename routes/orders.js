@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const passport = require("passport");
 
 //Import controllers
 const {
@@ -25,50 +24,34 @@ router.post("/", placeOrder);
 // @desc    Update order
 // @access  Private
 router.put(
-  "/:id",auth,
-  // passport.authenticate("jwt", { session: false }),
-  updateOrder
-);
+  "/:id",auth, updateOrder);
 
 // @route   PUT /orders/cancel/:id
 // @desc    Cancel order
 // @access  Private
 router.put(
-  "/cancel/:id",auth,
-  // passport.authenticate("jwt", { session: false }),
-  cancelOrder
-);
+  "/cancel/:id",auth, cancelOrder);
 
 // @route   DELETE /orders/:id
 // @desc    Delete order
 // @access  Private
 router.delete(
-  "/:id",auth,
-  // passport.authenticate("jwt", { session: false }),
-  deleteOrder
-);
+  "/:id",auth, deleteOrder);
+
+// @route   GET /orders/all
+// @desc    Get all orders of all clients
+// @access  Private
+router.get("/all", authAdmin, getAllOrders);
 
 // @route   GET /orders
 // @desc    Get all client's orders
 // @access  Private
-router.get("/", auth,
-// passport.authenticate("jwt", { session: false }),
- getOrders);
+router.get("/", auth, getOrders);
 
 // @route   GET /orders/:orderNo
 // @desc    Get one order by orderNo
 // @access  Private
 router.get(
-  "/:orderNo",auth,
-  // passport.authenticate("jwt", { session: false }),
-  getOrder
-);
-
-// @route   GET /orders/allOrders
-// @desc    Get all orders
-// @access  Private
-router.get("/all", 
-// auth,
-getOrders);
+  "/:orderNo",auth, getOrder);
 
 module.exports = router;

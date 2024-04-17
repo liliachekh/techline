@@ -342,25 +342,16 @@ exports.getOrder = (req, res, next) => {
 };
 
 exports.getAllOrders = (req, res, next) => {
-  Order.find({ customerId: req.user.id })
-  .populate("customerId")
-  .then(orders => res.json(orders))
-  .catch(err =>
-    res.status(400).json({
-      message: `Error happened on server: "${err}" `
+  Order.find()
+    .then(orders => {
+      if (!orders) {
+        return res.status(404).json({ message: "No orders found" });
+      }
+      res.status(200).json(orders)
     })
-  );
-  // Order.find()
-  //   .then(orders => {
-  //     if (!orders) {
-  //       return res.status(404).json({ message: "No orders found" });
-  //     }
-  //     console.log(orders);
-  //     res.status(200).json(orders)
-  //   })
-  //   .catch(err =>
-  //     res.status(400).json({
-  //       message: `Error happened on server: "${err}" `
-  //     })
-  //   );
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
 };
