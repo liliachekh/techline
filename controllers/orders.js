@@ -343,11 +343,15 @@ exports.getOrder = (req, res, next) => {
 
 exports.getAllOrders = (req, res, next) => {
   Order.find()
+  .populate({
+    path: 'customerId',
+    select: 'companyName'
+  })
     .then(orders => {
       if (!orders) {
         return res.status(404).json({ message: "No orders found" });
       }
-      res.status(200).json(orders)
+      res.send(orders)
     })
     .catch(err =>
       res.status(400).json({
