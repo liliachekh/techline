@@ -15,6 +15,7 @@ const {
   getProductsFilterParams,
   searchProducts,
   deleteProduct,
+  updateProductPrice,
 } = require("../controllers/products");
 const authAdmin = require("../middleware/authAdmin");
 
@@ -116,6 +117,15 @@ router.delete(
   "/:itemNo", authAdmin,
   // passport.authenticate("jwt-admin", { session: false }),
   deleteProduct
+);
+
+// @route   PATCH /products/:id
+// @desc    Update existing product price
+// @access  Private
+router.patch(
+  "/:id", authAdmin ,
+  // passport.authenticate("jwt-admin", { session: false }),
+  updateProductPrice
 );
 
 module.exports = router;
