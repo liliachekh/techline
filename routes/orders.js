@@ -9,7 +9,8 @@ const {
   deleteOrder,
   getOrders,
   getOrder,
-  getAllOrders
+  getAllOrders,
+  getOrdersFilterParams,
 } = require("../controllers/orders");
 
 const auth = require("../middleware/auth");
@@ -38,6 +39,12 @@ router.put(
 router.delete(
   "/:id",auth, deleteOrder);
 
+// @route   GET /orders/filter
+// @desc    GET appropriate filtered orders
+// @access  Private
+router.get("/filter", authAdmin, getOrdersFilterParams);
+
+
 // @route   GET /orders/all
 // @desc    Get all orders of all clients
 // @access  Private
@@ -53,5 +60,6 @@ router.get("/", auth, getOrders);
 // @access  Private
 router.get(
   "/:orderNo",auth, getOrder);
+
 
 module.exports = router;

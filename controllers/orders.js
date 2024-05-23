@@ -12,6 +12,7 @@ const Customer = require("../models/Customer");
 const rand = uniqueRandom(1000000, 9999999);
 const createPdf = require("../commonHelpers/pdf/createPdf");
 const { getTierPrice } = require("../utils");
+const filterParser = require("../commonHelpers/filterParser");
 
 exports.placeOrder = async (req, res, next) => {
   try {
@@ -358,4 +359,41 @@ exports.getAllOrders = (req, res, next) => {
         message: `Error happened on server: "${err}" `
       })
     );
+};
+
+exports.getOrdersFilterParams = async (req, res, next) => {
+  console.log('Received request:', req.query);
+  const mongooseQuery = filterParser(req.query);
+  const perPage = Number(req.query.perPage);
+  const startPage = Number(req.query.startPage);
+  const sort = req.query.sort;
+
+  console.log('Mongoose query:', mongooseQuery);
+  console.log('Pagination:', { perPage, startPage });
+  console.log('Sort:', sort);
+
+  try {
+    const orders = await Order
+      .find(mongooseQuery)
+      // .populate({
+      //   path: 'customerId',
+      //   match: { companyName: req.query.companyName ? req.query.companyName : { $exists: true } } // Фильтруем по companyName
+      // })
+      .populate('customerId', 'companyName') 
+      .skip(startPage * perPage - perPage)
+      .limit(perPage)
+      .collation({ locale: 'en', strength: 2 })
+      .sort(sort);
+
+    const ordersQuantity = await Order.find(mongooseQuery);
+
+    // const ordersQuantity = await Order.countDocuments(mongooseQuery);
+
+    res.json({ orders, ordersQuantity: ordersQuantity.length});
+
+  } catch (err) {
+    res.status(400).json({
+      message: `Error happened on server: "${err}" `
+    });
+  }
 };
