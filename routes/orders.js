@@ -55,11 +55,11 @@ router.get("/all", authAdmin, getAllOrders);
 // @access  Private
 router.get("/", auth, getOrders);
 
-// @route   GET /orders/:orderNo
-// @desc    Get one order by orderNo
+// @route   GET /orders/:id
+// @desc    Get one order by id
 // @access  Private
 router.get(
-  "/:orderNo",auth, getOrder);
+  "/:id",auth, getOrder);
 
 
 module.exports = router;

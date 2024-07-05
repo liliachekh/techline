@@ -332,7 +332,7 @@ exports.getOrders = (req, res, next) => {
 };
 
 exports.getOrder = (req, res, next) => {
-  Order.findOne({ orderNo: req.params.orderNo })
+  Order.findOne({ _id: req.params.id })
     .populate("customerId")
     .then(order => res.json(order))
     .catch(err =>
