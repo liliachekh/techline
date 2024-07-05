@@ -13,11 +13,11 @@ function Footer({ refName }) {
           <h3 className={style.footer__infoTitle}>{t('footer.subtitle')}</h3>
           <p className={style.footer__infoText}>{t('footer.info.text1')}</p>
           <p className={style.footer__infoText}>{t('footer.info.text2')}</p>
-          <p className={style.footer__infoText}>{t('footer.info.text3')}</p>
+          {/* <p className={style.footer__infoText}>{t('footer.info.text3')}</p> */}
           <p className={style.footer__infoText}>{t('footer.info.text4')}</p>
           <p className={style.footer__infoText}>{t('footer.info.text5')}</p>
         </div>
-        <p className={style.footer__devinfo}>2023 © Techline Distribution. All rights reserved.</p>
+        <p className={style.footer__devinfo}>2023 © Techlines Distribution. All rights reserved.</p>
         <p className={style.footer__devinfo}>Developed by <Link to="https://othersite.net/" target="blank">OTHERSITE STUDIO</Link></p>
 
       </div>

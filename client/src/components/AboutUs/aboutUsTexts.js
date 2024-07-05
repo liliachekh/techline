@@ -11,8 +11,8 @@ export const statisticItems = [
   { value: "2016", label: "partner" },
   { value: "12", label: "employees" },
   { value: "100+", label: "trade" },
-  { value: "2022", label: "beginnings" },
-  { value: "50 000+", label: "products" },
+  { value: "2024", label: "beginnings" },
+  // { value: "50 000+", label: "products" },
 ];
 // export const statisticItems = [
 //   { value: "2016", label: "Reliable Partner Since" },
