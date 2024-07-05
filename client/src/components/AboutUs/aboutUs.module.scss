@@ -58,8 +58,8 @@
     grid-template-areas:
       'area1 area1'
       'area2 area3'
-      'area4 area4'
-      'area5 area5';
+      'area4 area4';
+      // 'area5 area5';
     row-gap: 20px;
     align-content: center;
     height: auto;
@@ -85,9 +85,9 @@
     grid-area: area4;
   }
 
-  .area5 {
-    grid-area: area5;
-  }
+  // .area5 {
+  //   grid-area: area5;
+  // }
 
   .statItem {
     height: auto;
@@ -127,8 +127,8 @@
   @media (min-width: 568px) {
     .statistics {
       grid-template-areas:
-        'area1 area1 area2 area2 area3 area3'
-        '. area4 area4 area5 area5 .';
+        'area1 area1 area2 area2 '
+        ' area3 area3 area4 area4 ';
     }
 
     .content {
