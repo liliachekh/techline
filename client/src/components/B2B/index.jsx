@@ -27,7 +27,7 @@ export default function B2B({ refName }) {
                 </motion.p>
               ))}
             </div>
-            {/* <motion.div {...animateFromRight()} className={style.photo}>
+            <motion.div {...animateFromRight()} className={style.photo}>
               <div className={style.photo__pc}>
                 <img src="./images/pc_b2b_platform.webp" alt="b2b platform for pc" />
                 <div className={style.photo__pc_productcard}>
@@ -36,11 +36,11 @@ export default function B2B({ refName }) {
               </div>
               <div className={style.photo__mobile}>
                 <img src="./images/mobile_b2b_platform.webp" alt="b2b platform for mobile phone" />
-                <div className={style.photo__mobile_productcard}>
+                {/* <div className={style.photo__mobile_productcard}>
                   <img src="./images/b2b_mobile_productcard.webp" alt="b2b productcard for mobile phone" />
-                </div>
+                </div> */}
               </div>
-            </motion.div> */}
+            </motion.div>
           </div>
 
           <motion.div {...animateFromRight()} className={style.list}>

@@ -33,18 +33,17 @@
       "paragraph1": "Introducing our revamped B2B sales platform, tailored to enhance your sourcing and purchasing process for consumer electronics.",
       "paragraph2": "Whether you're in the market for products from Apple, Samsung, or hunting for exclusive deals and discounts, we're here to assist.",
       "paragraph3": "Don't let this chance to expand your business and avail of our distinct offers slip away.",
-      "paragraph4": "Upon registration, you'll be granted access to explore our product catalogue, manage orders, and track shipments. Our platform also facilitates XML integrations, price report extractions, and drop-shipping deliveries."
+      "paragraph4": "Upon registration, you'll be granted access to explore our product catalogue, manage orders, and track shipments."
     },
     "subtitle": "Features",
     "listItems": {
       "listItem1": "Competitive Rates",
       "listItem2": "Volume Purchase Discounts",
       "listItem3": "Customer-centric Discounts",
-      "listItem4": "XML Integrations",
-      "listItem5": "Swift Deliveries",
-      "listItem6": "Regularly Updated Line-up",
-      "listItem7": "Tailored Services",
-      "listItem8": "User-oriented Design"
+      "listItem4": "Swift Deliveries",
+      "listItem5": "Regularly Updated Line-up",
+      "listItem6": "Tailored Services",
+      "listItem7": "User-oriented Design"
     }
   },
   "signup": {
