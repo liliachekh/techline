@@ -5,8 +5,7 @@ export const listItemTexts = [
   "listItem4",
   "listItem5",
   "listItem6",
-  "listItem7",
-  "listItem8"
+  "listItem7"
 ];
 // export const listItemTexts = [
 //   "Competitive Pricing",

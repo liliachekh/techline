@@ -33,18 +33,17 @@
       "paragraph1": "Presentamos nuestra nueva e innovadora plataforma de ventas B2B, diseñada para optimizar tu proceso de búsqueda y compra de electrónicos para consumidores.",
       "paragraph2": "Ya sea que estés buscando productos de marcas como Apple o Samsung o busques ofertas y descuentos exclusivos, estamos aquí para ayudarte.",
       "paragraph3": "No pierdas esta oportunidad de expandir tu negocio y aprovechar nuestras ofertas exclusivas.",
-      "paragraph4": "Una vez registrado, te proporcionaremos acceso para explorar nuestro catálogo de productos, realizar pedidos y seguir tus entregas. Nuestra plataforma también permite integraciones XML, extraer informes de precios y realizar entregas directas."
+      "paragraph4": "Una vez registrado, te proporcionaremos acceso para explorar nuestro catálogo de productos, realizar pedidos y seguir tus entregas."
     },
     "subtitle": "Características",
     "listItems": {
       "listItem1": "Precios competitivos",
       "listItem2": "Descuentos por volumen",
       "listItem3": "Descuentos para clientes",
-      "listItem4": "Conectividad XML",
-      "listItem5": "Entrega rápida",
-      "listItem6": "Ofertas en expansión",
-      "listItem7": "Servicio personalizado",
-      "listItem8": "Diseño amigable para el usuario"
+      "listItem4": "Entrega rápida",
+      "listItem5": "Ofertas en expansión",
+      "listItem6": "Servicio personalizado",
+      "listItem7": "Diseño amigable para el usuario"
     }
   },
   "signup": {
